@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://lmpg8sp7lnpa"]
+
+[ext_resource type="Script" path="res://Prototype/Scenes/EnemyChasePathTest.gd" id="1_qiwi0"]
+
+[sub_resource type="Curve3D" id="Curve3D_cqgjb"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -8.87724, 0, -9.07255, 0, 0, 0, 0, 0, 0, -4.41926, 0, -9.07255, 0, 0, 0, 0, 0, 0, -4.61479, 0, -4.30174, 0, 0, 0, 0, 0, 0, 4.53579, 0, -4.53637, 0, 0, 0, 0, 0, 0, 4.53579, 0, 2.85448, 0, 0, 0, 0, 0, 0, 9.03286, 0, 2.93269, 0, 0, 0, 0, 0, 0, 8.75913, 0, 8.60292),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ddl6g"]
+
+[node name="EnemyChasePath" type="Path3D"]
+curve = SubResource("Curve3D_cqgjb")
+script = ExtResource("1_qiwi0")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(-4.37111e-08, 0, -0.999994, 0, 1, 0, 0.999994, 0, -4.37111e-08, -8.87724, 0, -9.07255)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PathFollow3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_ddl6g")

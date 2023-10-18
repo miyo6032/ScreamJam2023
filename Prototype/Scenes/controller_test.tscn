@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://du5in3upgvemd"]
+[gd_scene load_steps=8 format=3 uid="uid://du5in3upgvemd"]
 
-[ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="1_td3ss"]
+[ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="1_sxf58"]
+[ext_resource type="PackedScene" uid="uid://lmpg8sp7lnpa" path="res://Prototype/Scenes/enemy_chase_path.tscn" id="2_ymkrs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3umxk"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -38,4 +39,6 @@ mesh = SubResource("PlaneMesh_1a10u")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xpx42")
 
-[node name="Player" parent="." instance=ExtResource("1_td3ss")]
+[node name="Player" parent="." instance=ExtResource("1_sxf58")]
+
+[node name="EnemyChasePath" parent="." instance=ExtResource("2_ymkrs")]
