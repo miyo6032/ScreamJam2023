@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@export var enabled = true
+
 const STOP_SPEED = 8.0
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
@@ -24,12 +26,15 @@ func _unhandled_input(event):
     elif event.is_action_pressed("ui_cancel"):
         Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-    if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion:
+    if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion and enabled:
         neck.rotate_y(-event.relative.x * SENSITIVITY)
         camera.rotate_x(-event.relative.y * SENSITIVITY)
         camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
 
 func _physics_process(delta):
+    if !enabled:
+        return
+        
     if not is_on_floor():
         velocity.y -= gravity * delta
 

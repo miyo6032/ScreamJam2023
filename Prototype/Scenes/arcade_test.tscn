@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://ca44p5h0tnmre"]
+
+[ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="1_dedev"]
+[ext_resource type="PackedScene" uid="uid://b5nmtdb63mre5" path="res://Prototype/Scenes/epic_arcade.tscn" id="2_hbtnd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3umxk"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_6g0rv"]
+sky_material = SubResource("ProceduralSkyMaterial_3umxk")
+
+[sub_resource type="Environment" id="Environment_wakib"]
+background_mode = 2
+sky = SubResource("Sky_6g0rv")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1a10u"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xpx42"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wakib")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1a10u")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_xpx42")
+
+[node name="Player" parent="." instance=ExtResource("1_dedev")]
+enabled = false
+
+[node name="EpicArcade" parent="." instance=ExtResource("2_hbtnd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0804688, 1, -2.20493)
