@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://7sl7lrehdsu3"]
+
+[ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="1_ulqwh"]
+
+[sub_resource type="Environment" id="Environment_eiiht"]
+background_mode = 1
+background_color = Color(0.0980392, 0.0823529, 0.121569, 1)
+sdfgi_enabled = true
+sdfgi_read_sky_light = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_030uc"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_jmgn0"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_3axxa"]
+size = Vector2(20, 4)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_q8q0q"]
+data = PackedVector3Array(10, 0, 2, -10, 0, 2, 10, 0, -2, -10, 0, 2, -10, 0, -2, 10, 0, -2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heutk"]
+emission_enabled = true
+emission = Color(0.113725, 0.113725, 0.188235, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_e4ese"]
+material = SubResource("StandardMaterial3D_heutk")
+size = Vector2(1, 2)
+
+[node name="EnvironmentTest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_eiiht")
+
+[node name="Player" parent="." instance=ExtResource("1_ulqwh")]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_030uc")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jmgn0")
+
+[node name="Ceiling" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 4, 0)
+mesh = SubResource("PlaneMesh_030uc")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ceiling"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ceiling/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_jmgn0")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 2, -10)
+mesh = SubResource("PlaneMesh_3axxa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_q8q0q")
+
+[node name="Wall2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, 10)
+mesh = SubResource("PlaneMesh_3axxa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_q8q0q")
+
+[node name="Wall3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 10, 2, 0)
+mesh = SubResource("PlaneMesh_3axxa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_q8q0q")
+
+[node name="Wall4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, -10, 2, 0)
+mesh = SubResource("PlaneMesh_3axxa")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_q8q0q")
+
+[node name="Door" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -9.96955)
+mesh = SubResource("QuadMesh_e4ese")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.695538, 1.10671)
+light_color = Color(0.203922, 0.266667, 0.329412, 1)
+light_energy = 0.5
