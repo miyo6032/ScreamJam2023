@@ -14,6 +14,10 @@ config/name="ScreamJam2023"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=882
+
 [input]
 
 forward={

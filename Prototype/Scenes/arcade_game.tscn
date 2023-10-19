@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c56hkknnm3cfe"]
+[gd_scene load_steps=8 format=3 uid="uid://c56hkknnm3cfe"]
 
 [ext_resource type="Script" path="res://Scripts/ArcadePlayerMovement.gd" id="1_fbmnh"]
+[ext_resource type="Script" path="res://Prototype/Scenes/ArcadeGame.gd" id="1_vlq7h"]
 [ext_resource type="Texture2D" uid="uid://b3pueh6pefa33" path="res://icon.svg" id="2_5t1ti"]
 [ext_resource type="Texture2D" uid="uid://cdqb7q8h3nxu0" path="res://Prototype/Sprites/Ground.png" id="3_lloj6"]
 
@@ -8,34 +9,220 @@
 size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u7y3t"]
-size = Vector2(256, 64)
+size = Vector2(512, 128)
+
+[sub_resource type="Curve2D" id="Curve2D_h5o2x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 192, 384, 0, 0, 0, 0, 576, 384, 0, 0, 0, 0, 576, 0, 0, 0, 0, 0, 1472, 0, 0, 0, 0, 0, 1472, 512, 0, 0, 0, 0, 1856, 512)
+}
+point_count = 6
 
 [node name="ArcadeGame" type="Node2D"]
+script = ExtResource("1_vlq7h")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(114, 281)
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(576, 324)
 script = ExtResource("1_fbmnh")
 
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
 texture = ExtResource("2_5t1ti")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_spdfl")
 
-[node name="Platform" type="Sprite2D" parent="."]
-position = Vector2(131, 402)
+[node name="Maze" type="Node2D" parent="."]
+
+[node name="Platform" type="Sprite2D" parent="Maze"]
+position = Vector2(704, -192)
 texture = ExtResource("3_lloj6")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Platform"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze/Platform"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Platform/StaticBody2D"]
 shape = SubResource("RectangleShape2D_u7y3t")
 
-[node name="Platform2" type="Sprite2D" parent="."]
-position = Vector2(526, 402)
+[node name="Platform5" type="Sprite2D" parent="Maze"]
+position = Vector2(1216, -192)
 texture = ExtResource("3_lloj6")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Platform2"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze/Platform5"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform2/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Platform5/StaticBody2D"]
 shape = SubResource("RectangleShape2D_u7y3t")
+
+[node name="Platform6" type="Sprite2D" parent="Maze"]
+position = Vector2(1088, 192)
+texture = ExtResource("3_lloj6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze/Platform6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Platform6/StaticBody2D"]
+shape = SubResource("RectangleShape2D_u7y3t")
+
+[node name="Platform7" type="Sprite2D" parent="Maze"]
+position = Vector2(1728, -192)
+texture = ExtResource("3_lloj6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze/Platform7"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Platform7/StaticBody2D"]
+shape = SubResource("RectangleShape2D_u7y3t")
+
+[node name="Platform3" type="Sprite2D" parent="Maze"]
+position = Vector2(384, 0)
+rotation = 1.5708
+texture = ExtResource("3_lloj6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze/Platform3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Platform3/StaticBody2D"]
+shape = SubResource("RectangleShape2D_u7y3t")
+
+[node name="Platform4" type="Sprite2D" parent="Maze"]
+position = Vector2(768, 384)
+rotation = 1.5708
+texture = ExtResource("3_lloj6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze/Platform4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Platform4/StaticBody2D"]
+shape = SubResource("RectangleShape2D_u7y3t")
+
+[node name="Platform8" type="Sprite2D" parent="Maze"]
+position = Vector2(1664, 128)
+rotation = 1.5708
+texture = ExtResource("3_lloj6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze/Platform8"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Platform8/StaticBody2D"]
+shape = SubResource("RectangleShape2D_u7y3t")
+
+[node name="Platform9" type="Sprite2D" parent="Maze"]
+position = Vector2(1280, 512)
+rotation = 1.5708
+texture = ExtResource("3_lloj6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze/Platform9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Platform9/StaticBody2D"]
+shape = SubResource("RectangleShape2D_u7y3t")
+
+[node name="Platform2" type="Sprite2D" parent="Maze"]
+position = Vector2(448, 576)
+texture = ExtResource("3_lloj6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze/Platform2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Platform2/StaticBody2D"]
+shape = SubResource("RectangleShape2D_u7y3t")
+
+[node name="Platform10" type="Sprite2D" parent="Maze"]
+position = Vector2(1600, 704)
+texture = ExtResource("3_lloj6")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Maze/Platform10"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Maze/Platform10/StaticBody2D"]
+shape = SubResource("RectangleShape2D_u7y3t")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_h5o2x")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(192, 384)
+
+[node name="Enemy" type="Area2D" parent="Path2D/PathFollow2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Enemy"]
+texture = ExtResource("2_5t1ti")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/PathFollow2D/Enemy"]
+shape = SubResource("RectangleShape2D_spdfl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="UserInterface" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -324.0
+offset_right = 576.0
+offset_bottom = 324.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartingScreen" type="ColorRect" parent="Camera2D/UserInterface"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="Camera2D/UserInterface/StartingScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -13.0
+offset_right = 30.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Escape Gumkid!"
+
+[node name="PressEnter" type="Label" parent="Camera2D/UserInterface/StartingScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = 43.0
+offset_right = 166.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 36
+text = "Press Enter to play"
+
+[node name="CrashScreen" type="ColorRect" parent="Camera2D/UserInterface"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Title" type="Label" parent="Camera2D/UserInterface/CrashScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.5
+offset_top = -13.0
+offset_right = 30.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
+text = "Game Crashed!"
+
+[connection signal="game_crash" from="." to="." method="_on_game_crash"]
+[connection signal="body_entered" from="Path2D/PathFollow2D/Enemy" to="." method="_on_enemy_body_entered"]
