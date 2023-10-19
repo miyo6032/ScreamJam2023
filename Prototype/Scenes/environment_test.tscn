@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7sl7lrehdsu3"]
+[gd_scene load_steps=15 format=3 uid="uid://7sl7lrehdsu3"]
 
 [ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="1_ulqwh"]
 
@@ -7,6 +7,7 @@ background_mode = 1
 background_color = Color(0.0980392, 0.0823529, 0.121569, 1)
 sdfgi_enabled = true
 sdfgi_read_sky_light = false
+glow_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_030uc"]
 size = Vector2(20, 20)
@@ -27,6 +28,25 @@ emission = Color(0.113725, 0.113725, 0.188235, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_e4ese"]
 material = SubResource("StandardMaterial3D_heutk")
 size = Vector2(1, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_arnln"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eyujj"]
+material = SubResource("StandardMaterial3D_arnln")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0rfmt"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nt2nh"]
+material = SubResource("StandardMaterial3D_0rfmt")
+size = Vector3(0.7, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e62mr"]
+emission_enabled = true
+emission = Color(0, 1.5, 1.5, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_na5gs"]
+material = SubResource("StandardMaterial3D_e62mr")
+size = Vector2(0.7, 0.7)
 
 [node name="EnvironmentTest" type="Node3D"]
 
@@ -98,3 +118,24 @@ mesh = SubResource("QuadMesh_e4ese")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.695538, 1.10671)
 light_color = Color(0.203922, 0.266667, 0.329412, 1)
 light_energy = 0.5
+
+[node name="Arcade" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1095, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Arcade"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_eyujj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Arcade"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 1.5, 0)
+mesh = SubResource("BoxMesh_nt2nh")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Arcade"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.21, 1.5, 0)
+mesh = SubResource("QuadMesh_na5gs")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Arcade"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.617351, 1.69554, 0)
+light_color = Color(0.537255, 1, 1, 1)
+light_energy = 0.06
+shadow_enabled = true
