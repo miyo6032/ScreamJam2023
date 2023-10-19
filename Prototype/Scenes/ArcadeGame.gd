@@ -9,8 +9,8 @@ signal game_crash
 
 var player_died = false
 
-func _unhandled_input(event):
-    if event.is_action_pressed("ui_accept") and starting_screen.visible:
+func _physics_process(delta):
+    if Input.is_action_just_released("ui_accept") and starting_screen.visible:
         if player_died:
             game_crash.emit()
         else:

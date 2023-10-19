@@ -39,8 +39,8 @@ mesh = SubResource("PlaneMesh_1a10u")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xpx42")
 
-[node name="Player" parent="." instance=ExtResource("1_dedev")]
-enabled = false
-
 [node name="EpicArcade" parent="." instance=ExtResource("2_hbtnd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0804688, 1, -2.20493)
+
+[node name="Player" parent="." instance=ExtResource("1_dedev")]
+enabled = false
