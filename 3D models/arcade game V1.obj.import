@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://p3dyqocuv8jv"
+path="res://.godot/imported/arcade game V1.obj-dd42b5f2e45d53493b6887441f513610.mesh"
+
+[deps]
+
+files=["res://.godot/imported/arcade game V1.obj-dd42b5f2e45d53493b6887441f513610.mesh"]
+
+source_file="res://3D models/arcade game V1.obj"
+dest_files=["res://.godot/imported/arcade game V1.obj-dd42b5f2e45d53493b6887441f513610.mesh", "res://.godot/imported/arcade game V1.obj-dd42b5f2e45d53493b6887441f513610.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
