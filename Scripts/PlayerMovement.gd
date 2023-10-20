@@ -30,6 +30,9 @@ func _unhandled_input(event):
         neck.rotate_y(-event.relative.x * SENSITIVITY)
         camera.rotate_x(-event.relative.y * SENSITIVITY)
         camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-60), deg_to_rad(60))
+        
+func look_in_direction(y):
+    neck.rotation.y = y
 
 func _physics_process(delta):
     if !enabled:
