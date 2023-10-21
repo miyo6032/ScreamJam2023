@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://usb3pc0w3axj"]
+
+[ext_resource type="PackedScene" uid="uid://b5ck37wyoxfwy" path="res://3D models/Gumkid/GumkidModel.tscn" id="1_bwvpm"]
+[ext_resource type="Script" path="res://Scripts/Gumkid.gd" id="1_ihksr"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_y0o5m"]
+radius = 1.0
+
+[node name="Gumkid" type="Node3D"]
+script = ExtResource("1_ihksr")
+
+[node name="GumkidModel" parent="." instance=ExtResource("1_bwvpm")]
+
+[node name="CaptureArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CaptureArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00064, 0)
+shape = SubResource("CylinderShape3D_y0o5m")
+
+[connection signal="body_entered" from="CaptureArea" to="." method="_on_capture_area_body_entered"]

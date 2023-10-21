@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://b5ck37wyoxfwy"]
 
 [ext_resource type="PackedScene" uid="uid://b7xohaun737m3" path="res://3D models/Gumkid/gkid_run.fbx" id="1_qkige"]
-[ext_resource type="Script" path="res://3D models/Gumkid/Gumkid.gd" id="2_cghjr"]
+[ext_resource type="Script" path="res://3D models/Gumkid/GumkidModel.gd" id="2_3i8iu"]
 
 [sub_resource type="Animation" id="Animation_f7nu5"]
 resource_name = "gkid idle"
@@ -538,8 +538,8 @@ states/Start/position = Vector2(196, 94)
 "states/gkid run/position" = Vector2(533, 94)
 transitions = ["gkid idle", "gkid run", SubResource("AnimationNodeStateMachineTransition_furw5"), "Start", "gkid idle", SubResource("AnimationNodeStateMachineTransition_06rx8"), "gkid run", "gkid idle", SubResource("AnimationNodeStateMachineTransition_kp2bm")]
 
-[node name="gkid_run" instance=ExtResource("1_qkige")]
-script = ExtResource("2_cghjr")
+[node name="GumkidModel" instance=ExtResource("1_qkige")]
+script = ExtResource("2_3i8iu")
 
 [node name="Skeleton3D" parent="RootNode/gumkid main" index="0"]
 bones/0/position = Vector3(-5.95623e-05, 0.848491, 0.0448006)

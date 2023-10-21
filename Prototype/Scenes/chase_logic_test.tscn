@@ -4,8 +4,8 @@
 [ext_resource type="ArrayMesh" uid="uid://ckl8tdi7tnwwt" path="res://3D models/arcade game V2.obj" id="2_45vsp"]
 [ext_resource type="ArrayMesh" uid="uid://p3dyqocuv8jv" path="res://3D models/arcade game V1.obj" id="3_7s46g"]
 [ext_resource type="Texture2D" uid="uid://cdqb7q8h3nxu0" path="res://Prototype/Sprites/Ground.png" id="4_dw14y"]
-[ext_resource type="Script" path="res://Prototype/Scenes/ChaseLogicTest.gd" id="5_vndvh"]
-[ext_resource type="PackedScene" uid="uid://b5ck37wyoxfwy" path="res://3D models/Gumkid/gkid.tscn" id="6_buojo"]
+[ext_resource type="Script" path="res://Scripts/ChaseHandler.gd" id="5_s73mr"]
+[ext_resource type="PackedScene" uid="uid://usb3pc0w3axj" path="res://scenes/Gumkid.tscn" id="6_ca7pp"]
 
 [sub_resource type="Environment" id="Environment_eiiht"]
 background_mode = 1
@@ -1487,14 +1487,16 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = ExtResource("2_45vsp")
 skeleton = NodePath("../../../..")
 
-[node name="Path3D" type="Path3D" parent="."]
+[node name="Path3D" type="Path3D" parent="." node_paths=PackedStringArray("gumkid", "path_follow")]
 curve = SubResource("Curve3D_p3irw")
-script = ExtResource("5_vndvh")
+script = ExtResource("5_s73mr")
+gumkid = NodePath("PathFollow3D/RotationFix/Gumkid")
+path_follow = NodePath("PathFollow3D")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.999972, 0, 0.00741848, 0, 1, 0, -0.00741848, 0, -0.999972, -1.25962, 0, -12.1965)
+transform = Transform3D(-0.999972, 0, 0.00741847, 0, 1, 0, -0.00741847, 0, -0.999972, -1.25962, 0, -12.1965)
 
 [node name="RotationFix" type="Node3D" parent="Path3D/PathFollow3D"]
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 0, 0)
 
-[node name="gkid_run" parent="Path3D/PathFollow3D/RotationFix" instance=ExtResource("6_buojo")]
+[node name="Gumkid" parent="Path3D/PathFollow3D/RotationFix" instance=ExtResource("6_ca7pp")]
