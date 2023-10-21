@@ -61,7 +61,3 @@ enter={
 [layer_names]
 
 3d_physics/layer_2="interactables"
-
-[rendering]
-
-global_illumination/sdfgi/frames_to_converge=3

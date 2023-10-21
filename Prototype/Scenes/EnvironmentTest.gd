@@ -14,3 +14,4 @@ func _on_arcade_game_game_crash():
         light.visible = false
     $Player.enabled = true
     dialog.show_dialog("The power went out? Bruh.")
+
