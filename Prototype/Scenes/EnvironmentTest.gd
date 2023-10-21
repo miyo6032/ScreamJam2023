@@ -7,6 +7,7 @@ extends Node3D
 func _ready():
     $Player.look_in_direction(TAU * 0.5)
     $Player.enabled = false
+    $Player.disable_flashlight()
 
 func _on_arcade_game_game_crash():
     for light in lightsToDisable:

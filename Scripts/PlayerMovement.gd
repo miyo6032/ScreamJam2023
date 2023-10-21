@@ -16,6 +16,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var neck := $Neck
 @onready var camera := $Neck/Camera3D
+@onready var flashlight := $Neck/Camera3D/Hand/Pivot/SpotLight3D
 
 func _ready():
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -67,3 +68,8 @@ func headbob():
     pos.x = sin(bob_progress * BOB_FREQ * 0.5) * BOB_AMP
     return pos
     
+func enable_flashlight():
+    flashlight.visible = true
+
+func disable_flashlight():
+    flashlight.visible = false

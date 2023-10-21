@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cddj0tsvav4kd"]
+[gd_scene load_steps=6 format=3 uid="uid://cddj0tsvav4kd"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_c7exi"]
 [ext_resource type="Script" path="res://Prototype/Scenes/InteractHandler.gd" id="2_50fu8"]
+[ext_resource type="Texture2D" uid="uid://s5o1m5okpu6k" path="res://Prototype/Sprites/flashlightpattern.png" id="2_x3bwh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lqkt2"]
 
@@ -12,6 +13,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22568, 0)
 script = ExtResource("1_c7exi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_lqkt2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -21,6 +23,18 @@ shape = SubResource("CapsuleShape3D_fi0jv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.56525, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Neck"]
+
+[node name="Hand" type="Node3D" parent="Neck/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.539598, -0.56525, 0)
+
+[node name="Pivot" type="Node3D" parent="Neck/Camera3D/Hand"]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Neck/Camera3D/Hand/Pivot"]
+light_energy = 2.0
+light_projector = ExtResource("2_x3bwh")
+shadow_enabled = true
+spot_range = 15.0
+spot_angle = 15.0
 
 [node name="InteractHandler" type="Node3D" parent="." node_paths=PackedStringArray("collider", "camera")]
 script = ExtResource("2_50fu8")
