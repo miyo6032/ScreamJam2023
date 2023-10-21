@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://kc7675dunke2"]
+
+[ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="1_hjx1a"]
+[ext_resource type="Script" path="res://Prototype/Scenes/MoveAnimationTest.gd" id="2_pg4nk"]
+[ext_resource type="PackedScene" uid="uid://b5ck37wyoxfwy" path="res://3D models/Gumkid/gkid.tscn" id="3_cafkf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3umxk"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_6g0rv"]
+sky_material = SubResource("ProceduralSkyMaterial_3umxk")
+
+[sub_resource type="Environment" id="Environment_wakib"]
+background_mode = 2
+sky = SubResource("Sky_6g0rv")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1a10u"]
+size = Vector2(20, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xpx42"]
+data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0, -10, 10, 0, -10)
+
+[sub_resource type="Curve3D" id="Curve3D_14dl5"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -3.96148, 0, -8.0215, -1, 0, -1, 1, 0, 1, -0.0197086, 0, -8.0215, -1, 0, -1, 1, 0, 1, -0.0197086, 0, -4.04031, 0, 0, 0, 0, 0, 0, 6.0112, 0, -4.04031),
+"tilts": PackedFloat32Array(0, 0, 0, 0)
+}
+point_count = 4
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wakib")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_1a10u")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_xpx42")
+
+[node name="Player" parent="." instance=ExtResource("1_hjx1a")]
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_14dl5")
+script = ExtResource("2_pg4nk")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -3.96148, 0, -8.0215)
+
+[node name="RotationFix" type="Node3D" parent="Path3D/PathFollow3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="gkid_run" parent="Path3D/PathFollow3D/RotationFix" instance=ExtResource("3_cafkf")]
