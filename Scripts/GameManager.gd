@@ -15,11 +15,14 @@ var dialog_time = 0.0
 var dialog_pause_time = 0.0
 
 func _ready():
-    player.look_in_direction(TAU * 0.5)
+    # player.look_in_direction(TAU * 0.5)
     player.enabled = false
     player.disable_flashlight()
     exit_breaker_trigger.monitoring = false
     gumkid.set_inactive()
+
+    Console.add_command("spawn", _on_arcade_interactable_interacted)
+    Console.add_command("crash", _on_arcade_game_game_crash)
 
     if !do_instant_events:
         dialog_time = 2.0
@@ -73,9 +76,9 @@ func _on_arcade_interactable_interacted():
     screen_flash.play("flash")
     gumkid.set_active()
 
-    await pause(2.0)
     player.enabled = true
 
-    # var tween = get_tree().create_tween()
-    # gumkid.set_speed(1)
-    # tween.tween_property(path_follow, "progress_ratio", 1, 25)
+    await pause(4.0)
+    var tween = get_tree().create_tween()
+    gumkid.set_speed(1)
+    tween.tween_property(path_follow, "progress_ratio", 1, 25)

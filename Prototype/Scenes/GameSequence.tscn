@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bqsjhxkf1gnfn"]
+[gd_scene load_steps=37 format=3 uid="uid://bqsjhxkf1gnfn"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_a7gqu"]
 [ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="2_v757q"]
@@ -11,7 +11,6 @@
 [ext_resource type="Script" path="res://Prototype/Scenes/Dialog.gd" id="8_m3rx5"]
 [ext_resource type="Script" path="res://Prototype/Scenes/Interactable.gd" id="9_ahq8a"]
 [ext_resource type="PackedScene" uid="uid://usb3pc0w3axj" path="res://scenes/Gumkid.tscn" id="10_2iw1o"]
-[ext_resource type="Script" path="res://Scripts/ChaseHandler.gd" id="11_qxib4"]
 
 [sub_resource type="Environment" id="Environment_eiiht"]
 background_mode = 1
@@ -92,10 +91,10 @@ material = SubResource("StandardMaterial3D_sie2f")
 
 [sub_resource type="Curve3D" id="Curve3D_kgxqu"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.1611, 0, -8.73254, 0.657443, 0, -0.738197, -0.657443, 0, 0.738197, -1.40725, 0, 7.70326, 0.813707, 0, -0.974957, -0.813707, 0, 0.974957, -8.21288, 0, 8.3033, -0.843349, 0, -0.799468, 0.843349, 0, 0.799468, -8.10926, 0, 14.1752, -0.359784, 0, 0.75485, 0.359784, 0, -0.75485, -1.63005, 0, 13.9629, -0.221623, 0, 0.75485, 0.221623, 0, -0.75485, -1.78837, 0, 11.7919, -0.567029, 0, -0.799467, 0.567029, 0, 0.799467, 4.91246, 0, 11.861, -0.70519, 0, -0.834008, 0.70519, 0, 0.834008, 5.08516, 0, 13.9334, -0.77427, 0, -1.11033, 0.77427, 0, 1.11033, 8.74644, 0, 14.3133, 0, 0, 0, 0, 0, 0, 7.98655, 0, 17.9401),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.18001, 0, -8.5684, 0, 0, 0, 0, 0, 0, -1.18522, 0, 8.53293, 0, 0, 0, 0, 0, 0, -7.22198, 0, 8.58241),
+"tilts": PackedFloat32Array(0, 0, 0)
 }
-point_count = 10
+point_count = 3
 
 [sub_resource type="Animation" id="Animation_xu41q"]
 resource_name = "Flash"
@@ -120,9 +119,9 @@ _data = {
 [node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow")]
 script = ExtResource("1_a7gqu")
 do_instant_events = true
-lightsToDisable = [NodePath("Environment/ArcadeGameV201/ScreenLight"), NodePath("Environment/LitArcades/ArcadeLight"), NodePath("Environment/LitArcades/ArcadeLight2")]
+lightsToDisable = [NodePath("Environment/TheGameMachine/ScreenLight"), NodePath("Environment/LitArcades/ArcadeLight"), NodePath("Environment/LitArcades/ArcadeLight2")]
 exit_breaker_trigger = NodePath("Environment/ArcadeFlickerTrigger")
-arcade_game = NodePath("Environment/ArcadeGameV201")
+arcade_game = NodePath("Environment/TheGameMachine")
 gumkid = NodePath("Environment/Path3D/PathFollow3D/RotationFix/Gumkid")
 screen_flash = NodePath("Control/ScreenFlash/ScreenFlashAnimation")
 path_follow = NodePath("Environment/Path3D/PathFollow3D")
@@ -131,7 +130,7 @@ path_follow = NodePath("Environment/Path3D/PathFollow3D")
 environment = SubResource("Environment_eiiht")
 
 [node name="Player" parent="." instance=ExtResource("2_v757q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.95, 1, -11.448)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30158, 1, -10.0466)
 
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
@@ -1236,49 +1235,49 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../../..")
 
-[node name="ArcadeGameV201" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -2.66833, 0, -9.2316)
+[node name="TheGameMachine" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.00221655, 0, -0.499995, 0, 0.5, 0, 0.499995, 0, 0.00221655, -1.19294, 0, -10.5147)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../..")
 script = ExtResource("6_3jywl")
 
-[node name="ArcadeGameScreen" type="Node3D" parent="Environment/ArcadeGameV201"]
+[node name="ArcadeGameScreen" type="Node3D" parent="Environment/TheGameMachine"]
 
-[node name="Screen" type="MeshInstance3D" parent="Environment/ArcadeGameV201/ArcadeGameScreen"]
+[node name="Screen" type="MeshInstance3D" parent="Environment/TheGameMachine/ArcadeGameScreen"]
 transform = Transform3D(-4.37114e-08, -0.173648, 0.984808, 0, 0.984808, 0.173648, -1, 7.5904e-09, -4.30473e-08, 0.012125, 2.55859, 0)
 mesh = SubResource("QuadMesh_qtf34")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_6pf25")
 
-[node name="SubViewport" type="SubViewport" parent="Environment/ArcadeGameV201/ArcadeGameScreen"]
+[node name="SubViewport" type="SubViewport" parent="Environment/TheGameMachine/ArcadeGameScreen"]
 
-[node name="ArcadeGame" parent="Environment/ArcadeGameV201/ArcadeGameScreen/SubViewport" instance=ExtResource("7_r2cru")]
+[node name="ArcadeGame" parent="Environment/TheGameMachine/ArcadeGameScreen/SubViewport" instance=ExtResource("7_r2cru")]
 
-[node name="FlickeringScreen" type="Node3D" parent="Environment/ArcadeGameV201"]
+[node name="FlickeringScreen" type="Node3D" parent="Environment/TheGameMachine"]
 
-[node name="Screen" type="MeshInstance3D" parent="Environment/ArcadeGameV201/FlickeringScreen"]
+[node name="Screen" type="MeshInstance3D" parent="Environment/TheGameMachine/FlickeringScreen"]
 transform = Transform3D(-4.37114e-08, -0.173648, 0.984808, 0, 0.984808, 0.173648, -1, 7.5904e-09, -4.30473e-08, 0.012125, 2.55859, 0)
 mesh = SubResource("QuadMesh_qtf34")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_6pf25")
 
-[node name="SubViewport" type="SubViewport" parent="Environment/ArcadeGameV201/FlickeringScreen"]
+[node name="SubViewport" type="SubViewport" parent="Environment/TheGameMachine/FlickeringScreen"]
 
-[node name="ScreenFlickerEffect" parent="Environment/ArcadeGameV201/FlickeringScreen/SubViewport" instance=ExtResource("8_gfttr")]
+[node name="ScreenFlickerEffect" parent="Environment/TheGameMachine/FlickeringScreen/SubViewport" instance=ExtResource("8_gfttr")]
 
-[node name="ScreenLight" type="SpotLight3D" parent="Environment/ArcadeGameV201"]
+[node name="ScreenLight" type="SpotLight3D" parent="Environment/TheGameMachine"]
 transform = Transform3D(-7.94752e-08, -0.272133, -1.7977, -1.61487e-15, 1.7977, -0.272133, 1.81818, -1.18953e-08, -7.858e-08, -1.25018, 2.27153, 0)
 
-[node name="ArcadeInteractable" type="StaticBody3D" parent="Environment/ArcadeGameV201"]
+[node name="ArcadeInteractable" type="StaticBody3D" parent="Environment/TheGameMachine"]
 transform = Transform3D(-7.94753e-08, 0, -1.81818, 0, 1.81818, 0, 1.81818, 0, -7.94753e-08, 0, 2, 0)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("9_ahq8a")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/ArcadeGameV201/ArcadeInteractable"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/TheGameMachine/ArcadeInteractable"]
 shape = SubResource("BoxShape3D_5uojy")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/ArcadeGameV201/ArcadeInteractable"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/TheGameMachine/ArcadeInteractable"]
 visible = false
 layers = 3
 mesh = SubResource("BoxMesh_2de4j")
@@ -1310,15 +1309,12 @@ shape = SubResource("BoxShape3D_l6ih2")
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
 mesh = SubResource("QuadMesh_fdcnv")
 
-[node name="Path3D" type="Path3D" parent="Environment" node_paths=PackedStringArray("gumkid", "path_follow")]
+[node name="Path3D" type="Path3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25154)
 curve = SubResource("Curve3D_kgxqu")
-script = ExtResource("11_qxib4")
-gumkid = NodePath("PathFollow3D/RotationFix/Gumkid")
-path_follow = NodePath("PathFollow3D")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Environment/Path3D"]
-transform = Transform3D(-0.999884, 0, 0.0149748, 0, 1, 0, -0.0149748, 0, -0.999884, -1.1611, 0, -8.73254)
+transform = Transform3D(-0.999996, 0, 0.00030461, 0, 1, 0, -0.00030461, 0, -0.999996, -1.18001, 0, -8.5684)
 
 [node name="RotationFix" type="Node3D" parent="Environment/Path3D/PathFollow3D"]
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 0, 0)
@@ -1367,7 +1363,7 @@ libraries = {
 "": SubResource("AnimationLibrary_ax1ru")
 }
 
-[connection signal="game_crash" from="Environment/ArcadeGameV201/ArcadeGameScreen/SubViewport/ArcadeGame" to="." method="_on_arcade_game_game_crash"]
-[connection signal="interacted" from="Environment/ArcadeGameV201/ArcadeInteractable" to="." method="_on_arcade_interactable_interacted"]
+[connection signal="game_crash" from="Environment/TheGameMachine/ArcadeGameScreen/SubViewport/ArcadeGame" to="." method="_on_arcade_game_game_crash"]
+[connection signal="interacted" from="Environment/TheGameMachine/ArcadeInteractable" to="." method="_on_arcade_interactable_interacted"]
 [connection signal="interacted" from="Environment/ElectricalBox" to="." method="_on_electrical_box_interacted"]
 [connection signal="body_entered" from="Environment/ArcadeFlickerTrigger" to="." method="_on_arcade_flicker_trigger_body_entered"]

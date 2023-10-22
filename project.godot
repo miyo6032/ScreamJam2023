@@ -13,6 +13,10 @@ config_version=5
 config/name="ScreamJam2023"
 config/features=PackedStringArray("4.1", "Forward Plus")
 
+[autoload]
+
+Console="*res://addons/console/Console.gd"
+
 [display]
 
 window/size/viewport_width=882
@@ -20,6 +24,10 @@ window/size/viewport_width=882
 [dotnet]
 
 project/assembly_name="ScreamJam2023"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/console/plugin.cfg")
 
 [input]
 
