@@ -19,7 +19,7 @@ func _physics_process(delta):
 
     var result = space_state.intersect_ray(query)
     if !result.is_empty():
-        if currentInteractable != result.collider && result.collider is Interactable:
+        if currentInteractable != result.collider and result.collider is Interactable and result.collider.interactable:
             if currentInteractable != null:
                 currentInteractable.on_interact_exit()
             currentInteractable = result.collider
@@ -30,5 +30,5 @@ func _physics_process(delta):
 
 func _unhandled_input(event):
     if event is InputEventMouseButton && event.is_pressed():
-        if currentInteractable != null:
+        if currentInteractable != null && currentInteractable.interactable:
             currentInteractable.on_interact()

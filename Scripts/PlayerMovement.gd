@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+class_name Player
+
 @export var enabled = true
 
 const STOP_SPEED = 8.0
@@ -53,7 +55,7 @@ func _physics_process(delta):
     if direction:
         velocity.x = direction.x * speed
         velocity.z = direction.z * speed
-    else:
+    else:   
         velocity.x = lerp(velocity.x, direction.x * speed, delta * STOP_SPEED)
         velocity.z = lerp(velocity.z, direction.z * speed, delta * STOP_SPEED)
 
@@ -73,3 +75,6 @@ func enable_flashlight():
 
 func disable_flashlight():
     flashlight.visible = false
+    
+func play_explosion_hit_animation():
+    print("play_explosion_hit_animation")
