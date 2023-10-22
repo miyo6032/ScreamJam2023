@@ -28,3 +28,7 @@ func _physics_process(delta):
         currentInteractable.on_interact_exit()
         currentInteractable = null
 
+func _unhandled_input(event):
+    if event is InputEventMouseButton && event.is_pressed():
+        if currentInteractable != null:
+            currentInteractable.on_interact()

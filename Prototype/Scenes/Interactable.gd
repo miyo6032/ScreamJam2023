@@ -7,3 +7,6 @@ func on_interact_enter():
     
 func on_interact_exit():
     print("exit!")
+
+func on_interact():
+    print("interact!")

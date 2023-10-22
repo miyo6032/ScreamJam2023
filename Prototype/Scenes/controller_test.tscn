@@ -31,20 +31,20 @@ data = PackedVector3Array(10, 0, 10, -10, 0, 10, 10, 0, -10, -10, 0, 10, -10, 0,
 [sub_resource type="BoxShape3D" id="BoxShape3D_d6gbh"]
 size = Vector3(0.2, 0.2, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3b2ld"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4eu4x"]
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_pyd4j"]
-material = SubResource("StandardMaterial3D_3b2ld")
+material = SubResource("StandardMaterial3D_4eu4x")
 size = Vector3(0.2, 0.2, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n84eo"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sie2f"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lpmoa"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_k5i5c"]
-material = SubResource("StandardMaterial3D_sie2f")
+material = SubResource("StandardMaterial3D_lpmoa")
 
 [sub_resource type="BoxMesh" id="BoxMesh_nyg02"]
 size = Vector3(1, 2, 1)
