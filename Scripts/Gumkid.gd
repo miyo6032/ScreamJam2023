@@ -2,6 +2,8 @@ extends Node3D
 
 class_name Gumkid
 
+signal capture
+
 @onready var model := $GumkidModel
 
 # Called when the node enters the scene tree for the first time.
@@ -13,7 +15,7 @@ func _process(delta):
     pass
 
 func _on_capture_area_body_entered(body):
-    print("captured!")
+    capture.emit()
 
 func set_speed(speed):
     model.set_speed(speed)
@@ -27,3 +29,6 @@ func set_active():
 
 func set_scream():
     model.scream()
+
+func set_scare():
+    model.scare()

@@ -10,3 +10,6 @@ func scream():
     anim_tree.set("parameters/conditions/scream", true)
     await get_tree().create_timer(3).timeout
     anim_tree.set("parameters/conditions/scream", false)
+
+func scare():
+    anim_tree.set("parameters/conditions/scare", true)

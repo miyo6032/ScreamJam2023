@@ -7,6 +7,8 @@ extends Node3D
 @export var gumkid: Gumkid
 @export var screen_flash: AnimationPlayer
 @export var path_follow: PathFollow3D
+@export var scare_camera: Camera3D
+@export var scare_light: Light3D
 
 @onready var dialog := $Control/Dialog
 @onready var player: Player = $Player
@@ -14,12 +16,15 @@ extends Node3D
 var dialog_time = 0.0
 var dialog_pause_time = 0.0
 
+var movement_tween
+
 func _ready():
     # player.look_in_direction(TAU * 0.5)
     player.enabled = false
     player.disable_flashlight()
     exit_breaker_trigger.monitoring = false
     gumkid.set_inactive()
+    scare_light.visible = false
 
     Console.add_command("spawn", _on_arcade_interactable_interacted)
     Console.add_command("crash", _on_arcade_game_game_crash)
@@ -81,6 +86,15 @@ func _on_arcade_interactable_interacted():
 
     await pause(5.0)
     gumkid.set_active()
-    var tween = get_tree().create_tween()
+    movement_tween = get_tree().create_tween()
     gumkid.set_speed(1)
-    tween.tween_property(path_follow, "progress_ratio", 1, 25)
+    movement_tween.tween_property(path_follow, "progress_ratio", 1, 25)
+
+func _on_gumkid_capture():
+    gumkid.set_speed(0.0)
+    gumkid.set_scare()
+    movement_tween.kill()
+    player.enabled = false
+    scare_camera.current = true
+    screen_flash.play("black")    
+    scare_light.visible = true

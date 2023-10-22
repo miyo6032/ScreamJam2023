@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bgtk1omspr41a"]
+[gd_scene load_steps=27 format=3 uid="uid://bgtk1omspr41a"]
 
 [ext_resource type="PackedScene" uid="uid://cck7h1fcp1cfg" path="res://3D models/Gumkid/gkid_gotcha.fbm/gkid_gotcha.fbx" id="1_r6yuk"]
 [ext_resource type="Script" path="res://3D models/Gumkid/GumkidModel.gd" id="2_i1bfo"]
@@ -1403,19 +1403,27 @@ xfade_time = 0.25
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ovn2w"]
+advance_mode = 2
+advance_condition = &"scare"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8mjaq"]
+advance_mode = 2
+advance_condition = &"scare"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cmcs6"]
 states/Start/position = Vector2(204, 138)
 "states/gkid gotcha/node" = SubResource("AnimationNodeAnimation_jun34")
 "states/gkid gotcha/position" = Vector2(334, 36)
 "states/gkid idle/node" = SubResource("AnimationNodeAnimation_8vxhj")
-"states/gkid idle/position" = Vector2(367, 138)
+"states/gkid idle/position" = Vector2(344, 163)
 "states/gkid run/node" = SubResource("AnimationNodeAnimation_ca7rf")
-"states/gkid run/position" = Vector2(552, 195)
+"states/gkid run/position" = Vector2(550, 182)
 "states/gkid run B/node" = SubResource("AnimationNodeAnimation_5le8y")
 "states/gkid run B/position" = Vector2(541, 54)
 "states/gkid scream 2/node" = SubResource("AnimationNodeBlendTree_xttxr")
 "states/gkid scream 2/position" = Vector2(334, 262.286)
-transitions = ["gkid idle", "gkid run", SubResource("AnimationNodeStateMachineTransition_furw5"), "Start", "gkid idle", SubResource("AnimationNodeStateMachineTransition_06rx8"), "gkid run", "gkid idle", SubResource("AnimationNodeStateMachineTransition_kp2bm"), "gkid idle", "gkid gotcha", SubResource("AnimationNodeStateMachineTransition_w2fgm"), "gkid idle", "gkid run B", SubResource("AnimationNodeStateMachineTransition_arvju"), "gkid run B", "gkid idle", SubResource("AnimationNodeStateMachineTransition_vvl65"), "gkid idle", "gkid scream 2", SubResource("AnimationNodeStateMachineTransition_82j6p"), "gkid scream 2", "gkid idle", SubResource("AnimationNodeStateMachineTransition_jctxs")]
+transitions = ["gkid idle", "gkid run", SubResource("AnimationNodeStateMachineTransition_furw5"), "Start", "gkid idle", SubResource("AnimationNodeStateMachineTransition_06rx8"), "gkid run", "gkid idle", SubResource("AnimationNodeStateMachineTransition_kp2bm"), "gkid idle", "gkid gotcha", SubResource("AnimationNodeStateMachineTransition_w2fgm"), "gkid idle", "gkid run B", SubResource("AnimationNodeStateMachineTransition_arvju"), "gkid run B", "gkid idle", SubResource("AnimationNodeStateMachineTransition_vvl65"), "gkid idle", "gkid scream 2", SubResource("AnimationNodeStateMachineTransition_82j6p"), "gkid scream 2", "gkid idle", SubResource("AnimationNodeStateMachineTransition_jctxs"), "gkid run", "gkid gotcha", SubResource("AnimationNodeStateMachineTransition_ovn2w"), "gkid run B", "gkid gotcha", SubResource("AnimationNodeStateMachineTransition_8mjaq")]
 graph_offset = Vector2(-139.192, -67.7143)
 
 [node name="GumkidModel" instance=ExtResource("1_r6yuk")]
@@ -1481,6 +1489,15 @@ active = true
 parameters/conditions/capture = false
 parameters/conditions/idle = false
 parameters/conditions/run = false
+parameters/conditions/scare = false
 parameters/conditions/scream = false
 parameters/conditions/sprint = false
 "parameters/gkid scream 2/TimeScale/scale" = 1.4
+
+[node name="CamPos" type="Marker3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, 0.987688, -0.156434, 0, 0.156434, 0.987688, 0, 1.27457, 1.24308)
+
+[node name="Camera3D" type="Camera3D" parent="CamPos" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0246173, 0)
+visible = false
+fov = 25.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bqsjhxkf1gnfn"]
+[gd_scene load_steps=38 format=3 uid="uid://bqsjhxkf1gnfn"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_a7gqu"]
 [ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="2_v757q"]
@@ -14,7 +14,6 @@
 
 [sub_resource type="Environment" id="Environment_eiiht"]
 background_mode = 1
-background_color = Color(0.443137, 0.443137, 0.443137, 1)
 sdfgi_read_sky_light = false
 glow_enabled = true
 glow_strength = 0.75
@@ -111,12 +110,28 @@ tracks/0/keys = {
 "values": [Color(1, 0, 0, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_fe0vd"]
+resource_name = "black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1978.24, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ax1ru"]
 _data = {
+"black": SubResource("Animation_fe0vd"),
 "flash": SubResource("Animation_xu41q")
 }
 
-[node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow")]
+[node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light")]
 script = ExtResource("1_a7gqu")
 do_instant_events = true
 lightsToDisable = [NodePath("Environment/TheGameMachine/ScreenLight"), NodePath("Environment/LitArcades/ArcadeLight"), NodePath("Environment/LitArcades/ArcadeLight2")]
@@ -125,6 +140,8 @@ arcade_game = NodePath("Environment/TheGameMachine")
 gumkid = NodePath("Environment/Path3D/PathFollow3D/RotationFix/Gumkid")
 screen_flash = NodePath("Control/ScreenFlash/ScreenFlashAnimation")
 path_follow = NodePath("Environment/Path3D/PathFollow3D")
+scare_camera = NodePath("Environment/Path3D/PathFollow3D/RotationFix/Node3D/ScareCamera")
+scare_light = NodePath("Environment/Path3D/PathFollow3D/RotationFix/Node3D/ScareCamera/ScareLight")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eiiht")
@@ -1322,6 +1339,17 @@ transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 
 [node name="Gumkid" parent="Environment/Path3D/PathFollow3D/RotationFix" instance=ExtResource("10_2iw1o")]
 transform = Transform3D(1, 0, 3.25963e-09, 0, 1, 0, -3.25963e-09, 0, 1, 0, 0, 0)
 
+[node name="Node3D" type="Node3D" parent="Environment/Path3D/PathFollow3D/RotationFix"]
+transform = Transform3D(0.999999, -1.81899e-11, -2.91038e-11, 0, 0.987688, -0.156434, 0, 0.156434, 0.987688, 0.000378549, 1.27528, 1.24347)
+
+[node name="ScareCamera" type="Camera3D" parent="Environment/Path3D/PathFollow3D/RotationFix/Node3D"]
+transform = Transform3D(0.757579, -7.27594e-12, 2.91038e-11, 7.27596e-12, 0.757576, 2.98023e-08, -2.91038e-11, -2.98023e-08, 0.757578, 0, 0, 0)
+fov = 25.0
+
+[node name="ScareLight" type="SpotLight3D" parent="Environment/Path3D/PathFollow3D/RotationFix/Node3D/ScareCamera"]
+transform = Transform3D(1, 0.000152124, -7.09399e-05, -0.0001666, 0.84803, -0.529949, -2.04588e-05, 0.529949, 0.84803, 0, -0.899826, 0.142514)
+spot_angle = 20.0
+
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -1356,7 +1384,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 0, 0, 0)
+color = Color(0, 0, 0, 0)
 
 [node name="ScreenFlashAnimation" type="AnimationPlayer" parent="Control/ScreenFlash"]
 libraries = {
@@ -1367,3 +1395,4 @@ libraries = {
 [connection signal="interacted" from="Environment/TheGameMachine/ArcadeInteractable" to="." method="_on_arcade_interactable_interacted"]
 [connection signal="interacted" from="Environment/ElectricalBox" to="." method="_on_electrical_box_interacted"]
 [connection signal="body_entered" from="Environment/ArcadeFlickerTrigger" to="." method="_on_arcade_flicker_trigger_body_entered"]
+[connection signal="capture" from="Environment/Path3D/PathFollow3D/RotationFix/Gumkid" to="." method="_on_gumkid_capture"]
