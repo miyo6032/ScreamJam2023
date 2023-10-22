@@ -9,8 +9,8 @@ extends Node3D
 @export var path_follow: PathFollow3D
 @export var scare_camera: Camera3D
 @export var scare_light: Light3D
+@export var dialog: Dialog
 
-@onready var dialog := $Control/Dialog
 @onready var player: Player = $Player
 
 var dialog_time = 0.0
@@ -28,6 +28,7 @@ func _ready():
 
     Console.add_command("spawn", _on_arcade_interactable_interacted)
     Console.add_command("crash", _on_arcade_game_game_crash)
+    Console.add_command("gameover", show_gameover_screen)
 
     if !do_instant_events:
         dialog_time = 2.0
@@ -96,5 +97,17 @@ func _on_gumkid_capture():
     movement_tween.kill()
     player.enabled = false
     scare_camera.current = true
-    screen_flash.play("black")    
+    show_gameover_screen()
     scare_light.visible = true
+
+func show_gameover_screen():
+    screen_flash.play("game_over")    
+
+    await pause(3)
+    Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+func _on_try_again_button_pressed():
+    get_tree().reload_current_scene()
+
+func _on_quit_button_pressed():
+    get_tree().quit()

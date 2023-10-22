@@ -1,5 +1,7 @@
 extends Label
 
+class_name Dialog
+
 var pc: float
 
 func _ready():

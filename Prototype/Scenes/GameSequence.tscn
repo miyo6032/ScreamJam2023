@@ -112,6 +112,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_fe0vd"]
 resource_name = "black"
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -119,19 +120,31 @@ tracks/0/path = NodePath(".:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.9),
+"times": PackedFloat32Array(0, 0.9),
 "transitions": PackedFloat32Array(1978.24, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Buttons:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.1, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ax1ru"]
 _data = {
-"black": SubResource("Animation_fe0vd"),
-"flash": SubResource("Animation_xu41q")
+"flash": SubResource("Animation_xu41q"),
+"game_over": SubResource("Animation_fe0vd")
 }
 
-[node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light")]
+[node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog")]
 script = ExtResource("1_a7gqu")
 do_instant_events = true
 lightsToDisable = [NodePath("Environment/TheGameMachine/ScreenLight"), NodePath("Environment/LitArcades/ArcadeLight"), NodePath("Environment/LitArcades/ArcadeLight2")]
@@ -142,6 +155,7 @@ screen_flash = NodePath("Control/ScreenFlash/ScreenFlashAnimation")
 path_follow = NodePath("Environment/Path3D/PathFollow3D")
 scare_camera = NodePath("Environment/Path3D/PathFollow3D/RotationFix/Node3D/ScareCamera")
 scare_light = NodePath("Environment/Path3D/PathFollow3D/RotationFix/Node3D/ScareCamera/ScareLight")
+dialog = NodePath("Control/Dialog")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eiiht")
@@ -1391,8 +1405,38 @@ libraries = {
 "": SubResource("AnimationLibrary_ax1ru")
 }
 
+[node name="Buttons" type="Control" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Try Again Button" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+offset_left = 279.0
+offset_top = 414.0
+offset_right = 360.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 24
+text = "Try Again"
+
+[node name="Quit Button" type="Button" parent="Control/Buttons"]
+layout_mode = 2
+offset_left = 516.0
+offset_top = 414.0
+offset_right = 597.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 24
+text = "Quit"
+
 [connection signal="game_crash" from="Environment/TheGameMachine/ArcadeGameScreen/SubViewport/ArcadeGame" to="." method="_on_arcade_game_game_crash"]
 [connection signal="interacted" from="Environment/TheGameMachine/ArcadeInteractable" to="." method="_on_arcade_interactable_interacted"]
 [connection signal="interacted" from="Environment/ElectricalBox" to="." method="_on_electrical_box_interacted"]
 [connection signal="body_entered" from="Environment/ArcadeFlickerTrigger" to="." method="_on_arcade_flicker_trigger_body_entered"]
 [connection signal="capture" from="Environment/Path3D/PathFollow3D/RotationFix/Gumkid" to="." method="_on_gumkid_capture"]
+[connection signal="pressed" from="Control/Buttons/Try Again Button" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="Control/Buttons/Quit Button" to="." method="_on_quit_button_pressed"]
