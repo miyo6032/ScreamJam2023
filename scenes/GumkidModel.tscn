@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgtk1omspr41a"]
+[gd_scene load_steps=25 format=3 uid="uid://bgtk1omspr41a"]
 
 [ext_resource type="PackedScene" uid="uid://cck7h1fcp1cfg" path="res://3D models/Gumkid/gkid_gotcha.fbm/gkid_gotcha.fbx" id="1_r6yuk"]
+[ext_resource type="Script" path="res://3D models/Gumkid/GumkidModel.gd" id="2_i1bfo"]
 
 [sub_resource type="Animation" id="Animation_ie7hm"]
 resource_name = "gkid gotcha"
@@ -1334,11 +1335,30 @@ _data = {
 "gkid scream": SubResource("Animation_pdgmw")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jun34"]
+animation = &"gkid gotcha"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8vxhj"]
 animation = &"gkid idle"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5le8y"]
+animation = &"gkid run B"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ca7rf"]
 animation = &"gkid run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4tlf0"]
+animation = &"gkid scream"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_hojys"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xttxr"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_4tlf0")
+nodes/Animation/position = Vector2(60, 120)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_hojys")
+nodes/TimeScale/position = Vector2(260, 120)
+nodes/output/position = Vector2(440, 140)
+node_connections = [&"output", 0, &"TimeScale", &"TimeScale", 0, &"Animation"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_furw5"]
 xfade_time = 0.25
@@ -1356,64 +1376,98 @@ switch_mode = 1
 advance_mode = 2
 advance_condition = &"idle"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w2fgm"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"capture"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_arvju"]
+xfade_time = 0.25
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_vvl65"]
+xfade_time = 0.25
+switch_mode = 1
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_82j6p"]
+xfade_time = 0.25
+advance_mode = 2
+advance_condition = &"scream"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jctxs"]
+xfade_time = 0.25
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cmcs6"]
-states/Start/position = Vector2(196, 94)
+states/Start/position = Vector2(204, 138)
+"states/gkid gotcha/node" = SubResource("AnimationNodeAnimation_jun34")
+"states/gkid gotcha/position" = Vector2(334, 36)
 "states/gkid idle/node" = SubResource("AnimationNodeAnimation_8vxhj")
-"states/gkid idle/position" = Vector2(359, 94)
+"states/gkid idle/position" = Vector2(367, 138)
 "states/gkid run/node" = SubResource("AnimationNodeAnimation_ca7rf")
-"states/gkid run/position" = Vector2(533, 94)
-transitions = ["gkid idle", "gkid run", SubResource("AnimationNodeStateMachineTransition_furw5"), "Start", "gkid idle", SubResource("AnimationNodeStateMachineTransition_06rx8"), "gkid run", "gkid idle", SubResource("AnimationNodeStateMachineTransition_kp2bm")]
+"states/gkid run/position" = Vector2(552, 195)
+"states/gkid run B/node" = SubResource("AnimationNodeAnimation_5le8y")
+"states/gkid run B/position" = Vector2(541, 54)
+"states/gkid scream 2/node" = SubResource("AnimationNodeBlendTree_xttxr")
+"states/gkid scream 2/position" = Vector2(334, 262.286)
+transitions = ["gkid idle", "gkid run", SubResource("AnimationNodeStateMachineTransition_furw5"), "Start", "gkid idle", SubResource("AnimationNodeStateMachineTransition_06rx8"), "gkid run", "gkid idle", SubResource("AnimationNodeStateMachineTransition_kp2bm"), "gkid idle", "gkid gotcha", SubResource("AnimationNodeStateMachineTransition_w2fgm"), "gkid idle", "gkid run B", SubResource("AnimationNodeStateMachineTransition_arvju"), "gkid run B", "gkid idle", SubResource("AnimationNodeStateMachineTransition_vvl65"), "gkid idle", "gkid scream 2", SubResource("AnimationNodeStateMachineTransition_82j6p"), "gkid scream 2", "gkid idle", SubResource("AnimationNodeStateMachineTransition_jctxs")]
+graph_offset = Vector2(-139.192, -67.7143)
 
 [node name="GumkidModel" instance=ExtResource("1_r6yuk")]
+script = ExtResource("2_i1bfo")
 
 [node name="Skeleton3D" parent="RootNode/gumkid main" index="0"]
-bones/0/position = Vector3(-9.38774e-14, 0.831507, 0.0448006)
-bones/0/rotation = Quaternion(0.5, 0.5, -0.5, -0.5)
-bones/1/rotation = Quaternion(5.13456e-08, 3.07827e-08, -0.0392601, 0.999229)
-bones/3/rotation = Quaternion(3.97091e-08, -6.43595e-09, -0.031411, 0.999507)
-bones/4/rotation = Quaternion(-5.85345e-08, -5.45581e-08, 0.0314112, 0.999507)
-bones/7/rotation = Quaternion(0.137559, 0.751906, -0.632709, 0.124074)
-bones/8/rotation = Quaternion(0.0675345, -0.719936, -0.125722, 0.679209)
-bones/9/rotation = Quaternion(0.0595612, 0.0731629, -0.20876, 0.973406)
-bones/10/rotation = Quaternion(-0.00312419, -0.0627126, 0.0496559, 0.996791)
-bones/11/rotation = Quaternion(0.00896379, -0.023722, -0.0988708, 0.994777)
-bones/12/rotation = Quaternion(-2.27798e-08, -4.97677e-08, -0.340337, 0.940304)
-bones/13/rotation = Quaternion(-9.93095e-08, 2.99754e-08, 0.108659, 0.994079)
-bones/14/rotation = Quaternion(-0.00119975, -0.0156614, -0.265851, 0.963886)
-bones/15/rotation = Quaternion(-1.88197e-08, -7.52926e-09, -0.143107, 0.989707)
-bones/16/rotation = Quaternion(-3.54016e-08, 0.0237051, 1.49022e-08, 0.999719)
-bones/17/rotation = Quaternion(-0.0235136, 0.00147925, -0.062773, 0.99775)
-bones/18/rotation = Quaternion(-0.0238266, 0.00451133, -0.152465, 0.988011)
-bones/19/rotation = Quaternion(0.00405543, 0.140843, 0.0284947, 0.989614)
-bones/20/rotation = Quaternion(-6.37996e-08, -7.50493e-09, -0.121083, 0.992642)
-bones/21/rotation = Quaternion(3.0197e-08, 3.77389e-08, -0.160491, 0.987037)
-bones/22/rotation = Quaternion(-0.467361, -0.159824, -0.168905, 0.852937)
-bones/23/rotation = Quaternion(4.25038e-08, -0.0353521, -1.34095e-07, 0.999375)
-bones/24/rotation = Quaternion(0.678753, 0.177725, -0.0841804, 0.707547)
-bones/25/rotation = Quaternion(0.132259, 0.669043, 0.158226, 0.71404)
-bones/26/rotation = Quaternion(0.353631, -0.0367063, 0.0328398, 0.934087)
-bones/27/rotation = Quaternion(-0.00331917, 0.0627028, -0.0527565, 0.996631)
-bones/28/rotation = Quaternion(0.00918477, 0.0236371, 0.10815, 0.993811)
-bones/29/rotation = Quaternion(1.09039e-07, 1.128e-07, 0.135452, 0.990784)
-bones/30/rotation = Quaternion(-4.28855e-08, 1.0814e-07, -0.0448822, 0.998992)
-bones/31/rotation = Quaternion(-0.00440609, 0.0150766, 0.0612081, 0.998002)
-bones/32/rotation = Quaternion(-5.52127e-08, 9.51963e-09, 0.207072, 0.978326)
-bones/33/rotation = Quaternion(3.35637e-08, -0.0471064, 5.96697e-08, 0.99889)
-bones/34/rotation = Quaternion(-0.0235135, -0.00147938, 0.0627731, 0.99775)
-bones/35/rotation = Quaternion(-0.0238267, -0.0045112, 0.152465, 0.988011)
-bones/36/rotation = Quaternion(0.00525888, -0.140803, -0.03695, 0.989334)
-bones/37/rotation = Quaternion(-1.10156e-07, -1.50042e-07, 0.195495, 0.980705)
-bones/38/rotation = Quaternion(-1.11804e-08, 6.52123e-08, -0.0245782, 0.999698)
-bones/39/rotation = Quaternion(-0.459308, 0.17564, 0.211432, 0.84468)
-bones/40/rotation = Quaternion(-8.70879e-08, 0.0482604, 1.00289e-07, 0.998835)
-bones/41/rotation = Quaternion(0.230907, -0.125881, 0.894532, -0.361453)
-bones/42/rotation = Quaternion(0.033681, 0.286053, -0.60697, 0.740694)
-bones/43/rotation = Quaternion(0.169742, -0.0815363, 0.564695, 0.803529)
-bones/44/rotation = Quaternion(-5.26687e-07, -2.89885e-07, 0.353474, 0.935444)
-bones/45/rotation = Quaternion(0.94297, 0.239338, 0.183363, 0.141081)
-bones/46/rotation = Quaternion(0.0207346, -0.268434, 0.602489, 0.751346)
-bones/47/rotation = Quaternion(0.0992894, 0.0916137, -0.671373, 0.728702)
-bones/48/rotation = Quaternion(-0.00581643, 0.0151625, -0.431429, 0.902001)
+bones/0/position = Vector3(-5.95623e-05, 0.848491, 0.0448006)
+bones/0/rotation = Quaternion(0.499962, 0.499962, -0.500038, -0.500038)
+bones/1/rotation = Quaternion(0.000913328, 0.000216316, -0.0399523, 0.999201)
+bones/3/rotation = Quaternion(-2.06819e-08, 9.45598e-09, -0.031974, 0.999489)
+bones/4/rotation = Quaternion(-0.000931672, -0.00017784, 0.0325846, 0.999469)
+bones/7/rotation = Quaternion(-0.115062, -0.753754, 0.628351, -0.154245)
+bones/8/rotation = Quaternion(0.0775911, -0.564201, -0.113392, 0.814125)
+bones/9/rotation = Quaternion(0.127698, 0.153524, -0.121587, 0.972286)
+bones/10/rotation = Quaternion(3.35939e-08, -0.0627904, -5.22571e-08, 0.998027)
+bones/11/rotation = Quaternion(0.00995182, -0.0233246, -0.140549, 0.989749)
+bones/12/rotation = Quaternion(1.70679e-07, -7.68757e-08, -0.0654243, 0.997858)
+bones/13/rotation = Quaternion(-9.61143e-08, 6.32476e-08, 0.000741532, 1)
+bones/14/rotation = Quaternion(-0.00267516, -0.0154778, -0.173531, 0.984703)
+bones/15/rotation = Quaternion(1.78073e-07, -5.80989e-08, -0.0253717, 0.999678)
+bones/16/rotation = Quaternion(-3.03852e-08, 0.0465701, 4.39755e-08, 0.998915)
+bones/17/rotation = Quaternion(-0.0235136, 0.00147933, -0.0627729, 0.99775)
+bones/18/rotation = Quaternion(-0.0234811, 0.00605809, -0.0875991, 0.995861)
+bones/19/rotation = Quaternion(-1.76848e-05, 0.140901, -0.000124305, 0.990024)
+bones/20/rotation = Quaternion(-5.66481e-08, 1.88827e-08, -0.164187, 0.986429)
+bones/21/rotation = Quaternion(2.99257e-08, -5.83305e-08, -0.0327924, 0.999462)
+bones/22/rotation = Quaternion(-0.416378, -0.0536764, -0.196956, 0.885978)
+bones/24/rotation = Quaternion(0.61794, 0.108048, -0.124445, 0.768758)
+bones/25/rotation = Quaternion(0.099153, 0.518075, 0.123747, 0.840508)
+bones/26/rotation = Quaternion(0.196292, -0.0334538, 0.0580593, 0.978253)
+bones/27/rotation = Quaternion(-7.09205e-08, 0.0627905, -5.97224e-08, 0.998027)
+bones/28/rotation = Quaternion(0.00995198, 0.0233247, 0.14055, 0.989749)
+bones/29/rotation = Quaternion(-2.67023e-08, -3.22414e-08, 0.0636684, 0.997971)
+bones/30/rotation = Quaternion(-6.45774e-08, 4.98909e-08, 0.000164806, 1)
+bones/31/rotation = Quaternion(-0.00271083, 0.0154716, 0.171259, 0.985101)
+bones/32/rotation = Quaternion(-2.29027e-08, 1.7853e-08, 0.0257835, 0.999668)
+bones/33/rotation = Quaternion(-3.54296e-08, -0.0471065, -5.96708e-08, 0.99889)
+bones/34/rotation = Quaternion(-0.0235135, -0.00147933, 0.0627732, 0.99775)
+bones/35/rotation = Quaternion(-0.0234811, -0.0060581, 0.0875989, 0.995861)
+bones/36/rotation = Quaternion(2.35177e-08, -0.140901, -1.12885e-07, 0.990024)
+bones/37/rotation = Quaternion(6.10361e-08, 2.15585e-08, 0.164931, 0.986305)
+bones/38/rotation = Quaternion(-1.04359e-07, 5.59068e-09, 0.0314108, 0.999507)
+bones/39/rotation = Quaternion(-0.446216, -0.000545888, 0.22765, 0.865486)
+bones/40/rotation = Quaternion(-4.09782e-08, -8.9407e-08, 2.23517e-08, 1)
+bones/41/rotation = Quaternion(0.227089, -0.12105, 0.901205, -0.348723)
+bones/42/rotation = Quaternion(0.0332627, 0.284118, -0.585514, 0.758514)
+bones/43/rotation = Quaternion(0.0837692, -0.0876205, 0.562082, 0.81815)
+bones/44/rotation = Quaternion(-0.00575972, -0.0150144, 0.430683, 0.90236)
+bones/45/rotation = Quaternion(0.945026, 0.245018, 0.158372, 0.147686)
+bones/46/rotation = Quaternion(0.0324244, -0.281388, 0.587115, 0.758331)
+bones/47/rotation = Quaternion(0.104944, 0.128241, -0.657612, 0.734907)
+bones/48/rotation = Quaternion(-0.00575971, 0.0150146, -0.430682, 0.902361)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -1423,5 +1477,10 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="." index="2"]
 tree_root = SubResource("AnimationNodeStateMachine_cmcs6")
 anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/capture = false
 parameters/conditions/idle = false
 parameters/conditions/run = false
+parameters/conditions/scream = false
+parameters/conditions/sprint = false
+"parameters/gkid scream 2/TimeScale/scale" = 1.4

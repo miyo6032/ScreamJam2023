@@ -24,4 +24,6 @@ func set_inactive():
 
 func set_active():
     $CaptureArea.monitoring = true
-    visible = true
+
+func set_scream():
+    model.scream()

@@ -74,11 +74,13 @@ func _on_arcade_flicker_trigger_body_entered(_body):
 func _on_arcade_interactable_interacted():
     player.enabled = false
     screen_flash.play("flash")
-    gumkid.set_active()
+    gumkid.set_scream()
+    gumkid.visible = true
 
     player.enabled = true
 
-    await pause(4.0)
+    await pause(5.0)
+    gumkid.set_active()
     var tween = get_tree().create_tween()
     gumkid.set_speed(1)
     tween.tween_property(path_follow, "progress_ratio", 1, 25)
