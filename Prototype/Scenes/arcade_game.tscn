@@ -36,7 +36,6 @@ texture = ExtResource("4_fi45e")
 1:0/3/flip_v = true
 1:0/3/physics_layer_0/linear_velocity = Vector2(0, 0)
 1:0/3/physics_layer_0/angular_velocity = 0.0
-1:0/3/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:0/next_alternative_id = 2
 2:0/0 = 0
 2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)

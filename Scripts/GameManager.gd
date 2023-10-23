@@ -10,6 +10,8 @@ extends Node3D
 @export var scare_camera: Camera3D
 @export var scare_light: Light3D
 @export var dialog: Dialog
+@export var flicker_screen: ScreenFlickerEffect
+@export var flicker_screen_trigger: Area3D
 
 @onready var player: Player = $Player
 
@@ -27,10 +29,11 @@ func _ready():
     exit_breaker_trigger.monitoring = false
     gumkid.set_inactive()
     scare_light.visible = false
+    flicker_screen_trigger.monitoring = false
 
     Console.add_command("spawn", _on_arcade_interactable_interacted)
     Console.add_command("crash", _on_arcade_game_game_crash)
-    Console.add_command("gameover", show_gameover_screen)
+    Console.add_command("flicker", _on_arcade_flicker_trigger_body_entered.bind(null))
 
     if !do_instant_events:
         dialog_time = 2.0
@@ -74,16 +77,22 @@ func _on_electrical_box_interacted():
         arcade_game.set_interactable()
 
         dialog.show_dialog("Hmm, the power didn't turn back on", dialog_time)
+
+        flicker_screen_trigger.monitoring = true
     else:
         dialog.show_dialog("The breaker box has a lock... ", dialog_time)
 
         await pause(dialog_time + dialog_pause_time)
         dialog.show_dialog("Maybe the key would be in the office", dialog_time)
 
-func _on_arcade_flicker_trigger_body_entered(_body):
+func _on_arcade_trigger_body_entered(body):
     exit_breaker_trigger.set_deferred("monitoring", false)
 
     dialog.show_dialog("Why is the Gumkid arcade machine on?", dialog_time)
+
+func _on_arcade_flicker_trigger_body_entered(_body):
+    flicker_screen.play_flicker_animation()
+    flicker_screen_trigger.set_deferred("monitoring", false)
 
 func _on_arcade_interactable_interacted():
     player.enabled = false
@@ -125,3 +134,5 @@ func _on_key_interacted():
     has_key = true
 
     dialog.show_dialog("I got the key to the breaker box!", dialog_time)
+
+
