@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://k8p0idphlhc6"]
+[gd_scene load_steps=94 format=3 uid="uid://k8p0idphlhc6"]
 
 [ext_resource type="ArrayMesh" uid="uid://p3dyqocuv8jv" path="res://3D models/arcade game V1.obj" id="1_svx3c"]
 [ext_resource type="ArrayMesh" uid="uid://ckl8tdi7tnwwt" path="res://3D models/arcade game V2.obj" id="2_npd0x"]
@@ -15,7 +15,58 @@
 [ext_resource type="Texture2D" uid="uid://rjy542st3ee2" path="res://textures/arcade game V2_DefaultMaterial_Normal.png" id="13_iwood"]
 [ext_resource type="Texture2D" uid="uid://burclrc40j2iu" path="res://textures/arcade game V2_DefaultMaterial_Roughness.png" id="14_grjrh"]
 [ext_resource type="Texture2D" uid="uid://dufxy571wh3ui" path="res://textures/arcade game V2.2.png" id="15_jth6j"]
+[ext_resource type="Texture2D" uid="uid://cvwo8sm4eiics" path="res://textures/air_Material_BaseColor.png" id="16_d6rlq"]
 [ext_resource type="Texture2D" uid="uid://bp86nn5ldqu3i" path="res://textures/arcade game V2.1.png" id="16_i180f"]
+[ext_resource type="Texture2D" uid="uid://dt343sso6j8ed" path="res://textures/air_Material_Emissive.png" id="17_uupqi"]
+[ext_resource type="Texture2D" uid="uid://dbqbr7eh6u2fh" path="res://textures/air_Material_Height.png" id="18_dslwr"]
+[ext_resource type="Texture2D" uid="uid://cc6lplmati2cq" path="res://textures/air_Material_Metallic.png" id="19_qe7p2"]
+[ext_resource type="Texture2D" uid="uid://b78m5xm4vxytm" path="res://textures/air_Material_Normal.png" id="20_3fd11"]
+[ext_resource type="Texture2D" uid="uid://7avnde6rgeqr" path="res://textures/air_Material_Roughness.png" id="21_yaoor"]
+[ext_resource type="ArrayMesh" uid="uid://bou8uy7t1b8wv" path="res://3D models/air.obj" id="22_v37na"]
+[ext_resource type="Texture2D" uid="uid://cod6k6702i1bi" path="res://textures/couchB_Material_BaseColor.png" id="24_ekwgt"]
+[ext_resource type="Texture2D" uid="uid://ba3uuok0pvpy1" path="res://textures/couchB_Material_Height.png" id="25_un2rn"]
+[ext_resource type="Texture2D" uid="uid://ck5my4pkl0xvm" path="res://textures/couchB_Material_Metallic.png" id="26_4okyo"]
+[ext_resource type="Texture2D" uid="uid://udkldwxs8fea" path="res://textures/couchB_Material_Normal.png" id="27_xi6k6"]
+[ext_resource type="Texture2D" uid="uid://j7f302v4jyjv" path="res://textures/couchB_Material_Roughness.png" id="28_6e0ak"]
+[ext_resource type="ArrayMesh" uid="uid://cummo2au2l8jx" path="res://3D models/couchB.obj" id="29_uchfd"]
+[ext_resource type="Texture2D" uid="uid://bt06x2etjg2ji" path="res://textures/couchH_Material_BaseColor.png" id="30_2e18l"]
+[ext_resource type="Texture2D" uid="uid://dc35dx6lxpjj7" path="res://textures/ddr_Material_BaseColor.png" id="30_flbph"]
+[ext_resource type="Texture2D" uid="uid://buoh7un0gtfr6" path="res://textures/ddr_Material_Emissive.png" id="31_1ugnc"]
+[ext_resource type="Texture2D" uid="uid://p2vafcyl2och" path="res://textures/couchH_Material_Height.png" id="31_37tmo"]
+[ext_resource type="Texture2D" uid="uid://dt1ahaxi4cpq2" path="res://textures/ddr_Material_Height.png" id="32_4ftwd"]
+[ext_resource type="Texture2D" uid="uid://c68s3btjfwvo0" path="res://textures/couchH_Material_Metallic.png" id="32_pltb8"]
+[ext_resource type="Texture2D" uid="uid://d4at6q0w8l3s3" path="res://textures/couchH_Material_Roughness.png" id="33_8klts"]
+[ext_resource type="Texture2D" uid="uid://dajhrvsgnpi5e" path="res://textures/ddr_Material_Metallic.png" id="33_gnx3k"]
+[ext_resource type="ArrayMesh" uid="uid://da2othc86h3aw" path="res://3D models/couchH.obj" id="34_mqcd6"]
+[ext_resource type="Texture2D" uid="uid://c14s0lhxaahth" path="res://textures/ddr_Material_Normal.png" id="34_ylepa"]
+[ext_resource type="Texture2D" uid="uid://be6bhjvhb80y5" path="res://textures/couchS_Material_BaseColor.png" id="35_8tyia"]
+[ext_resource type="Texture2D" uid="uid://dw67ho8gl7dj5" path="res://textures/ddr_Material_Roughness.png" id="35_wxqq1"]
+[ext_resource type="Texture2D" uid="uid://ix6x3rylv4na" path="res://textures/couchS_Material_Height.png" id="36_kvq8j"]
+[ext_resource type="ArrayMesh" uid="uid://dipeyuw555x5j" path="res://3D models/ddr.obj" id="36_nyovh"]
+[ext_resource type="Texture2D" uid="uid://dxt475riby1yr" path="res://textures/couchS_Material_Metallic.png" id="37_7f5j1"]
+[ext_resource type="Texture2D" uid="uid://boc3lrabplnb6" path="res://textures/skeeball_Material_BaseColor.png" id="37_30pbe"]
+[ext_resource type="Texture2D" uid="uid://olu2cebuqwsd" path="res://textures/skeeball_Material_Emissive.png" id="38_k86p8"]
+[ext_resource type="Texture2D" uid="uid://cnh5hsietdun0" path="res://textures/couchS_Material_Roughness.png" id="38_obqu0"]
+[ext_resource type="Texture2D" uid="uid://byn8c77t6ub6o" path="res://textures/skeeball_Material_Height.png" id="39_mslue"]
+[ext_resource type="ArrayMesh" uid="uid://wl7at811rgqd" path="res://3D models/couchS.obj" id="39_s2iw7"]
+[ext_resource type="Texture2D" uid="uid://h2p7sduoiu4i" path="res://textures/basket_Material_BaseColor.png" id="40_1bvwy"]
+[ext_resource type="Texture2D" uid="uid://1obfmkmr33nj" path="res://textures/skeeball_Material_Metallic.png" id="40_ae3d2"]
+[ext_resource type="Texture2D" uid="uid://blh1ge0vxa8sg" path="res://textures/skeeball_Material_Normal.png" id="41_jgnp6"]
+[ext_resource type="Texture2D" uid="uid://6rs44folxesn" path="res://textures/basket_Material_Emissive.png" id="41_lnbxv"]
+[ext_resource type="Texture2D" uid="uid://kr4rf7v7pcpm" path="res://textures/basket_Material_Height.png" id="42_0qx3x"]
+[ext_resource type="Texture2D" uid="uid://x6napqm011mf" path="res://textures/skeeball_Material_Roughness.png" id="42_j6isp"]
+[ext_resource type="Texture2D" uid="uid://1dg51dg6ymr6" path="res://textures/basket_Material_Metallic.png" id="43_6hvjy"]
+[ext_resource type="ArrayMesh" uid="uid://cdivmfh63ndm4" path="res://3D models/skeeball.obj" id="43_ub2x3"]
+[ext_resource type="Texture2D" uid="uid://b02ts7ijgbtgg" path="res://textures/basket_Material_Normal.png" id="44_r6gwg"]
+[ext_resource type="Texture2D" uid="uid://18vj1vdrjwvq" path="res://textures/basket_Material_Roughness.png" id="45_rrgwx"]
+[ext_resource type="ArrayMesh" uid="uid://bfp5txu4rakvw" path="res://3D models/basket.obj" id="46_dfkw1"]
+[ext_resource type="Texture2D" uid="uid://coy2oi0k5yija" path="res://textures/wacca_Material_BaseColor.png" id="61_4b3qo"]
+[ext_resource type="Texture2D" uid="uid://d0sc5fk152hif" path="res://textures/wacca_Material_Emissive.png" id="62_axojf"]
+[ext_resource type="Texture2D" uid="uid://t3rpglvq4spy" path="res://textures/wacca_Material_Height.png" id="63_ypnhe"]
+[ext_resource type="Texture2D" uid="uid://dagki0oomudsm" path="res://textures/wacca_Material_Metallic.png" id="64_jqwuy"]
+[ext_resource type="Texture2D" uid="uid://bpkmettbsp8to" path="res://textures/wacca_Material_Normal.png" id="65_ishwd"]
+[ext_resource type="Texture2D" uid="uid://fsmkahrjx7ng" path="res://textures/wacca_Material_Roughness.png" id="66_v244u"]
+[ext_resource type="ArrayMesh" uid="uid://bd0cdvr88h7rh" path="res://3D models/wacca.obj" id="67_rub7j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nk5v"]
 albedo_texture = ExtResource("10_s7282")
@@ -97,6 +148,87 @@ roughness_texture = ExtResource("6_a7op6")
 normal_enabled = true
 normal_texture = ExtResource("5_i81pk")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ecdvc"]
+albedo_texture = ExtResource("16_d6rlq")
+metallic = 1.0
+metallic_texture = ExtResource("19_qe7p2")
+roughness_texture = ExtResource("21_yaoor")
+emission_enabled = true
+emission_texture = ExtResource("17_uupqi")
+normal_enabled = true
+normal_texture = ExtResource("20_3fd11")
+heightmap_texture = ExtResource("18_dslwr")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3obv"]
+albedo_texture = ExtResource("40_1bvwy")
+metallic = 1.0
+metallic_texture = ExtResource("43_6hvjy")
+roughness_texture = ExtResource("45_rrgwx")
+emission_enabled = true
+emission_texture = ExtResource("41_lnbxv")
+normal_enabled = true
+normal_texture = ExtResource("44_r6gwg")
+heightmap_texture = ExtResource("42_0qx3x")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7me7x"]
+albedo_texture = ExtResource("30_flbph")
+metallic = 1.0
+metallic_texture = ExtResource("33_gnx3k")
+roughness_texture = ExtResource("35_wxqq1")
+emission_enabled = true
+emission_texture = ExtResource("31_1ugnc")
+normal_enabled = true
+normal_texture = ExtResource("34_ylepa")
+heightmap_texture = ExtResource("32_4ftwd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnahq"]
+albedo_texture = ExtResource("37_30pbe")
+metallic = 1.0
+metallic_texture = ExtResource("40_ae3d2")
+roughness_texture = ExtResource("42_j6isp")
+emission_enabled = true
+emission_texture = ExtResource("38_k86p8")
+normal_enabled = true
+normal_texture = ExtResource("41_jgnp6")
+heightmap_texture = ExtResource("39_mslue")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_liu70"]
+albedo_texture = ExtResource("61_4b3qo")
+metallic = 1.0
+metallic_texture = ExtResource("64_jqwuy")
+roughness_texture = ExtResource("66_v244u")
+emission_enabled = true
+emission_texture = ExtResource("62_axojf")
+normal_enabled = true
+normal_texture = ExtResource("65_ishwd")
+heightmap_texture = ExtResource("63_ypnhe")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_auhx5"]
+albedo_texture = ExtResource("24_ekwgt")
+metallic = 1.0
+metallic_texture = ExtResource("26_4okyo")
+roughness_texture = ExtResource("28_6e0ak")
+normal_scale = -1.16
+normal_texture = ExtResource("27_xi6k6")
+heightmap_enabled = true
+heightmap_texture = ExtResource("25_un2rn")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qc0td"]
+albedo_texture = ExtResource("30_2e18l")
+metallic = 1.0
+metallic_texture = ExtResource("32_pltb8")
+roughness_texture = ExtResource("33_8klts")
+heightmap_enabled = true
+heightmap_texture = ExtResource("31_37tmo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_65xud"]
+albedo_texture = ExtResource("35_8tyia")
+metallic = 1.0
+metallic_texture = ExtResource("37_7f5j1")
+roughness_texture = ExtResource("38_obqu0")
+heightmap_enabled = true
+heightmap_texture = ExtResource("36_kvq8j")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwv1g"]
 albedo_color = Color(0.211765, 0.211765, 0.211765, 1)
 
@@ -120,9 +252,6 @@ albedo_color = Color(1, 0, 0, 1)
 emission_enabled = true
 emission = Color(1, 0, 0, 1)
 emission_energy_multiplier = 15.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m34ic"]
-albedo_color = Color(0, 0, 0.396078, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nh84s"]
 albedo_texture = ExtResource("3_ajo18")
@@ -436,12 +565,6 @@ material_override = SubResource("StandardMaterial3D_6q3ih")
 mesh = ExtResource("2_npd0x")
 skeleton = NodePath("../..")
 
-[node name="ArcadeGameV173" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(-0.999996, 0, 0.00274005, 0, 1, 0, -0.00274005, 0, -0.999996, 18.0778, 0, -8.893)
-material_override = SubResource("StandardMaterial3D_p1ypl")
-mesh = ExtResource("1_svx3c")
-skeleton = NodePath("../..")
-
 [node name="ArcadeGameV195" type="MeshInstance3D" parent="arcade machines"]
 transform = Transform3D(-0.999996, 0, 0.00274005, 0, 1, 0, -0.00274005, 0, -0.999996, 5.26091, 0, 23.1503)
 material_override = SubResource("StandardMaterial3D_p1ypl")
@@ -508,51 +631,9 @@ material_override = SubResource("StandardMaterial3D_3ssu6")
 mesh = ExtResource("1_svx3c")
 skeleton = NodePath("../..")
 
-[node name="ArcadeGameV175" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(-0.999996, 0, 0.00274005, 0, 1, 0, -0.00274005, 0, -0.999996, 18.0928, 0, -14.3581)
-material_override = SubResource("StandardMaterial3D_3nk5v")
-mesh = ExtResource("1_svx3c")
-skeleton = NodePath("../..")
-
 [node name="ArcadeGameV176" type="MeshInstance3D" parent="arcade machines"]
 transform = Transform3D(-0.999996, 0, 0.00274005, 0, 1, 0, -0.00274005, 0, -0.999996, 17.6308, 0, -6.85526)
 material_override = SubResource("StandardMaterial3D_cg37j")
-mesh = ExtResource("2_npd0x")
-skeleton = NodePath("../..")
-
-[node name="ArcadeGameV177" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(-0.999996, 0, 0.00274005, 0, 1, 0, -0.00274005, 0, -0.999996, 17.6414, 0, -10.7587)
-material_override = SubResource("StandardMaterial3D_hldrw")
-mesh = ExtResource("2_npd0x")
-skeleton = NodePath("../..")
-
-[node name="ArcadeGameV178" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(-0.999996, 0, 0.00274005, 0, 1, 0, -0.00274005, 0, -0.999996, 17.6459, 0, -12.3737)
-material_override = SubResource("StandardMaterial3D_6q3ih")
-mesh = ExtResource("2_npd0x")
-skeleton = NodePath("../..")
-
-[node name="ArcadeGameV179" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(-0.999996, 0, 0.00274005, 0, 1, 0, -0.00274005, 0, -0.999996, 18.1097, 0, -20.5354)
-material_override = SubResource("StandardMaterial3D_p1ypl")
-mesh = ExtResource("1_svx3c")
-skeleton = NodePath("../..")
-
-[node name="ArcadeGameV180" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(-0.999996, 0, 0.00274005, 0, 1, 0, -0.00274005, 0, -0.999996, 18.099, 0, -16.6075)
-material_override = SubResource("StandardMaterial3D_3ssu6")
-mesh = ExtResource("1_svx3c")
-skeleton = NodePath("../..")
-
-[node name="ArcadeGameV182" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(-0.999996, 0, 0.00274005, 0, 1, 0, -0.00274005, 0, -0.999996, 17.6627, 0, -18.4977)
-material_override = SubResource("StandardMaterial3D_cg37j")
-mesh = ExtResource("2_npd0x")
-skeleton = NodePath("../..")
-
-[node name="ArcadeGameV183" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(-0.999996, 0, 0.00274005, 0, 1, 0, -0.00274005, 0, -0.999996, 17.6733, 0, -22.4011)
-material_override = SubResource("StandardMaterial3D_hldrw")
 mesh = ExtResource("2_npd0x")
 skeleton = NodePath("../..")
 
@@ -664,40 +745,10 @@ material_override = SubResource("StandardMaterial3D_6q3ih")
 mesh = ExtResource("2_npd0x")
 skeleton = NodePath("../..")
 
-[node name="ArcadeGameV107" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.9982, 0, -25.5159)
-material_override = SubResource("StandardMaterial3D_p1ypl")
-mesh = ExtResource("1_svx3c")
-skeleton = NodePath("../..")
-
-[node name="ArcadeGameV108" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.9982, 0, -29.4438)
-material_override = SubResource("StandardMaterial3D_3ssu6")
-mesh = ExtResource("1_svx3c")
-skeleton = NodePath("../..")
-
 [node name="ArcadeGameV109" type="MeshInstance3D" parent="arcade machines"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.9982, 0, -20.0508)
 material_override = SubResource("StandardMaterial3D_3nk5v")
 mesh = ExtResource("1_svx3c")
-skeleton = NodePath("../..")
-
-[node name="ArcadeGameV110" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5567, 0, -27.5548)
-material_override = SubResource("StandardMaterial3D_cg37j")
-mesh = ExtResource("2_npd0x")
-skeleton = NodePath("../..")
-
-[node name="ArcadeGameV111" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5567, 0, -23.6514)
-material_override = SubResource("StandardMaterial3D_hldrw")
-mesh = ExtResource("2_npd0x")
-skeleton = NodePath("../..")
-
-[node name="ArcadeGameV112" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5567, 0, -22.0364)
-material_override = SubResource("StandardMaterial3D_6q3ih")
-mesh = ExtResource("2_npd0x")
 skeleton = NodePath("../..")
 
 [node name="ArcadeGameV113" type="MeshInstance3D" parent="arcade machines"]
@@ -1360,6 +1411,556 @@ material_override = SubResource("StandardMaterial3D_3ssu6")
 mesh = ExtResource("1_svx3c")
 skeleton = NodePath("../..")
 
+[node name="Air" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.59406, 0, -30.1357)
+material_override = SubResource("StandardMaterial3D_ecdvc")
+mesh = ExtResource("22_v37na")
+skeleton = NodePath("../..")
+
+[node name="Air2" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.59406, 0, -24.8473)
+material_override = SubResource("StandardMaterial3D_ecdvc")
+mesh = ExtResource("22_v37na")
+skeleton = NodePath("../..")
+
+[node name="Air4" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-0.000767902, 0, -1, 0, 1, 0, 1, 0, -0.000767902, 6.67483, 0, -27.3749)
+material_override = SubResource("StandardMaterial3D_ecdvc")
+mesh = ExtResource("22_v37na")
+skeleton = NodePath("../..")
+
+[node name="Air5" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-0.000767902, 0, -1, 0, 1, 0, 1, 0, -0.000767902, 1.38643, 0, -27.379)
+material_override = SubResource("StandardMaterial3D_ecdvc")
+mesh = ExtResource("22_v37na")
+skeleton = NodePath("../..")
+
+[node name="Basket" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14.607, 0, -24.3153)
+material_override = SubResource("StandardMaterial3D_m3obv")
+mesh = ExtResource("46_dfkw1")
+skeleton = NodePath("../..")
+
+[node name="Basket2" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14.607, 0, -22.2582)
+material_override = SubResource("StandardMaterial3D_m3obv")
+mesh = ExtResource("46_dfkw1")
+skeleton = NodePath("../..")
+
+[node name="Basket3" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14.607, 0, -20.1794)
+material_override = SubResource("StandardMaterial3D_m3obv")
+mesh = ExtResource("46_dfkw1")
+skeleton = NodePath("../..")
+
+[node name="Ddr" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 5.93782, 0, -38.0174)
+material_override = SubResource("StandardMaterial3D_7me7x")
+mesh = ExtResource("36_nyovh")
+skeleton = NodePath("../..")
+
+[node name="Ddr2" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.2728, 0, -38.0174)
+material_override = SubResource("StandardMaterial3D_7me7x")
+mesh = ExtResource("36_nyovh")
+skeleton = NodePath("../..")
+
+[node name="Skeeball" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.0614, 0, -15.8091)
+material_override = SubResource("StandardMaterial3D_vnahq")
+mesh = ExtResource("43_ub2x3")
+skeleton = NodePath("../..")
+
+[node name="Skeeball2" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16.0614, 0, -13.3486)
+material_override = SubResource("StandardMaterial3D_vnahq")
+mesh = ExtResource("43_ub2x3")
+skeleton = NodePath("../..")
+
+[node name="Basket4" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 14.607, 0, -18.1825)
+material_override = SubResource("StandardMaterial3D_m3obv")
+mesh = ExtResource("46_dfkw1")
+skeleton = NodePath("../..")
+
+[node name="Wacca" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18.0083, 1.90735e-06, -11.1104)
+material_override = SubResource("StandardMaterial3D_liu70")
+mesh = ExtResource("67_rub7j")
+skeleton = NodePath("../..")
+
+[node name="Wacca2" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 18.0083, 1.90735e-06, -9.02407)
+material_override = SubResource("StandardMaterial3D_liu70")
+mesh = ExtResource("67_rub7j")
+skeleton = NodePath("../..")
+
+[node name="Wacca5" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(1, 0, 0.000209497, 0, 1, 0, -0.000209497, 0, 1, -17.9667, 1.90735e-06, -22.9319)
+material_override = SubResource("StandardMaterial3D_liu70")
+mesh = ExtResource("67_rub7j")
+skeleton = NodePath("../..")
+
+[node name="Wacca6" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(1, 0, 0.000209497, 0, 1, 0, -0.000209497, 0, 1, -17.9672, 1.90735e-06, -25.0183)
+material_override = SubResource("StandardMaterial3D_liu70")
+mesh = ExtResource("67_rub7j")
+skeleton = NodePath("../..")
+
+[node name="Wacca7" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(1, 0, 0.000209497, 0, 1, 0, -0.000209497, 0, 1, -17.9667, 1.90735e-06, -27.0227)
+material_override = SubResource("StandardMaterial3D_liu70")
+mesh = ExtResource("67_rub7j")
+skeleton = NodePath("../..")
+
+[node name="Wacca8" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(1, 0, 0.000209497, 0, 1, 0, -0.000209497, 0, 1, -17.9672, 1.90735e-06, -29.1091)
+material_override = SubResource("StandardMaterial3D_liu70")
+mesh = ExtResource("67_rub7j")
+skeleton = NodePath("../..")
+
+[node name="Wacca3" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.66916, 1.90735e-06, -38.6569)
+material_override = SubResource("StandardMaterial3D_liu70")
+mesh = ExtResource("67_rub7j")
+skeleton = NodePath("../..")
+
+[node name="Wacca4" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -6.0221, 1.90735e-06, -38.6569)
+material_override = SubResource("StandardMaterial3D_liu70")
+mesh = ExtResource("67_rub7j")
+skeleton = NodePath("../..")
+
+[node name="Air3" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(0.680184, 0, -0.733042, 0, 1, 0, 0.733042, 0, 0.680184, 9.04737, 0, 9.50999)
+material_override = SubResource("StandardMaterial3D_ecdvc")
+mesh = ExtResource("22_v37na")
+skeleton = NodePath("../..")
+
+[node name="Air6" type="MeshInstance3D" parent="arcade machines"]
+transform = Transform3D(0.680184, 0, -0.733042, 0, 1, 0, 0.733042, 0, 0.680184, 11.3913, 0, 2.81299)
+material_override = SubResource("StandardMaterial3D_ecdvc")
+mesh = ExtResource("22_v37na")
+skeleton = NodePath("../..")
+
+[node name="couch" type="Node" parent="."]
+
+[node name="CouchB" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50184, 0, 6.8164)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../..")
+
+[node name="CouchH" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77774, 0, 6.81568)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../..")
+
+[node name="CouchB2" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50184, 0, 8.72272)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../..")
+
+[node name="CouchH2" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77774, 0, 8.722)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../..")
+
+[node name="CouchB3" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50184, 0, 10.6587)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../..")
+
+[node name="CouchH3" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77774, 0, 10.658)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../..")
+
+[node name="CouchB4" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.50184, 0, 12.563)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../..")
+
+[node name="CouchB5" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(-4.37114e-08, 0, -1.2047, 0, 1, 0, 1, 0, -5.2659e-08, -4.58731, 0, 13.8199)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../..")
+
+[node name="CouchH4" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.77774, 0, 12.5623)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../..")
+
+[node name="CouchB6" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(-0.00612605, 0, -0.999981, 0, 1, 0, 0.999981, 0, -0.00612605, -6.76362, 0, 13.8262)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../..")
+
+[node name="CouchH5" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(-0.00612605, 0, -0.999981, 0, 1, 0, 0.999981, 0, -0.00612605, -6.75508, 0, 12.5503)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../..")
+
+[node name="CouchB7" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(-0.00612605, 0, -0.999981, 0, 1, 0, 0.999981, 0, -0.00612605, -8.75809, 0, 13.8262)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../..")
+
+[node name="CouchH6" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(-0.00612605, 0, -0.999981, 0, 1, 0, 0.999981, 0, -0.00612605, -8.74956, 0, 12.5503)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../..")
+
+[node name="CouchB8" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(-0.00612605, 0, -0.999981, 0, 1, 0, 0.999981, 0, -0.00612605, -10.7223, 0, 13.8262)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../..")
+
+[node name="CouchH7" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(-0.00612605, 0, -0.999981, 0, 1, 0, 0.999981, 0, -0.00612605, -10.7138, 0, 12.5503)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../..")
+
+[node name="CouchS" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(1.15061, 0, 0, 0, 1, 0, 0, 0, 1, -4.54039, 0, 5.55826)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../..")
+
+[node name="CouchS2" type="MeshInstance3D" parent="couch"]
+transform = Transform3D(-5.02947e-08, 0, 1, 0, 1, 0, -1.15061, 0, -4.37114e-08, -11.9616, 0, 12.7797)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../..")
+
+[node name="couch2" type="Node" parent="couch"]
+
+[node name="CouchB" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.999979, 0, -0.00656234, 0, 1, 0, 0.00656234, 0, -0.999979, -18.6891, 0, -32.4373)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.999979, 0, -0.00656234, 0, 1, 0, 0.00656234, 0, -0.999979, -17.4132, 0, -32.445)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB2" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.999979, 0, -0.00656234, 0, 1, 0, 0.00656234, 0, -0.999979, -18.7016, 0, -34.3436)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH2" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.999979, 0, -0.00656234, 0, 1, 0, 0.00656234, 0, -0.999979, -17.4257, 0, -34.3513)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB3" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.999979, 0, -0.00656234, 0, 1, 0, 0.00656234, 0, -0.999979, -18.7143, 0, -36.2795)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH3" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.999979, 0, -0.00656234, 0, 1, 0, 0.00656234, 0, -0.999979, -17.4384, 0, -36.2872)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB4" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.999979, 0, -0.00656234, 0, 1, 0, 0.00656234, 0, -0.999979, -18.7268, 0, -38.1838)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchB5" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.00656218, 0, 1.20467, 0, 1, 0, -0.999978, 0, -0.00790544, -17.6496, 0, -39.4478)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH4" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.999979, 0, -0.00656234, 0, 1, 0, 0.00656234, 0, -0.999979, -17.4509, 0, -38.1915)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB6" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.000436291, 0, 1, 0, 1, 0, -1, 0, -0.000436291, -15.4734, 0, -39.4684)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH5" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.000436291, 0, 1, 0, 1, 0, -1, 0, -0.000436291, -15.4736, 0, -38.1925)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB7" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.000436291, 0, 1, 0, 1, 0, -1, 0, -0.000436291, -13.479, 0, -39.4815)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH6" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.000436291, 0, 1, 0, 1, 0, -1, 0, -0.000436291, -13.4791, 0, -38.2056)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB8" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.000436291, 0, 1, 0, 1, 0, -1, 0, -0.000436291, -11.5148, 0, -39.4944)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH7" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.000436291, 0, 1, 0, 1, 0, -1, 0, -0.000436291, -11.5149, 0, -38.2185)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchS" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-1.15058, 0, -0.00656234, 0, 1, 0, 0.00755068, 0, -0.999979, -17.6423, 0, -31.1861)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../../..")
+
+[node name="CouchB12" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.00349064, 0, -0.999994, 0, 1, 0, 0.999994, 0, 0.00349064, 10.955, 0, -3.12503)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH11" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.00349064, 0, -0.999994, 0, 1, 0, 0.999994, 0, 0.00349064, 10.9512, 0, -4.40092)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchS6" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.00401636, 0, -0.999994, 0, 1, 0, 1.1506, 0, 0.00349064, 12.2095, 0, -4.16797)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../../..")
+
+[node name="CouchB13" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.00993088, 0, 0.999951, 0, 1, 0, -0.999951, 0, 0.00993088, 8.93662, 0, -11.0398)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH12" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.00993088, 0, 0.999951, 0, 1, 0, -0.999951, 0, 0.00993088, 8.92324, 0, -9.76398)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchS7" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.0114266, 0, 0.999951, 0, 1, 0, -1.15055, 0, 0.00993088, 7.66823, 0, -10.0138)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../../..")
+
+[node name="CouchS2" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.00755073, 0, -0.999979, 0, 1, 0, 1.15058, 0, 0.00656238, -10.2686, 0, -38.4561)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../../..")
+
+[node name="CouchB10" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.999991, 0, -0.00424121, 0, 1, 0, 0.00424121, 0, 0.999991, 18.6709, 0, 32.3897)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH9" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.999991, 0, -0.00424121, 0, 1, 0, 0.00424121, 0, 0.999991, 17.395, 0, 32.3836)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB14" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.999991, 0, -0.00424121, 0, 1, 0, 0.00424121, 0, 0.999991, 18.6628, 0, 34.296)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH13" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.999991, 0, -0.00424121, 0, 1, 0, 0.00424121, 0, 0.999991, 17.3869, 0, 34.2899)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB15" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.999991, 0, -0.00424121, 0, 1, 0, 0.00424121, 0, 0.999991, 18.6546, 0, 36.2319)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH14" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.999991, 0, -0.00424121, 0, 1, 0, 0.00424121, 0, 0.999991, 17.3787, 0, 36.2258)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB16" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.999991, 0, -0.00424121, 0, 1, 0, 0.00424121, 0, 0.999991, 18.6465, 0, 38.1362)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchB17" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.00424138, 0, -1.20469, 0, 1, 0, 0.999991, 0, -0.00510958, 17.5557, 0, 39.3885)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH15" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.999991, 0, -0.00424121, 0, 1, 0, 0.00424121, 0, 0.999991, 17.3706, 0, 38.1301)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB18" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.0103671, 0, -0.999946, 0, 1, 0, 0.999946, 0, -0.0103671, 15.3794, 0, 39.3856)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH16" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.0103671, 0, -0.999946, 0, 1, 0, 0.999946, 0, -0.0103671, 15.3934, 0, 38.1098)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB19" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.0103671, 0, -0.999946, 0, 1, 0, 0.999946, 0, -0.0103671, 13.385, 0, 39.3771)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH17" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.0103671, 0, -0.999946, 0, 1, 0, 0.999946, 0, -0.0103671, 13.3989, 0, 38.1013)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchB20" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.0103671, 0, -0.999946, 0, 1, 0, 0.999946, 0, -0.0103671, 11.4207, 0, 39.3688)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH18" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.0103671, 0, -0.999946, 0, 1, 0, 0.999946, 0, -0.0103671, 11.4347, 0, 38.093)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchS4" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(1.1506, 0, -0.00424121, 0, 1, 0, 0.00487998, 0, 0.999991, 17.6377, 0, 31.1271)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../../..")
+
+[node name="CouchS8" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.00487993, 0, 0.999991, 0, 1, 0, -1.1506, 0, 0.00424117, 10.1859, 0, 38.3171)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../../..")
+
+[node name="CouchB9" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.000436291, 0, 1, 0, 1, 0, -1, 0, -0.000436291, 10.9102, 0, -11.0305)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH8" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.000436291, 0, 1, 0, 1, 0, -1, 0, -0.000436291, 10.91, 0, -9.7546)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchS3" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.00755073, 0, -0.999979, 0, 1, 0, 1.15058, 0, 0.00656238, 12.1564, 0, -9.9922)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../../..")
+
+[node name="CouchB21" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.56165, 0, 0.827375, 0, 1, 0, -0.827375, 0, -0.56165, -13.1905, 0, 6.32703)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH19" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.56165, 0, 0.827375, 0, 1, 0, -0.827375, 0, -0.56165, -12.4744, 0, 7.38308)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchS9" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.64624, 0, 0.827375, 0, 1, 0, -0.951985, 0, -0.56165, -13.6481, 0, 7.89294)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../../..")
+
+[node name="CouchB22" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.570198, 0, 0.821508, 0, 1, 0, -0.821508, 0, -0.570198, -11.5634, 0, 5.21005)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH20" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.570198, 0, 0.821508, 0, 1, 0, -0.821508, 0, -0.570198, -10.8364, 0, 6.25862)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchS10" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.661853, 0, -0.817999, 0, 1, 0, 0.941197, 0, 0.575219, -9.94766, 0, 5.35318)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../../..")
+
+[node name="CouchB11" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.0112223, 0, -0.999937, 0, 1, 0, 0.999937, 0, 0.0112223, 8.9596, 0, -3.12302)
+material_override = SubResource("StandardMaterial3D_auhx5")
+mesh = ExtResource("29_uchfd")
+skeleton = NodePath("../../..")
+
+[node name="CouchH10" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(0.0112223, 0, -0.999937, 0, 1, 0, 0.999937, 0, 0.0112223, 8.946, 0, -4.39885)
+material_override = SubResource("StandardMaterial3D_qc0td")
+mesh = ExtResource("34_mqcd6")
+skeleton = NodePath("../../..")
+
+[node name="CouchS5" type="MeshInstance3D" parent="couch/couch2"]
+transform = Transform3D(-0.0199605, 0, 0.99985, 0, 1, 0, -1.15044, 0, -0.0173478, 7.70233, 0, -4.14783)
+material_override = SubResource("StandardMaterial3D_65xud")
+mesh = ExtResource("39_s2iw7")
+skeleton = NodePath("../../..")
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 
 [node name="floor" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -1387,26 +1988,6 @@ material = SubResource("StandardMaterial3D_j7v6h")
 [node name="light above electrical box" type="CSGSphere3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5209, 6.61071, -37.7655)
 material = SubResource("StandardMaterial3D_330ow")
-
-[node name="lounch erea with couches" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.01167, 1.90735e-06, 9.19921)
-size = Vector3(11.3228, 2.07176, 9.93433)
-material = SubResource("StandardMaterial3D_m34ic")
-
-[node name="lounch erea with couches2" type="CSGBox3D" parent="CSGCombiner3D/lounch erea with couches"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.2617, 0, 25.9093)
-size = Vector3(11.2653, 2.07176, 8.48988)
-material = SubResource("StandardMaterial3D_m34ic")
-
-[node name="lounch erea with couches3" type="CSGBox3D" parent="CSGCombiner3D/lounch erea with couches"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.0814, 0, -16.2559)
-size = Vector3(11.2653, 2.07176, 8.48988)
-material = SubResource("StandardMaterial3D_m34ic")
-
-[node name="lounch erea with couches4" type="CSGBox3D" parent="CSGCombiner3D/lounch erea with couches"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.26933, 0, -44.5541)
-size = Vector3(11.2653, 2.07176, 8.48988)
-material = SubResource("StandardMaterial3D_m34ic")
 
 [node name="THe game machine" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.40024, 0, -18.4632)
