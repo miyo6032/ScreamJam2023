@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bfp5txu4rakvw"
+path="res://.godot/imported/basket.obj-dd0eb924688d530921b7cbcf5727cbcc.mesh"
+
+[deps]
+
+files=["res://.godot/imported/basket.obj-dd0eb924688d530921b7cbcf5727cbcc.mesh"]
+
+source_file="res://3D models/basket.obj"
+dest_files=["res://.godot/imported/basket.obj-dd0eb924688d530921b7cbcf5727cbcc.mesh", "res://.godot/imported/basket.obj-dd0eb924688d530921b7cbcf5727cbcc.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
