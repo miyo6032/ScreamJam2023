@@ -12,6 +12,7 @@ extends Node3D
 @export var dialog: Dialog
 @export var flicker_screen: ScreenFlickerEffect
 @export var flicker_screen_trigger: Area3D
+@export var arcade_static_audio: AudioStreamPlayer3D
 
 @onready var player: Player = $Player
 
@@ -79,6 +80,7 @@ func _on_electrical_box_interacted():
         dialog.show_dialog("Hmm, the power didn't turn back on", dialog_time)
 
         flicker_screen_trigger.monitoring = true
+        arcade_static_audio.play()
     else:
         dialog.show_dialog("The breaker box has a lock... ", dialog_time)
 
