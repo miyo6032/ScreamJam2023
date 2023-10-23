@@ -171,7 +171,6 @@ _data = {
 
 [node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "flicker_screen", "flicker_screen_trigger", "arcade_static_audio")]
 script = ExtResource("1_a7gqu")
-do_instant_events = true
 lightsToDisable = [NodePath("Environment/LitArcades/ArcadeLight"), NodePath("Environment/LitArcades/ArcadeLight2"), NodePath("Environment/TheGameMachine/ScreenLight")]
 exit_breaker_trigger = NodePath("Environment/ExitBreakerTrigger")
 arcade_game = NodePath("Environment/TheGameMachine")
