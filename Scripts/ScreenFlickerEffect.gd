@@ -1,3 +1,8 @@
 extends Node2D  
 
-@onready var color_rect := $ColorRect
+class_name ScreenFlickerEffect
+
+@onready var animator: AnimationPlayer = $AnimationPlayer
+
+func play_flicker_animation():
+    animator.play("flicker")

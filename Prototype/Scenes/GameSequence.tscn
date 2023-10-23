@@ -1,13 +1,15 @@
-[gd_scene load_steps=41 format=3 uid="uid://bqsjhxkf1gnfn"]
+[gd_scene load_steps=45 format=3 uid="uid://bqsjhxkf1gnfn"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_a7gqu"]
 [ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="2_v757q"]
 [ext_resource type="ArrayMesh" uid="uid://ckl8tdi7tnwwt" path="res://3D models/arcade game V2.obj" id="3_axwds"]
 [ext_resource type="ArrayMesh" uid="uid://p3dyqocuv8jv" path="res://3D models/arcade game V1.obj" id="4_65m8m"]
 [ext_resource type="Texture2D" uid="uid://cdqb7q8h3nxu0" path="res://Prototype/Sprites/Ground.png" id="5_l8hqv"]
+[ext_resource type="PackedScene" uid="uid://clcjmxhong7k6" path="res://scenes/ScreenFlickerEffect.tscn" id="5_p2oda"]
+[ext_resource type="Script" path="res://Prototype/Scenes/ArcadeGameFlickering.gd" id="5_sfegs"]
 [ext_resource type="Script" path="res://Prototype/Scenes/ArcadeGameLit.gd" id="6_3jywl"]
 [ext_resource type="PackedScene" uid="uid://c56hkknnm3cfe" path="res://Prototype/Scenes/arcade_game.tscn" id="7_r2cru"]
-[ext_resource type="PackedScene" uid="uid://djq5bllj4nwue" path="res://scenes/ScreenFlickerEffect.tscn" id="8_gfttr"]
+[ext_resource type="PackedScene" uid="uid://djq5bllj4nwue" path="res://scenes/SilouhetteEffect.tscn" id="8_gfttr"]
 [ext_resource type="Script" path="res://Prototype/Scenes/Dialog.gd" id="8_m3rx5"]
 [ext_resource type="Script" path="res://Prototype/Scenes/Interactable.gd" id="9_ahq8a"]
 [ext_resource type="PackedScene" uid="uid://usb3pc0w3axj" path="res://scenes/Gumkid.tscn" id="10_2iw1o"]
@@ -56,6 +58,15 @@ emission_texture = ExtResource("5_l8hqv")
 [sub_resource type="QuadMesh" id="QuadMesh_ehwec"]
 material = SubResource("StandardMaterial3D_e62mr")
 size = Vector2(5, 0.2)
+
+[sub_resource type="QuadMesh" id="QuadMesh_jtono"]
+size = Vector2(1.9, 0.9)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_34fes"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 1.5
+emission_operator = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_qtf34"]
 size = Vector2(1.9, 0.9)
@@ -153,11 +164,11 @@ _data = {
 "game_over": SubResource("Animation_fe0vd")
 }
 
-[node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog")]
+[node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "flicker_screen", "flicker_screen_trigger")]
 script = ExtResource("1_a7gqu")
 do_instant_events = true
-lightsToDisable = [NodePath("Environment/TheGameMachine/ScreenLight"), NodePath("Environment/LitArcades/ArcadeLight"), NodePath("Environment/LitArcades/ArcadeLight2")]
-exit_breaker_trigger = NodePath("Environment/ArcadeFlickerTrigger")
+lightsToDisable = [NodePath("Environment/LitArcades/ArcadeLight"), NodePath("Environment/LitArcades/ArcadeLight2"), NodePath("Environment/TheGameMachine/ScreenLight")]
+exit_breaker_trigger = NodePath("Environment/ExitBreakerTrigger")
 arcade_game = NodePath("Environment/TheGameMachine")
 gumkid = NodePath("Environment/Path3D/PathFollow3D/RotationFix/Gumkid")
 screen_flash = NodePath("Control/ScreenFlash/ScreenFlashAnimation")
@@ -165,12 +176,14 @@ path_follow = NodePath("Environment/Path3D/PathFollow3D")
 scare_camera = NodePath("Environment/Path3D/PathFollow3D/RotationFix/Node3D/ScareCamera")
 scare_light = NodePath("Environment/Path3D/PathFollow3D/RotationFix/Node3D/ScareCamera/ScareLight")
 dialog = NodePath("Control/Dialog")
+flicker_screen = NodePath("Environment/LitArcades/ArcadeGameV60/FlickeringScreen/SubViewport/SilhouetteEffect")
+flicker_screen_trigger = NodePath("Environment/ArcadeFlickerTrigger")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eiiht")
 
 [node name="Player" parent="." instance=ExtResource("2_v757q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30158, 1, -10.0466)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30158, 1, -19.7612)
 
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
@@ -182,6 +195,7 @@ shape = SubResource("BoxShape3D_yjxka")
 
 [node name="Room" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_soehp")
 flip_faces = true
 size = Vector3(20, 4.1, 40)
@@ -235,52 +249,52 @@ material = SubResource("StandardMaterial3D_x0ahw")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="ArcadeGameV2" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -19.6629)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV3" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -3.6243)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -21.2872)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV5" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -7.48881)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -25.1517)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV1" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73814, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73814, 0, -17.6629)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV4" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74521, 0, -5.48928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74521, 0, -23.1522)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV6" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -11.3879)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -29.0508)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV7" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -13.0122)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -30.6751)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV8" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -16.8767)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -34.5396)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV9" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73814, 0, -9.38787)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73814, 0, -27.0508)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV10" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74521, 0, -14.8771)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74521, 0, -32.54)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
@@ -621,162 +635,202 @@ mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV11" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.454349, 0, -14.4883)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.454349, 0, -32.1512)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV12" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.460189, 0, -12.864)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.460189, 0, -30.5269)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV13" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.474084, 0, -8.99954)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.474084, 0, -26.6625)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV14" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, 0.00904262, 0, -16.4867)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, 0.00904262, 0, -34.1496)
+mesh = ExtResource("4_65m8m")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV199" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -38.424)
+mesh = ExtResource("3_axwds")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV201" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74521, 0, -36.4244)
+mesh = ExtResource("4_65m8m")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV202" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.454349, 0, -36.0356)
+mesh = ExtResource("3_axwds")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV203" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, 0.00904262, 0, -38.034)
+mesh = ExtResource("4_65m8m")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV204" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.00944, 0, -38.424)
+mesh = ExtResource("3_axwds")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV205" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45857, 0, -36.4244)
+mesh = ExtResource("4_65m8m")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV206" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.65813, 0, -36.0356)
+mesh = ExtResource("3_axwds")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV207" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.19474, 0, -38.034)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV15" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.0177722, 0, -10.9974)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.0177722, 0, -28.6603)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV16" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.488103, 0, -5.1005)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.488103, 0, -22.7634)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV17" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.493942, 0, -3.47621)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.493942, 0, -21.1392)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV18" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.507837, 0, 0.388269)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.507837, 0, -17.2747)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV19" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.0247107, 0, -7.09885)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.0247107, 0, -24.7618)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV20" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.0515254, 0, -1.60963)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.0515254, 0, -19.2726)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV127" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, 15.1403)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -2.34273)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV128" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, 11.2758)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -6.20723)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV130" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74521, 0, 13.2753)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74521, 0, -4.20773)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV131" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, 7.3767)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -10.1063)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV132" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, 5.7524)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -11.7306)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV133" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, 1.88789)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.19434, 0, -15.7751)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV134" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73814, 0, 9.3767)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.73814, 0, -8.10633)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV135" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74521, 0, 3.88742)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.74521, 0, -13.5956)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV136" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.454349, 0, 4.27626)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.454349, 0, -13.2068)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV137" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.460189, 0, 5.90054)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.460189, 0, -11.5825)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV138" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.474084, 0, 9.76503)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.474084, 0, -7.718)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV139" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, 0.00904262, 0, 2.27791)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, 0.00904262, 0, -15.2051)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV140" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.0177722, 0, 7.76713)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.0177722, 0, -9.7159)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV141" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.488103, 0, 13.6641)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.488103, 0, -3.81893)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV142" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.493942, 0, 15.2884)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.493942, 0, -2.19463)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV144" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.0247107, 0, 11.6657)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -0.0247107, 0, -5.81733)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV66" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -19.6629)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV67" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -3.6243)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -21.2872)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV68" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -7.48881)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -25.1517)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV69" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48455, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48455, 0, -17.6629)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV70" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47747, 0, -5.48928)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47747, 0, -23.1522)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV71" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -11.3879)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -29.0508)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
@@ -787,67 +841,107 @@ mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV73" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -16.8767)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -34.5396)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV74" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48455, 0, -9.38787)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48455, 0, -27.0508)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV75" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47747, 0, -14.8771)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.47747, 0, -32.54)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV76" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.67703, 0, -14.4883)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.67703, 0, -32.1512)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV77" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.68287, 0, -12.864)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.68287, 0, -30.5269)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV78" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.69677, 0, -8.99954)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.69677, 0, -26.6625)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV79" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.21364, 0, -16.4867)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.21364, 0, -34.1496)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV80" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.24046, 0, -10.9974)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.24046, 0, -28.6603)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV81" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.71079, 0, -5.1005)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.71079, 0, -22.7634)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV82" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.71663, 0, -3.47621)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.71663, 0, -21.1392)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV83" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.73052, 0, 0.388269)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.73052, 0, -17.2747)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV84" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.2474, 0, -7.09885)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.2474, 0, -24.7618)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV85" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.27421, 0, -1.60963)
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.27421, 0, -19.2726)
+mesh = ExtResource("4_65m8m")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV208" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -15.7786)
+mesh = ExtResource("3_axwds")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV209" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48455, 0, -13.7786)
+mesh = ExtResource("4_65m8m")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV210" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.73052, 0, -13.3903)
+mesh = ExtResource("3_axwds")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV211" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.27421, 0, -15.3882)
+mesh = ExtResource("4_65m8m")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV212" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.02834, 0, -11.8762)
+mesh = ExtResource("3_axwds")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV213" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48455, 0, -9.8762)
+mesh = ExtResource("4_65m8m")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV214" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.73052, 0, -9.48793)
+mesh = ExtResource("3_axwds")
+skeleton = NodePath("../../..")
+
+[node name="ArcadeGameV215" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(-0.999994, 0, 0.0035955, 0, 1, 0, -0.0035955, 0, -0.999994, -6.27421, 0, -11.4858)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
@@ -952,7 +1046,7 @@ mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV55" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(0.761448, 0, -0.648226, 0, 1, 0, 0.648226, 0, 0.761448, 0.560745, 0, 17.5186)
+transform = Transform3D(0.761448, 0, -0.648226, 0, 1, 0, 0.648226, 0, 0.761448, 0.560745, 0, 0.0355686)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
@@ -1057,52 +1151,47 @@ mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV56" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.0146952, 0, 0.999892, 0, 1, 0, -0.999892, 0, -0.0146952, -4.06318, 0, 16.436)
+transform = Transform3D(-0.0146952, 0, 0.999892, 0, 1, 0, -0.999892, 0, -0.0146952, -4.06318, 0, -0.883376)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV57" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.0146952, 0, 0.999892, 0, 1, 0, -0.999892, 0, -0.0146952, -5.68731, 0, 16.4598)
+transform = Transform3D(-0.0146952, 0, 0.999892, 0, 1, 0, -0.999892, 0, -0.0146952, -5.68731, 0, -0.859576)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV58" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.0146952, 0, 0.999892, 0, 1, 0, -0.999892, 0, -0.0146952, -9.5514, 0, 16.5166)
+transform = Transform3D(-0.0146952, 0, 0.999892, 0, 1, 0, -0.999892, 0, -0.0146952, -9.5514, 0, -0.802777)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV59" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.0146952, 0, 0.999892, 0, 1, 0, -0.999892, 0, -0.0146952, -2.0567, 0, 16.8627)
-mesh = ExtResource("4_65m8m")
-skeleton = NodePath("../../..")
-
-[node name="ArcadeGameV60" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.0146952, 0, 0.999892, 0, 1, 0, -0.999892, 0, -0.0146952, -7.54548, 0, 16.9363)
+transform = Transform3D(-0.0146952, 0, 0.999892, 0, 1, 0, -0.999892, 0, -0.0146952, -2.0567, 0, -0.456678)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV61" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(0.0178364, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178364, -7.14402, 0, 19.1306)
+transform = Transform3D(0.0178364, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178364, -7.14402, 0, 1.81122)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV62" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(0.0178364, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178364, -5.51998, 0, 19.1016)
+transform = Transform3D(0.0178364, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178364, -5.51998, 0, 1.78222)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV63" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(0.0178364, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178364, -1.65608, 0, 19.0327)
+transform = Transform3D(0.0178364, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178364, -1.65608, 0, 1.71332)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV64" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(0.0178364, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178364, -9.15184, 0, 18.7101)
+transform = Transform3D(0.0178364, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178364, -9.15184, 0, 1.39072)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV65" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(0.0178364, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178364, -3.66331, 0, 18.6193)
+transform = Transform3D(0.0178364, 0, -0.999841, 0, 1, 0, 0.999841, 0, 0.0178364, -3.66331, 0, 1.29992)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
@@ -1226,11 +1315,6 @@ transform = Transform3D(-0.999996, 0, 0.00279251, 0, 1, 0, -0.00279251, 0, -0.99
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../../..")
 
-[node name="ArcadeGameV199" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.89039, 0, -18.4632)
-mesh = ExtResource("4_65m8m")
-skeleton = NodePath("../../..")
-
 [node name="ArcadeGameV200" type="MeshInstance3D" parent="Environment/arcade machines"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.232, 0, -18.4632)
 mesh = ExtResource("4_65m8m")
@@ -1239,7 +1323,7 @@ skeleton = NodePath("../../..")
 [node name="LitArcades" type="Node3D" parent="Environment"]
 
 [node name="ArcadeLight" type="OmniLight3D" parent="Environment/LitArcades"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.07049, 2.36575, -4.5236)
+transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -1.07049, 2.36575, -13.3551)
 light_color = Color(0.537255, 1, 1, 1)
 light_energy = 0.1
 
@@ -1249,7 +1333,7 @@ light_color = Color(0.721569, 0.745098, 1, 1)
 light_energy = 0.1
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Environment/LitArcades"]
-transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -3.03681, 2.36575, -11.7747)
+transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -3.03681, 2.36575, -20.6062)
 light_color = Color(0.721569, 0.745098, 1, 1)
 light_energy = 0.02
 omni_range = 9.50273
@@ -1263,7 +1347,7 @@ skeleton = NodePath("../LitArcade2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.01522, 0, -6.5017)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/LitArcades/LitArcade"]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, -8.83147)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../../..")
 
@@ -1275,8 +1359,30 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = ExtResource("3_axwds")
 skeleton = NodePath("../../../..")
 
+[node name="ArcadeGameV60" type="MeshInstance3D" parent="Environment/LitArcades" node_paths=PackedStringArray("screen", "viewport")]
+transform = Transform3D(-0.0073476, 0, 0.499946, 0, 0.5, 0, -0.499946, 0, -0.0073476, -3.77274, 0, -0.191538)
+mesh = ExtResource("4_65m8m")
+skeleton = NodePath("../../..")
+script = ExtResource("5_sfegs")
+screen = NodePath("FlickeringScreen/Screen")
+viewport = NodePath("FlickeringScreen/SubViewport")
+
+[node name="FlickeringScreen" type="Node3D" parent="Environment/LitArcades/ArcadeGameV60"]
+transform = Transform3D(1, 0, -1.86265e-09, 0, 1, 0, 1.86265e-09, 0, 1, 0, 0, 0)
+
+[node name="Screen" type="MeshInstance3D" parent="Environment/LitArcades/ArcadeGameV60/FlickeringScreen"]
+transform = Transform3D(-4.37114e-08, -0.173648, 0.984808, 0, 0.984808, 0.173648, -1, 7.5904e-09, -4.30473e-08, 0.012125, 2.55859, 0)
+mesh = SubResource("QuadMesh_jtono")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_34fes")
+
+[node name="SubViewport" type="SubViewport" parent="Environment/LitArcades/ArcadeGameV60/FlickeringScreen"]
+size = Vector2i(1152, 648)
+
+[node name="SilhouetteEffect" parent="Environment/LitArcades/ArcadeGameV60/FlickeringScreen/SubViewport" instance=ExtResource("8_gfttr")]
+
 [node name="TheGameMachine" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(0.00221655, 0, -0.499995, 0, 0.5, 0, 0.499995, 0, 0.00221655, -1.19294, 0, -10.5147)
+transform = Transform3D(0.00221655, 0, -0.499995, 0, 0.5, 0, 0.499995, 0, 0.00221655, -1.19294, 0, -19.3462)
 mesh = ExtResource("4_65m8m")
 skeleton = NodePath("../..")
 script = ExtResource("6_3jywl")
@@ -1304,7 +1410,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6pf25")
 
 [node name="SubViewport" type="SubViewport" parent="Environment/TheGameMachine/FlickeringScreen"]
 
-[node name="ScreenFlickerEffect" parent="Environment/TheGameMachine/FlickeringScreen/SubViewport" instance=ExtResource("8_gfttr")]
+[node name="ScreenFlickerEffect" parent="Environment/TheGameMachine/FlickeringScreen/SubViewport" instance=ExtResource("5_p2oda")]
 
 [node name="ScreenLight" type="SpotLight3D" parent="Environment/TheGameMachine"]
 transform = Transform3D(-7.94752e-08, -0.272133, -1.7977, -1.61487e-15, 1.7977, -0.272133, 1.81818, -1.18953e-08, -7.858e-08, -1.25018, 2.27153, 0)
@@ -1325,7 +1431,7 @@ mesh = SubResource("BoxMesh_2de4j")
 skeleton = NodePath("../../../..")
 
 [node name="ElectricalBox" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, 9.03792, 1.02396, -17.6744)
+transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -4.41508, 1.02396, -12.6813)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("9_ahq8a")
@@ -1339,7 +1445,7 @@ mesh = SubResource("BoxMesh_rjy31")
 skeleton = NodePath("../../..")
 
 [node name="Key" type="StaticBody3D" parent="Environment"]
-transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, 6.82371, 1.02396, -4.59132)
+transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -5.90569, 1.02396, -12.6871)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("9_ahq8a")
@@ -1352,8 +1458,20 @@ layers = 3
 mesh = SubResource("BoxMesh_lvdkm")
 skeleton = NodePath("../../..")
 
+[node name="ExitBreakerTrigger" type="Area3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06881, 0.0239405, -8.35722)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/ExitBreakerTrigger"]
+shape = SubResource("BoxShape3D_l6ih2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/ExitBreakerTrigger"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_fdcnv")
+
 [node name="ArcadeFlickerTrigger" type="Area3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96379, 0.521036, -13.042)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.44023, 0.0236145, -5.04547)
 collision_layer = 0
 collision_mask = 4
 
@@ -1361,7 +1479,7 @@ collision_mask = 4
 shape = SubResource("BoxShape3D_l6ih2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Environment/ArcadeFlickerTrigger"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("QuadMesh_fdcnv")
 
 [node name="Path3D" type="Path3D" parent="Environment"]
@@ -1375,13 +1493,13 @@ transform = Transform3D(-0.999996, 0, 0.00030461, 0, 1, 0, -0.00030461, 0, -0.99
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 0, 0)
 
 [node name="Gumkid" parent="Environment/Path3D/PathFollow3D/RotationFix" instance=ExtResource("10_2iw1o")]
-transform = Transform3D(1, 0, 3.25963e-09, 0, 1, 0, -3.25963e-09, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 3.23053e-09, 0, 1, 0, -3.23053e-09, 0, 1, -0.00224072, 0, -7.35959)
 
 [node name="Node3D" type="Node3D" parent="Environment/Path3D/PathFollow3D/RotationFix"]
 transform = Transform3D(0.999999, -1.81899e-11, -2.91038e-11, 0, 0.987688, -0.156434, 0, 0.156434, 0.987688, 0.000378549, 1.27528, 1.24347)
 
 [node name="ScareCamera" type="Camera3D" parent="Environment/Path3D/PathFollow3D/RotationFix/Node3D"]
-transform = Transform3D(0.757579, -7.27594e-12, 2.91038e-11, 7.27596e-12, 0.757576, 2.98023e-08, -2.91038e-11, -2.98023e-08, 0.757578, 0, 0, 0)
+transform = Transform3D(0.757579, -3.63798e-12, -1.45519e-11, 2.18279e-11, 0.757576, 1.04308e-06, 2.91038e-11, -5.21541e-08, 0.757579, -0.00224072, -1.15129, -7.26898)
 fov = 25.0
 
 [node name="ScareLight" type="SpotLight3D" parent="Environment/Path3D/PathFollow3D/RotationFix/Node3D/ScareCamera"]
@@ -1461,6 +1579,7 @@ text = "Quit"
 [connection signal="interacted" from="Environment/TheGameMachine/ArcadeInteractable" to="." method="_on_arcade_interactable_interacted"]
 [connection signal="interacted" from="Environment/ElectricalBox" to="." method="_on_electrical_box_interacted"]
 [connection signal="interacted" from="Environment/Key" to="." method="_on_key_interacted"]
+[connection signal="body_entered" from="Environment/ExitBreakerTrigger" to="." method="_on_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="Environment/ArcadeFlickerTrigger" to="." method="_on_arcade_flicker_trigger_body_entered"]
 [connection signal="capture" from="Environment/Path3D/PathFollow3D/RotationFix/Gumkid" to="." method="_on_gumkid_capture"]
 [connection signal="pressed" from="Control/Buttons/Try Again Button" to="." method="_on_try_again_button_pressed"]
