@@ -4,9 +4,9 @@ class_name Player
 
 @export var enabled = true
 
-const STOP_SPEED = 5.0
+const STOP_SPEED = 8.0
 const WALK_SPEED = 3.0
-const SPRINT_SPEED = 8.0
+const SPRINT_SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.005
 const BOB_FREQ = 2.0

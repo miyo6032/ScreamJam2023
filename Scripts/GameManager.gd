@@ -18,6 +18,8 @@ var dialog_pause_time = 0.0
 
 var movement_tween
 
+var has_key: bool
+
 func _ready():
     # player.look_in_direction(TAU * 0.5)
     player.enabled = false
@@ -65,12 +67,18 @@ func pause(time):
     return get_tree().create_timer(time).timeout
 
 func _on_electrical_box_interacted():
-    exit_breaker_trigger.monitoring = true
+    if has_key:
+        exit_breaker_trigger.monitoring = true
 
-    arcade_game.set_flickering()
-    arcade_game.set_interactable()
+        arcade_game.set_flickering()
+        arcade_game.set_interactable()
 
-    dialog.show_dialog("Hmm, the power didn't turn back on", dialog_time)
+        dialog.show_dialog("Hmm, the power didn't turn back on", dialog_time)
+    else:
+        dialog.show_dialog("The breaker box has a lock... ", dialog_time)
+
+        await pause(dialog_time + dialog_pause_time)
+        dialog.show_dialog("Maybe the key would be in the office", dialog_time)
 
 func _on_arcade_flicker_trigger_body_entered(_body):
     exit_breaker_trigger.set_deferred("monitoring", false)
@@ -111,3 +119,9 @@ func _on_try_again_button_pressed():
 
 func _on_quit_button_pressed():
     get_tree().quit()
+
+
+func _on_key_interacted():
+    has_key = true
+
+    dialog.show_dialog("I got the key to the breaker box!", dialog_time)
