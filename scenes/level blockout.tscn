@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://k8p0idphlhc6"]
+[gd_scene load_steps=95 format=3 uid="uid://k8p0idphlhc6"]
 
 [ext_resource type="ArrayMesh" uid="uid://p3dyqocuv8jv" path="res://3D models/arcade game V1.obj" id="1_svx3c"]
 [ext_resource type="ArrayMesh" uid="uid://ckl8tdi7tnwwt" path="res://3D models/arcade game V2.obj" id="2_npd0x"]
@@ -66,6 +66,7 @@
 [ext_resource type="Texture2D" uid="uid://dagki0oomudsm" path="res://textures/wacca_Material_Metallic.png" id="64_jqwuy"]
 [ext_resource type="Texture2D" uid="uid://bpkmettbsp8to" path="res://textures/wacca_Material_Normal.png" id="65_ishwd"]
 [ext_resource type="Texture2D" uid="uid://fsmkahrjx7ng" path="res://textures/wacca_Material_Roughness.png" id="66_v244u"]
+[ext_resource type="Texture2D" uid="uid://dpxfriy1u2iwr" path="res://textures/floortexture.png" id="67_6a4u2"]
 [ext_resource type="ArrayMesh" uid="uid://bd0cdvr88h7rh" path="res://3D models/wacca.obj" id="67_rub7j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3nk5v"]
@@ -231,6 +232,8 @@ heightmap_texture = ExtResource("36_kvq8j")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uwv1g"]
 albedo_color = Color(0.211765, 0.211765, 0.211765, 1)
+albedo_texture = ExtResource("67_6a4u2")
+point_size = 88.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ydlyu"]
 albedo_color = Color(0.34902, 0.419608, 1, 1)
@@ -464,31 +467,31 @@ mesh = ExtResource("2_npd0x")
 skeleton = NodePath("../..")
 
 [node name="ArcadeGameV189" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(0.00706842, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00706842, -13.9282, 0, 28.135)
+transform = Transform3D(0.00706842, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00706842, -13.9282, 0, 27.9145)
 material_override = SubResource("StandardMaterial3D_p1ypl")
 mesh = ExtResource("1_svx3c")
 skeleton = NodePath("../..")
 
 [node name="ArcadeGameV190" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(0.00706842, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00706842, -17.856, 0, 28.1073)
+transform = Transform3D(0.00706842, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00706842, -17.856, 0, 27.8868)
 material_override = SubResource("StandardMaterial3D_3ssu6")
 mesh = ExtResource("1_svx3c")
 skeleton = NodePath("../..")
 
 [node name="ArcadeGameV191" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(0.00706842, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00706842, -6.40007, 0, 28.1736)
+transform = Transform3D(0.00706842, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00706842, -6.40007, 0, 27.9531)
 material_override = SubResource("StandardMaterial3D_3nk5v")
 mesh = ExtResource("1_svx3c")
 skeleton = NodePath("../..")
 
 [node name="ArcadeGameV192" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(0.00706842, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00706842, -15.964, 0, 27.6791)
+transform = Transform3D(0.00706842, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00706842, -15.964, 0, 27.4586)
 material_override = SubResource("StandardMaterial3D_cg37j")
 mesh = ExtResource("2_npd0x")
 skeleton = NodePath("../..")
 
 [node name="ArcadeGameV193" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(0.00706842, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00706842, -12.0607, 0, 27.7067)
+transform = Transform3D(0.00706842, 0, 0.999975, 0, 1, 0, -0.999975, 0, 0.00706842, -12.0607, 0, 27.4862)
 material_override = SubResource("StandardMaterial3D_hldrw")
 mesh = ExtResource("2_npd0x")
 skeleton = NodePath("../..")
@@ -1388,7 +1391,7 @@ mesh = ExtResource("1_svx3c")
 skeleton = NodePath("../..")
 
 [node name="ArcadeGameV148" type="MeshInstance3D" parent="arcade machines"]
-transform = Transform3D(-0.004119, 0, 0.999992, 0, 1, 0, -0.999992, 0, -0.004119, -4.45441, 0, 27.5679)
+transform = Transform3D(-0.004119, 0, 0.999992, 0, 1, 0, -0.999992, 0, -0.004119, -4.45441, 0, 27.3474)
 material_override = SubResource("StandardMaterial3D_cg37j")
 mesh = ExtResource("2_npd0x")
 skeleton = NodePath("../..")
