@@ -43,4 +43,5 @@ shape = SubResource("ConcavePolygonShape3D_xpx42")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0804688, 1, -2.20493)
 
 [node name="Player" parent="." instance=ExtResource("1_dedev")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22568, 4.84682)
 enabled = false

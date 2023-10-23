@@ -17,6 +17,7 @@
 
 [sub_resource type="Environment" id="Environment_eiiht"]
 background_mode = 1
+sdfgi_enabled = true
 sdfgi_read_sky_light = false
 glow_enabled = true
 glow_strength = 0.75
@@ -202,7 +203,6 @@ shape = SubResource("BoxShape3D_yjxka")
 
 [node name="Room" type="CSGBox3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
-visible = false
 material_override = SubResource("StandardMaterial3D_soehp")
 flip_faces = true
 size = Vector3(20, 4.1, 40)

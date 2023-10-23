@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="ScreamJam2023"
+run/main_scene="res://Prototype/Scenes/arcade_test.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 
 [autoload]
@@ -70,3 +71,6 @@ enter={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method.mobile="forward_plus"
+renderer/rendering_method.web="forward_plus"
+global_illumination/sdfgi/frames_to_converge=1

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp8c2nyykixna"]
+
+[ext_resource type="PackedScene" uid="uid://clcjmxhong7k6" path="res://scenes/ScreenFlickerEffect.tscn" id="1_1ayjd"]
+
+[node name="SubViewport" type="SubViewport"]
+size = Vector2i(768, 512)
+
+[node name="ScreenFlickerEffect" parent="." instance=ExtResource("1_1ayjd")]
