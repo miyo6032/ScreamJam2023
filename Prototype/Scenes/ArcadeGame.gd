@@ -18,8 +18,7 @@ func _physics_process(delta):
         return
     if Input.is_action_just_released("ui_accept") and starting_screen.visible:
         if player_died:
-            game_crash.emit()
-            enabled = false
+            get_tree().reload_current_scene()
         else:
             game_start.emit()
             starting_screen.hide()

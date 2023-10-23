@@ -53,4 +53,4 @@ camera = NodePath("../Neck/Camera3D")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_yhmkv")
-volume_db = -20.0
+volume_db = -15.0

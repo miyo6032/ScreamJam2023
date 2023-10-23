@@ -1454,6 +1454,7 @@ render_target_update_mode = 3
 
 [node name="ScreenLight" type="SpotLight3D" parent="Environment/TheGameMachine"]
 transform = Transform3D(-7.94752e-08, -0.272133, -1.7977, -1.61487e-15, 1.7977, -0.272133, 1.81818, -1.18953e-08, -7.858e-08, -1.25018, 2.27153, 0)
+light_color = Color(1, 0.831373, 0.831373, 1)
 
 [node name="ArcadeInteractable" type="StaticBody3D" parent="Environment/TheGameMachine"]
 transform = Transform3D(-7.94753e-08, 0, -1.81818, 0, 1.81818, 0, 1.81818, 0, -7.94753e-08, 0, 2, 0)

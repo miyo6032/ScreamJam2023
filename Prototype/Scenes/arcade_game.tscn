@@ -99,7 +99,7 @@ sources/0 = SubResource("TileSetAtlasSource_g3itr")
 sources/1 = SubResource("TileSetAtlasSource_foixr")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spdfl"]
-size = Vector2(5, 9)
+size = Vector2(7, 14)
 
 [sub_resource type="Curve2D" id="Curve2D_lmr5p"]
 _data = {
@@ -136,6 +136,7 @@ layer_0/tile_data = PackedInt32Array(1441806, 131073, 65536, 1441807, 131073, 65
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(320, 376)
+collision_layer = 5
 script = ExtResource("1_fbmnh")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
@@ -159,6 +160,7 @@ rotation = -0.0198649
 rotates = false
 
 [node name="Enemy" type="Area2D" parent="Path2D/PathFollow2D"]
+collision_mask = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Path2D/PathFollow2D/Enemy"]
 texture = ExtResource("5_1iy8w")
@@ -188,7 +190,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.113725, 0.0470588, 0.0470588, 1)
 
 [node name="Title" type="Label" parent="Camera2D/UserInterface/StartingScreen"]
 layout_mode = 1
@@ -203,7 +205,7 @@ offset_right = 30.5
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.807843, 0.462745, 1, 1)
 theme_override_fonts/font = ExtResource("7_e86xr")
 theme_override_font_sizes/font_size = 32
 text = "Escape Gumkid!"
@@ -221,7 +223,7 @@ offset_right = 62.0
 offset_bottom = 38.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.823529, 0.552941, 0.278431, 1)
 theme_override_fonts/font = ExtResource("7_e86xr")
 theme_override_font_sizes/font_size = 16
 text = "Press Enter to play"
