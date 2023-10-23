@@ -1408,6 +1408,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_34fes")
 
 [node name="SubViewport" type="SubViewport" parent="Environment/LitArcades/ArcadeGameV60/FlickeringScreen"]
 size = Vector2i(1152, 648)
+render_target_update_mode = 3
 
 [node name="SilhouetteEffect" parent="Environment/LitArcades/ArcadeGameV60/FlickeringScreen/SubViewport" instance=ExtResource("8_gfttr")]
 
@@ -1427,6 +1428,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_6pf25")
 
 [node name="SubViewport" type="SubViewport" parent="Environment/TheGameMachine/ArcadeGameScreen"]
 size = Vector2i(1152, 648)
+render_target_update_mode = 3
 
 [node name="ArcadeGame" parent="Environment/TheGameMachine/ArcadeGameScreen/SubViewport" instance=ExtResource("7_r2cru")]
 
@@ -1439,6 +1441,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_6pf25")
 
 [node name="SubViewport" type="SubViewport" parent="Environment/TheGameMachine/FlickeringScreen"]
+render_target_update_mode = 3
 
 [node name="ScreenFlickerEffect" parent="Environment/TheGameMachine/FlickeringScreen/SubViewport" instance=ExtResource("5_p2oda")]
 

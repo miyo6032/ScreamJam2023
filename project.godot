@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ScreamJam2023"
-run/main_scene="res://Prototype/Scenes/arcade_test.tscn"
+run/main_scene="res://Prototype/Scenes/GameSequence.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 
 [autoload]
