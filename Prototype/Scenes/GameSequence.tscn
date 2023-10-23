@@ -1,7 +1,7 @@
-[gd_scene load_steps=51 format=3 uid="uid://bqsjhxkf1gnfn"]
+[gd_scene load_steps=54 format=3 uid="uid://bqsjhxkf1gnfn"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_a7gqu"]
-[ext_resource type="AudioStream" uid="uid://tf8twt6dwff1" path="res://sounds/8bit_main2.mp3" id="2_bo7dw"]
+[ext_resource type="AudioStream" uid="uid://ci2hu65ss4eod" path="res://sounds/8bit_main2.mp3" id="2_bo7dw"]
 [ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="2_v757q"]
 [ext_resource type="ArrayMesh" uid="uid://ckl8tdi7tnwwt" path="res://3D models/arcade game V2.obj" id="3_axwds"]
 [ext_resource type="AudioStream" uid="uid://ckjrhbkk5csrp" path="res://sounds/Arcade_background.mp3" id="3_mevwj"]
@@ -10,7 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://cdqb7q8h3nxu0" path="res://Prototype/Sprites/Ground.png" id="5_l8hqv"]
 [ext_resource type="PackedScene" uid="uid://clcjmxhong7k6" path="res://scenes/ScreenFlickerEffect.tscn" id="5_p2oda"]
 [ext_resource type="Script" path="res://Prototype/Scenes/ArcadeGameFlickering.gd" id="5_sfegs"]
+[ext_resource type="AudioStream" uid="uid://cixgm25mldjyg" path="res://sounds/Key_Pickup_1.mp3" id="5_stoc8"]
 [ext_resource type="Script" path="res://Prototype/Scenes/ArcadeGameLit.gd" id="6_3jywl"]
+[ext_resource type="AudioStream" uid="uid://cxn8psdbbbi8w" path="res://sounds/Arcade_button_4.mp3" id="6_puy5k"]
+[ext_resource type="AudioStream" uid="uid://c263qsgsgmrpo" path="res://sounds/Breaker_Box_Fail.mp3" id="7_hlusa"]
 [ext_resource type="PackedScene" uid="uid://c56hkknnm3cfe" path="res://Prototype/Scenes/arcade_game.tscn" id="7_r2cru"]
 [ext_resource type="PackedScene" uid="uid://djq5bllj4nwue" path="res://scenes/SilouhetteEffect.tscn" id="8_gfttr"]
 [ext_resource type="Script" path="res://Prototype/Scenes/Dialog.gd" id="8_m3rx5"]
@@ -189,7 +192,7 @@ _data = {
 "thunder": SubResource("Animation_ifjd7")
 }
 
-[node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "flicker_screen", "flicker_screen_trigger", "arcade_static_audio", "music_audio_player", "pointer")]
+[node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "flicker_screen", "flicker_screen_trigger", "arcade_static_audio", "music_audio_player", "sfx_player", "pointer")]
 script = ExtResource("1_a7gqu")
 do_instant_events = true
 lightsToDisable = [NodePath("Environment/LitArcades/ArcadeLight"), NodePath("Environment/LitArcades/ArcadeLight2"), NodePath("Environment/TheGameMachine/ScreenLight")]
@@ -205,10 +208,14 @@ flicker_screen = NodePath("Environment/LitArcades/ArcadeGameV60/FlickeringScreen
 flicker_screen_trigger = NodePath("Environment/ArcadeFlickerTrigger")
 arcade_static_audio = NodePath("Environment/TheGameMachine/StaticAudioPlayer")
 music_audio_player = NodePath("MusicPlayer")
+sfx_player = NodePath("SFXPlayer")
 pointer = NodePath("Control/Pointer")
 arcade_music = ExtResource("2_bo7dw")
 thunder = ExtResource("3_x6wqq")
 background = ExtResource("3_mevwj")
+key_pickup = ExtResource("5_stoc8")
+switch_breaker = ExtResource("6_puy5k")
+breaker_fail = ExtResource("7_hlusa")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eiiht")
@@ -1631,7 +1638,10 @@ text = "Quit"
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_2c3ul")
+volume_db = -20.0
 autoplay = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="."]
 
 [connection signal="game_crash" from="Environment/TheGameMachine/ArcadeGameScreen/SubViewport/ArcadeGame" to="." method="_on_arcade_game_game_crash"]
 [connection signal="game_start" from="Environment/TheGameMachine/ArcadeGameScreen/SubViewport/ArcadeGame" to="." method="_on_arcade_game_game_start"]

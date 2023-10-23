@@ -12,7 +12,7 @@ const SPRINT_SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.005
 const BOB_FREQ = 3.0
-const BOB_AMP = 0.1
+const BOB_AMP = 0.05
 var bob_progress = 0.0
 var step_progress = 0.0
 

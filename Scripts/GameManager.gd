@@ -14,11 +14,15 @@ extends Node3D
 @export var flicker_screen_trigger: Area3D
 @export var arcade_static_audio: AudioStreamPlayer3D
 @export var music_audio_player: AudioStreamPlayer
+@export var sfx_player: AudioStreamPlayer
 @export var pointer: ColorRect
 
 @export var arcade_music: AudioStream
 @export var thunder: AudioStream
 @export var background: AudioStream
+@export var key_pickup: AudioStream
+@export var switch_breaker: AudioStream
+@export var breaker_fail: AudioStream
 
 @onready var player: Player = $Player
 
@@ -53,8 +57,8 @@ func _on_arcade_game_game_start():
 
 func _on_arcade_game_game_crash():
     music_audio_player.stop()
-    music_audio_player.stream = thunder
-    music_audio_player.play()
+    sfx_player.stream = thunder
+    sfx_player.play()
 
     screen_flash.play("thunder")
 
@@ -93,6 +97,9 @@ func pause(time):
 
 func _on_electrical_box_interacted():
     if has_key:
+        sfx_player.stream = switch_breaker
+        sfx_player.play()
+
         exit_breaker_trigger.monitoring = true
 
         arcade_game.set_flickering()
@@ -103,6 +110,9 @@ func _on_electrical_box_interacted():
         flicker_screen_trigger.monitoring = true
         arcade_static_audio.play()
     else:
+        sfx_player.stream = breaker_fail
+        sfx_player.play()
+
         dialog.show_dialog("The breaker box has a lock... ", dialog_time)
 
         await pause(dialog_time + dialog_pause_time)
@@ -155,6 +165,9 @@ func _on_quit_button_pressed():
 
 func _on_key_interacted():
     has_key = true
+
+    sfx_player.stream = key_pickup
+    sfx_player.play()
 
     dialog.show_dialog("I got the key to the breaker box!", dialog_time)
 
