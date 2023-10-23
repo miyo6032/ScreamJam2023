@@ -1281,6 +1281,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_6pf25")
 
 [node name="SubViewport" type="SubViewport" parent="Environment/TheGameMachine/ArcadeGameScreen"]
+size = Vector2i(1152, 648)
 
 [node name="ArcadeGame" parent="Environment/TheGameMachine/ArcadeGameScreen/SubViewport" instance=ExtResource("7_r2cru")]
 
