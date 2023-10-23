@@ -1,13 +1,14 @@
-[gd_scene load_steps=29 format=3 uid="uid://bgtk1omspr41a"]
+[gd_scene load_steps=30 format=3 uid="uid://bgtk1omspr41a"]
 
 [ext_resource type="PackedScene" uid="uid://cck7h1fcp1cfg" path="res://3D models/Gumkid/gkid_gotcha.fbm/gkid_gotcha.fbx" id="1_r6yuk"]
 [ext_resource type="Script" path="res://3D models/Gumkid/GumkidModel.gd" id="2_i1bfo"]
 [ext_resource type="AudioStream" uid="uid://gk5budoy8oil" path="res://sounds/Gumkid_SFX_1.mp3" id="3_vntrb"]
+[ext_resource type="AudioStream" uid="uid://dl881cnbc6upb" path="res://sounds/Jumpscare_2.mp3" id="3_yx6ic"]
 [ext_resource type="AudioStream" uid="uid://bhyyf0ysk5eow" path="res://sounds/Gumkid_SFX_2.mp3" id="4_cyj2i"]
 
 [sub_resource type="Animation" id="Animation_ie7hm"]
 resource_name = "gkid gotcha"
-length = 0.9
+length = 5.0
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -253,6 +254,21 @@ tracks/34/path = NodePath("RootNode/gumkid main/Skeleton3D:Joint_11_2")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = PackedFloat32Array(0, 1, -0.00581651, 0.0151623, -0.43143, 0.902, 0.0333333, 1, -0.00543724, 0.0141732, -0.42643, 0.904393, 0.0666667, 1, -0.00502468, 0.0130976, -0.420976, 0.906963, 0.1, 1, -0.00458342, 0.0119472, -0.415125, 0.909675, 0.133333, 1, -0.00412196, 0.0107446, -0.408991, 0.912466, 0.233333, 1, -0.00269907, 0.00703431, -0.389977, 0.920794, 0.266667, 1, -0.00223992, 0.00583768, -0.383806, 0.923393, 0.3, 1, -0.00180161, 0.00469574, -0.377897, 0.925834, 0.333333, 1, -0.00139175, 0.00362672, -0.372365, 0.928078, 0.366667, 1, -0.00101941, 0.00265541, -0.367324, 0.930089, 0.4, 1, -0.000692903, 0.00180496, -0.362892, 0.931829, 0.433333, 1, -0.000419816, 0.00109347, -0.359183, 0.933266, 0.466667, 1, -0.000208334, 0.000541944, -0.35631, 0.934368, 0.5, 1, -6.69604e-05, 0.000173813, -0.354377, 0.935103, 0.533333, 1, 3.00953e-05, -7.70109e-05, -0.353066, 0.935599, 0.566667, 1, -0.000317434, 0.000822219, -0.357769, 0.93381, 0.6, 1, -0.000837558, 0.00217818, -0.36484, 0.931067, 0.633333, 1, -0.00119076, 0.00310522, -0.369658, 0.929162, 0.9, 1, -0.00115476, 0.00300905, -0.369158, 0.929361)
+tracks/35/type = "audio"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("AudioStreamPlayer3D")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_yx6ic")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/35/use_blend = true
 
 [sub_resource type="Animation" id="Animation_f7b3c"]
 resource_name = "gkid idle"

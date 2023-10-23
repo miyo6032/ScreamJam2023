@@ -1,17 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://cddj0tsvav4kd"]
+[gd_scene load_steps=10 format=3 uid="uid://cddj0tsvav4kd"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerMovement.gd" id="1_c7exi"]
 [ext_resource type="Script" path="res://Prototype/Scenes/InteractHandler.gd" id="2_50fu8"]
 [ext_resource type="Texture2D" uid="uid://s5o1m5okpu6k" path="res://Prototype/Sprites/flashlightpattern.png" id="2_x3bwh"]
+[ext_resource type="AudioStream" uid="uid://c7kf63hhpbcsw" path="res://sounds/Footsteps_carpet_1.mp3" id="2_ygli5"]
+[ext_resource type="AudioStream" uid="uid://bogqwruk83ed3" path="res://sounds/Footsteps_carpet_2.mp3" id="3_jxw7p"]
+[ext_resource type="AudioStream" uid="uid://u14gao0cqfk1" path="res://sounds/Footsteps_carpet_3.mp3" id="4_yhmkv"]
+[ext_resource type="AudioStream" uid="uid://dvhcp8weddwym" path="res://sounds/Footsteps_carpet_4.mp3" id="5_3alf6"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_lqkt2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fi0jv"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("audio_player")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.22568, 0)
 collision_layer = 5
 script = ExtResource("1_c7exi")
+audio_player = NodePath("AudioStreamPlayer")
+step_sounds = Array[AudioStream]([ExtResource("2_ygli5"), ExtResource("3_jxw7p"), ExtResource("4_yhmkv"), ExtResource("5_3alf6")])
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
@@ -44,3 +50,7 @@ collider = NodePath("..")
 camera = NodePath("../Neck/Camera3D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yhmkv")
+volume_db = -20.0

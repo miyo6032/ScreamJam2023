@@ -13,7 +13,12 @@ extends Node3D
 @export var flicker_screen: ScreenFlickerEffect
 @export var flicker_screen_trigger: Area3D
 @export var arcade_static_audio: AudioStreamPlayer3D
+@export var music_audio_player: AudioStreamPlayer
 @export var pointer: ColorRect
+
+@export var arcade_music: AudioStream
+@export var thunder: AudioStream
+@export var background: AudioStream
 
 @onready var player: Player = $Player
 
@@ -42,7 +47,17 @@ func _ready():
         dialog_time = 2.0
         dialog_pause_time = 2.0
 
+func _on_arcade_game_game_start():
+    music_audio_player.stream = arcade_music
+    music_audio_player.play()
+
 func _on_arcade_game_game_crash():
+    music_audio_player.stop()
+    music_audio_player.stream = thunder
+    music_audio_player.play()
+
+    screen_flash.play("thunder")
+
     for light in lightsToDisable:
         light.visible = false
         
@@ -57,6 +72,9 @@ func _on_arcade_game_game_crash():
     player.enable_flashlight()
     pointer.visible = true
     pause(1)
+
+    music_audio_player.stream = background
+    music_audio_player.play()
 
     dialog.show_dialog("I was so close to beating Gumkid!", dialog_time)
     await pause(dialog_time + dialog_pause_time)
@@ -139,5 +157,6 @@ func _on_key_interacted():
     has_key = true
 
     dialog.show_dialog("I got the key to the breaker box!", dialog_time)
+
 
 

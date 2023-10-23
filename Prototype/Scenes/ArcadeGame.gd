@@ -1,6 +1,7 @@
 extends Node2D
 
 signal game_crash
+signal game_start
 
 @onready var camera := $Camera2D
 @onready var player := $Player
@@ -20,6 +21,7 @@ func _physics_process(delta):
             game_crash.emit()
             enabled = false
         else:
+            game_start.emit()
             starting_screen.hide()
             player.enabled = true
             var tween = get_tree().create_tween()

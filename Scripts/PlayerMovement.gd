@@ -3,15 +3,20 @@ extends CharacterBody3D
 class_name Player
 
 @export var enabled = true
+@export var audio_player: AudioStreamPlayer
+@export var step_sounds: Array[AudioStream]
 
 const STOP_SPEED = 8.0
 const WALK_SPEED = 3.0
 const SPRINT_SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.005
-const BOB_FREQ = 2.0
+const BOB_FREQ = 3.0
 const BOB_AMP = 0.1
 var bob_progress = 0.0
+var step_progress = 0.0
+
+var rng = RandomNumberGenerator.new()
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -61,6 +66,12 @@ func _physics_process(delta):
 
     bob_progress += delta * velocity.length() * float(is_on_floor())
     camera.transform.origin = headbob()
+
+    step_progress += delta * velocity.length() * float(is_on_floor())
+    if step_progress * BOB_FREQ > TAU:
+        audio_player.stream = step_sounds[rng.randi_range(0, step_sounds.size() - 1)]
+        audio_player.play()
+        step_progress = 0
 
     move_and_slide()
 

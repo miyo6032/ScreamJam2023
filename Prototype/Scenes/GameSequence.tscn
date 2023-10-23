@@ -1,8 +1,11 @@
-[gd_scene load_steps=47 format=3 uid="uid://bqsjhxkf1gnfn"]
+[gd_scene load_steps=51 format=3 uid="uid://bqsjhxkf1gnfn"]
 
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="1_a7gqu"]
+[ext_resource type="AudioStream" uid="uid://tf8twt6dwff1" path="res://sounds/8bit_main2.mp3" id="2_bo7dw"]
 [ext_resource type="PackedScene" uid="uid://cddj0tsvav4kd" path="res://Prototype/Scenes/player.tscn" id="2_v757q"]
 [ext_resource type="ArrayMesh" uid="uid://ckl8tdi7tnwwt" path="res://3D models/arcade game V2.obj" id="3_axwds"]
+[ext_resource type="AudioStream" uid="uid://ckjrhbkk5csrp" path="res://sounds/Arcade_background.mp3" id="3_mevwj"]
+[ext_resource type="AudioStream" uid="uid://cnh5cmwmnb76i" path="res://sounds/Thunder_1.mp3" id="3_x6wqq"]
 [ext_resource type="ArrayMesh" uid="uid://p3dyqocuv8jv" path="res://3D models/arcade game V1.obj" id="4_65m8m"]
 [ext_resource type="Texture2D" uid="uid://cdqb7q8h3nxu0" path="res://Prototype/Sprites/Ground.png" id="5_l8hqv"]
 [ext_resource type="PackedScene" uid="uid://clcjmxhong7k6" path="res://scenes/ScreenFlickerEffect.tscn" id="5_p2oda"]
@@ -164,13 +167,29 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_ifjd7"]
+resource_name = "thunder"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(568.099, 9089.6, 1, 12.996),
+"update": 0,
+"values": [Color(1, 1, 1, 0.254902), Color(1, 1, 1, 0), Color(1, 1, 1, 0.137255), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ax1ru"]
 _data = {
 "flash": SubResource("Animation_xu41q"),
-"game_over": SubResource("Animation_fe0vd")
+"game_over": SubResource("Animation_fe0vd"),
+"thunder": SubResource("Animation_ifjd7")
 }
 
-[node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "flicker_screen", "flicker_screen_trigger", "arcade_static_audio", "pointer")]
+[node name="SequenceTest" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "flicker_screen", "flicker_screen_trigger", "arcade_static_audio", "music_audio_player", "pointer")]
 script = ExtResource("1_a7gqu")
 do_instant_events = true
 lightsToDisable = [NodePath("Environment/LitArcades/ArcadeLight"), NodePath("Environment/LitArcades/ArcadeLight2"), NodePath("Environment/TheGameMachine/ScreenLight")]
@@ -185,7 +204,11 @@ dialog = NodePath("Control/Dialog")
 flicker_screen = NodePath("Environment/LitArcades/ArcadeGameV60/FlickeringScreen/SubViewport/SilhouetteEffect")
 flicker_screen_trigger = NodePath("Environment/ArcadeFlickerTrigger")
 arcade_static_audio = NodePath("Environment/TheGameMachine/StaticAudioPlayer")
+music_audio_player = NodePath("MusicPlayer")
 pointer = NodePath("Control/Pointer")
+arcade_music = ExtResource("2_bo7dw")
+thunder = ExtResource("3_x6wqq")
+background = ExtResource("3_mevwj")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_eiiht")
@@ -1568,7 +1591,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0, 0, 0, 0)
+color = Color(1, 1, 1, 0)
 
 [node name="ScreenFlashAnimation" type="AnimationPlayer" parent="Control/ScreenFlash"]
 libraries = {
@@ -1603,11 +1626,12 @@ offset_bottom = 445.0
 theme_override_font_sizes/font_size = 24
 text = "Quit"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_2c3ul")
 autoplay = true
 
 [connection signal="game_crash" from="Environment/TheGameMachine/ArcadeGameScreen/SubViewport/ArcadeGame" to="." method="_on_arcade_game_game_crash"]
+[connection signal="game_start" from="Environment/TheGameMachine/ArcadeGameScreen/SubViewport/ArcadeGame" to="." method="_on_arcade_game_game_start"]
 [connection signal="interacted" from="Environment/TheGameMachine/ArcadeInteractable" to="." method="_on_arcade_interactable_interacted"]
 [connection signal="interacted" from="Environment/ElectricalBox" to="." method="_on_electrical_box_interacted"]
 [connection signal="interacted" from="Environment/Key" to="." method="_on_key_interacted"]
