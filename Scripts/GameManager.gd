@@ -13,6 +13,7 @@ extends Node3D
 @export var flicker_screen: ScreenFlickerEffect
 @export var flicker_screen_trigger: Area3D
 @export var arcade_static_audio: AudioStreamPlayer3D
+@export var pointer: ColorRect
 
 @onready var player: Player = $Player
 
@@ -31,6 +32,7 @@ func _ready():
     gumkid.set_inactive()
     scare_light.visible = false
     flicker_screen_trigger.monitoring = false
+    pointer.visible = false
 
     Console.add_command("spawn", _on_arcade_interactable_interacted)
     Console.add_command("crash", _on_arcade_game_game_crash)
@@ -53,6 +55,7 @@ func _on_arcade_game_game_crash():
 
     await pause(dialog_time + dialog_pause_time)
     player.enable_flashlight()
+    pointer.visible = true
     pause(1)
 
     dialog.show_dialog("I was so close to beating Gumkid!", dialog_time)
