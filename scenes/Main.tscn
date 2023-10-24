@@ -84,6 +84,9 @@
 [ext_resource type="PackedScene" uid="uid://usb3pc0w3axj" path="res://scenes/Gumkid.tscn" id="75_ysly5"]
 [ext_resource type="Script" path="res://Prototype/Scenes/Dialog.gd" id="76_qbhcc"]
 [ext_resource type="AudioStream" uid="uid://48v86iirp1f1" path="res://sounds/Gumkid_demo_1.wav" id="77_j3kqb"]
+[ext_resource type="PackedScene" uid="uid://dh16yrc2p4v40" path="res://3D models/Breaker/breaker grp.fbx" id="82_rhd2f"]
+[ext_resource type="PackedScene" uid="uid://qc0jke6wnyfo" path="res://3D models/keys/scream_keys.fbx" id="83_kb31b"]
+[ext_resource type="Script" path="res://3D models/keys/Keys.gd" id="84_4namy"]
 
 [sub_resource type="Environment" id="Environment_qdvrx"]
 background_mode = 1
@@ -328,19 +331,11 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_sie2f")
 size = Vector2(2, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5dgi2"]
+size = Vector3(1.46158, 1.75381, 0.391908)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_ukppb"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x5im"]
-albedo_color = Color(0, 1, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_17rwm"]
-material = SubResource("StandardMaterial3D_3x5im")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ch3m"]
-albedo_color = Color(0.94902, 0.827451, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3ljmy"]
-material = SubResource("StandardMaterial3D_6ch3m")
+size = Vector3(0.331027, 0.271241, 0.474281)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_36v73"]
 
@@ -2612,18 +2607,17 @@ mesh = SubResource("QuadMesh_vrjpv")
 [node name="FallingMachineTriggers" type="Node3D" parent="UnscaledEnvironment/Triggers"]
 
 [node name="ElectricalBox" type="StaticBody3D" parent="UnscaledEnvironment"]
-transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -2.6843, 1.02396, -10.1009)
+transform = Transform3D(-0.0408112, 0, -0.908175, 0, 0.909091, 0, 0.908175, 0, -0.0408112, -2.6843, 1.02396, -10.1009)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("73_rd2n3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/ElectricalBox"]
-shape = SubResource("BoxShape3D_ukppb")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.994061, 0.210972)
+shape = SubResource("BoxShape3D_5dgi2")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="UnscaledEnvironment/ElectricalBox"]
-layers = 3
-mesh = SubResource("BoxMesh_17rwm")
-skeleton = NodePath("../../..")
+[node name="breaker grp" parent="UnscaledEnvironment/ElectricalBox" instance=ExtResource("82_rhd2f")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 
 [node name="Key" type="StaticBody3D" parent="UnscaledEnvironment"]
 transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -4.2313, 1.02396, -8.73234)
@@ -2632,12 +2626,16 @@ collision_mask = 0
 script = ExtResource("73_rd2n3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Key"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.103011)
 shape = SubResource("BoxShape3D_ukppb")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="UnscaledEnvironment/Key"]
-layers = 3
-mesh = SubResource("BoxMesh_3ljmy")
-skeleton = NodePath("../../..")
+[node name="scream_keys" parent="UnscaledEnvironment/Key" instance=ExtResource("83_kb31b")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("84_4namy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="UnscaledEnvironment/Key/scream_keys"]
+transform = Transform3D(3.66667, 0, 0, 0, 3.66667, 0, 0, 0, 3.66667, 0.281002, 1.53174, -0.466034)
+light_energy = 0.1
 
 [node name="FallingTriggers" type="Node3D" parent="UnscaledEnvironment"]
 
@@ -2964,6 +2962,7 @@ autoplay = true
 [connection signal="body_entered" from="UnscaledEnvironment/Triggers/ExitBreakerTrigger" to="." method="_on_exit_breaker_trigger_body_entered"]
 [connection signal="interacted" from="UnscaledEnvironment/ElectricalBox" to="." method="_on_electrical_box_interacted"]
 [connection signal="interacted" from="UnscaledEnvironment/Key" to="." method="_on_key_interacted"]
+[connection signal="interacted" from="UnscaledEnvironment/Key" to="UnscaledEnvironment/Key/scream_keys" method="_on_key_interacted"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/FallingArcade" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/FallingArcade3" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D2/FallingArcade2" method="_on_falling_arcade_trigger_body_entered"]
