@@ -336,12 +336,14 @@ loop = true
 size = Vector2(1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gs3rr"]
+size = Vector3(2, 1, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sie2f"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_vrjpv"]
 material = SubResource("StandardMaterial3D_sie2f")
+size = Vector2(2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ukppb"]
 
@@ -359,7 +361,7 @@ material = SubResource("StandardMaterial3D_6ch3m")
 
 [sub_resource type="Curve3D" id="Curve3D_vcsdd"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -1.18001, 0, -8.5684, 0, 0, 0, 0, 0, 0, -1.18522, 0, 8.53293, 0, 0, 0, 0, 0, 0, -7.22198, 0, 8.58241),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -7.93465, 0.0171204, -17.597, 0, 0, 0, 0, 0, 0, -7.86127, 0, 4.0124, 0, 0, 0, 0, 0, 0, -4.10635, 0, 3.97158),
 "tilts": PackedFloat32Array(0, 0, 0)
 }
 point_count = 3
@@ -457,7 +459,7 @@ breaker_fail = ExtResource("7_gj5r0")
 environment = SubResource("Environment_qdvrx")
 
 [node name="Player" parent="." instance=ExtResource("69_a0ojv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.82598, 1, -19.1854)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9278, 1, -18.0348)
 
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -968,6 +970,12 @@ material_override = SubResource("StandardMaterial3D_3nk5v")
 mesh = ExtResource("5_mo3uo")
 skeleton = NodePath("../../..")
 
+[node name="ArcadeGameV111" type="MeshInstance3D" parent="Environment/arcade machines"]
+transform = Transform3D(-0.999957, 0, -0.00923278, 0, 1, 0, 0.00923278, 0, -0.999957, -18.2351, 0, -38.2606)
+material_override = SubResource("StandardMaterial3D_3nk5v")
+mesh = ExtResource("5_mo3uo")
+skeleton = NodePath("../../..")
+
 [node name="ArcadeGameV173" type="MeshInstance3D" parent="Environment/arcade machines"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.9982, 0, -33.6949)
 material_override = SubResource("StandardMaterial3D_3ssu6")
@@ -1413,7 +1421,7 @@ mesh = ExtResource("12_m62i4")
 skeleton = NodePath("../../..")
 
 [node name="ArcadeGameV206" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(-0.999993, 0, -0.00371755, 0, 1, 0, 0.00371755, 0, -0.999993, -13.5279, 0, -38.8354)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.4511, 0, -38.9854)
 material_override = SubResource("StandardMaterial3D_cg37j")
 mesh = ExtResource("12_m62i4")
 skeleton = NodePath("../../..")
@@ -2379,7 +2387,7 @@ transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0.793696, 3
 light_color = Color(0, 0.501961, 1, 1)
 
 [node name="THe game machine" type="MeshInstance3D" parent="Environment"]
-transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, -18.0931, 0, -38.5007)
+transform = Transform3D(-0.00277501, 0, -0.999995, 0, 1, 0, 0.999995, 0, -0.00277501, -15.8255, 0.410419, -38.8942)
 material_override = SubResource("StandardMaterial3D_nh84s")
 mesh = ExtResource("5_mo3uo")
 skeleton = NodePath("../..")
@@ -2447,7 +2455,7 @@ skeleton = NodePath("../../Environment")
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
 
 [node name="ExitBreakerTrigger" type="Area3D" parent="UnscaledEnvironment/Triggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06881, 0.0239405, -8.35722)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7357, 0.0239405, -21.5379)
 collision_layer = 0
 collision_mask = 4
 
@@ -2459,7 +2467,7 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 
 mesh = SubResource("QuadMesh_vrjpv")
 
 [node name="ElectricalBox" type="StaticBody3D" parent="UnscaledEnvironment"]
-transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -4.41508, 1.02396, -12.6813)
+transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -2.6843, 1.02396, -10.1009)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("73_rd2n3")
@@ -2473,7 +2481,7 @@ mesh = SubResource("BoxMesh_17rwm")
 skeleton = NodePath("../../..")
 
 [node name="Key" type="StaticBody3D" parent="UnscaledEnvironment"]
-transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -5.90569, 1.02396, -12.6871)
+transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -4.2313, 1.02396, -8.73234)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("73_rd2n3")
@@ -2491,23 +2499,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25154)
 curve = SubResource("Curve3D_vcsdd")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.999996, 0, 0.00030461, 0, 1, 0, -0.00030461, 0, -0.999996, -1.18001, 0, -8.5684)
+transform = Transform3D(-0.999989, 2.69046e-06, -0.00339592, -2.27372e-13, 1, 0.000792255, 0.00339592, 0.000792254, -0.999989, -7.93465, 0.0171204, -17.597)
 
 [node name="RotationFix" type="Node3D" parent="Path3D/PathFollow3D"]
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 0, 0)
 
 [node name="Gumkid" parent="Path3D/PathFollow3D/RotationFix" instance=ExtResource("75_ysly5")]
-transform = Transform3D(1, 0, 3.23053e-09, 0, 1, 0, -3.23053e-09, 0, 1, -0.00224072, 0, -7.35959)
+transform = Transform3D(1, 0, 3.23053e-09, 0, 1, 0, -3.23053e-09, 0, 1, 0, 0, 0)
 
 [node name="Node3D" type="Node3D" parent="Path3D/PathFollow3D/RotationFix"]
 transform = Transform3D(0.999999, -1.81899e-11, -2.91038e-11, 0, 0.987688, -0.156434, 0, 0.156434, 0.987688, 0.000378549, 1.27528, 1.24347)
 
 [node name="ScareCamera" type="Camera3D" parent="Path3D/PathFollow3D/RotationFix/Node3D"]
-transform = Transform3D(0.757579, -3.63798e-12, -1.45519e-11, 2.18279e-11, 0.757576, 1.04308e-06, 2.91038e-11, -5.21541e-08, 0.757579, -0.00224072, -1.15129, -7.26898)
+transform = Transform3D(0.757579, -3.63798e-12, -1.45519e-11, 2.18279e-11, 0.757576, 1.04308e-06, 2.91038e-11, -5.21541e-08, 0.757579, 0, 0, 0)
 fov = 25.0
 
 [node name="ScareLight" type="SpotLight3D" parent="Path3D/PathFollow3D/RotationFix/Node3D/ScareCamera"]
-transform = Transform3D(1, 0.000152124, -7.09399e-05, -0.0001666, 0.84803, -0.529949, -2.04588e-05, 0.529949, 0.84803, 0, -0.899826, 0.142514)
+transform = Transform3D(1, 0.000314852, -0.000204007, -0.000374018, 0.879191, -0.476469, 2.93446e-05, 0.476469, 0.879191, -0.000528812, -0.875343, 0.29631)
 spot_angle = 20.0
 
 [node name="Control" type="Control" parent="."]

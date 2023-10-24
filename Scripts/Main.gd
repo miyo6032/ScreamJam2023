@@ -33,7 +33,7 @@ var movement_tween
 var has_key: bool
 
 func _ready():
-    player.look_in_direction(TAU * 0.25)
+#    player.look_in_direction(TAU * 0.25)
     player.enabled = false
     player.disable_flashlight()
     exit_breaker_trigger.monitoring = false
