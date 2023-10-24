@@ -87,11 +87,11 @@ emission_operator = 1
 [sub_resource type="BoxShape3D" id="BoxShape3D_5uojy"]
 size = Vector3(1, 2, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3b2ld"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ffifg"]
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_2de4j"]
-material = SubResource("StandardMaterial3D_3b2ld")
+material = SubResource("StandardMaterial3D_ffifg")
 size = Vector3(1, 2, 1)
 
 [sub_resource type="AudioStreamMP3" id="AudioStreamMP3_ink7m"]
@@ -100,25 +100,25 @@ loop = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mo8he"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3x5im"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_veolw"]
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_rjy31"]
-material = SubResource("StandardMaterial3D_3x5im")
+material = SubResource("StandardMaterial3D_veolw")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ch3m"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ah0aw"]
 albedo_color = Color(0.94902, 0.827451, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lvdkm"]
-material = SubResource("StandardMaterial3D_6ch3m")
+material = SubResource("StandardMaterial3D_ah0aw")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_l6ih2"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sie2f"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8u31f"]
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_fdcnv"]
-material = SubResource("StandardMaterial3D_sie2f")
+material = SubResource("StandardMaterial3D_8u31f")
 
 [sub_resource type="Curve3D" id="Curve3D_kgxqu"]
 _data = {
