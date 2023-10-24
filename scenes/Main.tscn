@@ -1,4 +1,4 @@
-[gd_scene load_steps=158 format=3 uid="uid://bebvtnpi0k700"]
+[gd_scene load_steps=169 format=3 uid="uid://bebvtnpi0k700"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_aogbd"]
 [ext_resource type="Texture2D" uid="uid://dyujeqgctunvv" path="res://textures/arcade game V1.2.png" id="1_gqc8o"]
@@ -87,6 +87,15 @@
 [ext_resource type="PackedScene" uid="uid://dh16yrc2p4v40" path="res://3D models/Breaker/breaker grp.fbx" id="82_rhd2f"]
 [ext_resource type="PackedScene" uid="uid://qc0jke6wnyfo" path="res://3D models/keys/scream_keys.fbx" id="83_kb31b"]
 [ext_resource type="Script" path="res://3D models/keys/Keys.gd" id="84_4namy"]
+[ext_resource type="PackedScene" uid="uid://ba8r5rcvrb747" path="res://3D models/Office/table.fbx" id="85_lyqc3"]
+[ext_resource type="PackedScene" uid="uid://qtgc3qft0jc3" path="res://3D models/Office/lamp.fbx" id="86_vvf7u"]
+[ext_resource type="PackedScene" uid="uid://bd2f221t0d55j" path="res://3D models/Office/basket.fbx" id="87_7l5f5"]
+[ext_resource type="PackedScene" uid="uid://b56gprukgpoer" path="res://3D models/Office/book.fbx" id="88_qtqpk"]
+[ext_resource type="PackedScene" uid="uid://7q1hdk6g5qrx" path="res://3D models/Office/chair.fbx" id="89_oqthr"]
+[ext_resource type="PackedScene" uid="uid://n1cpr2ert0ct" path="res://3D models/Office/file.fbx" id="90_ftbns"]
+[ext_resource type="PackedScene" uid="uid://bhtu2mrpj5ae0" path="res://3D models/Office/open book.fbx" id="91_nle2w"]
+[ext_resource type="PackedScene" uid="uid://c2l27mgjp4dp5" path="res://3D models/Office/pencil.fbx" id="92_lyurk"]
+[ext_resource type="PackedScene" path="res://3D models/Office/wireless tel.fbx" id="93_x1e0j"]
 
 [sub_resource type="Environment" id="Environment_qdvrx"]
 background_mode = 1
@@ -266,6 +275,18 @@ emission_enabled = true
 emission = Color(1, 0, 0, 1)
 emission_energy_multiplier = 15.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wi8an"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+emission_energy_multiplier = 15.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dy70l"]
+albedo_color = Color(1, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 15.0
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_p4gdf"]
 material = SubResource("StandardMaterial3D_uwv1g")
 size = Vector2(40, 80)
@@ -334,9 +355,6 @@ size = Vector2(2, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_5dgi2"]
 size = Vector3(1.46158, 1.75381, 0.391908)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ukppb"]
-size = Vector3(0.331027, 0.271241, 0.474281)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_36v73"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lpmoa"]
@@ -395,6 +413,9 @@ size = Vector3(1.29019, 3.71817, 2.75749)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_b8t6x"]
 size = Vector3(1.06481, 3.71817, 2.28743)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ukppb"]
+size = Vector3(0.331027, 0.271241, 0.474281)
 
 [sub_resource type="Curve3D" id="Curve3D_vcsdd"]
 _data = {
@@ -497,7 +518,7 @@ breaker_fail = ExtResource("7_gj5r0")
 environment = SubResource("Environment_qdvrx")
 
 [node name="Player" parent="." instance=ExtResource("69_a0ojv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9278, 1, -18.0348)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.58569, 0.999998, 17.6266)
 
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -2391,6 +2412,7 @@ material = SubResource("StandardMaterial3D_uwv1g")
 
 [node name="office" type="CSGBox3D" parent="Environment/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.1484, 0.283756, 34.2908)
+visible = false
 size = Vector3(13.6766, 1, 10.4154)
 material = SubResource("StandardMaterial3D_ydlyu")
 
@@ -2404,12 +2426,21 @@ material = SubResource("StandardMaterial3D_woxom")
 
 [node name="electrical box" type="CSGBox3D" parent="Environment/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.437, 2.21336, -37.773)
+visible = false
 size = Vector3(1, 2.52274, 2.05846)
 material = SubResource("StandardMaterial3D_j7v6h")
 
 [node name="light above electrical box" type="CSGSphere3D" parent="Environment/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5209, 6.61071, -37.7655)
 material = SubResource("StandardMaterial3D_330ow")
+
+[node name="light above electrical box2" type="CSGSphere3D" parent="Environment/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035265, 6.61071, 39.8595)
+material = SubResource("StandardMaterial3D_wi8an")
+
+[node name="light above electrical box3" type="CSGSphere3D" parent="Environment/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.0272, 6.61071, 39.8595)
+material = SubResource("StandardMaterial3D_dy70l")
 
 [node name="Floor" type="MeshInstance3D" parent="Environment"]
 mesh = SubResource("PlaneMesh_p4gdf")
@@ -2449,6 +2480,46 @@ skeleton = NodePath("../..")
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/Wall2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Wall2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4s8q8")
+
+[node name="OfficeWall2" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, 0.999999, 0, -0.999999, -4.37114e-08, 0, 0, 0, 1, -6.94151, 6, 68.8174)
+mesh = SubResource("PlaneMesh_p4gdf")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/OfficeWall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/OfficeWall2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_y2pt1")
+
+[node name="OfficeWall" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(-4.37114e-08, -0.999999, 0, 0.999999, -4.37114e-08, 0, 0, 0, 1, -7.26814, 6, 68.9466)
+mesh = SubResource("PlaneMesh_p4gdf")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/OfficeWall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/OfficeWall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_4s8q8")
+
+[node name="OfficeWall3" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1.81367e-09, -0.041492, -0.999139, -0.999999, -4.37114e-08, 0, -4.36737e-08, 0.999138, -0.041492, -51.1107, 6, 28.0864)
+mesh = SubResource("PlaneMesh_p4gdf")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/OfficeWall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/OfficeWall3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_y2pt1")
+
+[node name="OfficeWall4" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1.81367e-09, 0.041492, -0.999139, 0.999999, -4.37114e-08, 0, -4.36737e-08, -0.999138, -0.041492, -51.2263, 6, 27.7547)
+mesh = SubResource("PlaneMesh_p4gdf")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/OfficeWall4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/OfficeWall4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_4s8q8")
 
 [node name="Wall3" type="MeshInstance3D" parent="Environment"]
@@ -2607,7 +2678,7 @@ mesh = SubResource("QuadMesh_vrjpv")
 [node name="FallingMachineTriggers" type="Node3D" parent="UnscaledEnvironment/Triggers"]
 
 [node name="ElectricalBox" type="StaticBody3D" parent="UnscaledEnvironment"]
-transform = Transform3D(-0.0408112, 0, -0.908175, 0, 0.909091, 0, 0.908175, 0, -0.0408112, -2.6843, 1.02396, -10.1009)
+transform = Transform3D(0.909074, 0, -0.00555331, 0, 0.909091, 0, 0.00555331, 0, 0.909074, 8.54872, 0.667203, -19.9135)
 collision_layer = 3
 collision_mask = 0
 script = ExtResource("73_rd2n3")
@@ -2618,24 +2689,6 @@ shape = SubResource("BoxShape3D_5dgi2")
 
 [node name="breaker grp" parent="UnscaledEnvironment/ElectricalBox" instance=ExtResource("82_rhd2f")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
-
-[node name="Key" type="StaticBody3D" parent="UnscaledEnvironment"]
-transform = Transform3D(0.909091, 0, 0, 0, 0.909091, 0, 0, 0, 0.909091, -4.2313, 1.02396, -8.73234)
-collision_layer = 3
-collision_mask = 0
-script = ExtResource("73_rd2n3")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Key"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.103011)
-shape = SubResource("BoxShape3D_ukppb")
-
-[node name="scream_keys" parent="UnscaledEnvironment/Key" instance=ExtResource("83_kb31b")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
-script = ExtResource("84_4namy")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="UnscaledEnvironment/Key/scream_keys"]
-transform = Transform3D(3.66667, 0, 0, 0, 3.66667, 0, 0, 0, 3.66667, 0.281002, 1.53174, -0.466034)
-light_energy = 0.1
 
 [node name="FallingTriggers" type="Node3D" parent="UnscaledEnvironment"]
 
@@ -2655,7 +2708,7 @@ mesh = SubResource("QuadMesh_iou2v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.11967, 0, -2.18116)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.407194)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.35915)
 shape = SubResource("BoxShape3D_pxjjv")
 
 [node name="Collider 14" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
@@ -2840,6 +2893,56 @@ transform = Transform3D(0.746232, 0, 0.665686, 0, 1, 0, -0.665686, 0, 0.746232, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0948968, 0, 0.0277262)
 shape = SubResource("BoxShape3D_bjqem")
 
+[node name="Office" type="Node3D" parent="UnscaledEnvironment"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="table" parent="UnscaledEnvironment/Office" instance=ExtResource("85_lyqc3")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.57385, -0.0101443, 12.965)
+
+[node name="lamp" parent="UnscaledEnvironment/Office/table" instance=ExtResource("86_vvf7u")]
+transform = Transform3D(0.870613, 0, 0.491968, 0, 1, 0, -0.491968, 0, 0.870613, -0.383845, 0.390582, -0.099648)
+
+[node name="Key" type="StaticBody3D" parent="UnscaledEnvironment/Office/table"]
+transform = Transform3D(0.341583, 0, -0.299888, 0, 0.454545, 0, 0.299888, 0, 0.341583, -0.36236, 0.366586, 0.100808)
+collision_layer = 3
+collision_mask = 0
+script = ExtResource("73_rd2n3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Office/table/Key"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.103011)
+shape = SubResource("BoxShape3D_ukppb")
+
+[node name="scream_keys" parent="UnscaledEnvironment/Office/table/Key" instance=ExtResource("83_kb31b")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("84_4namy")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="UnscaledEnvironment/Office"]
+transform = Transform3D(0.833333, 0, 0, 0, 0.833333, 0, 0, 0, 0.833333, -6.02894, 2.14652, 14.1301)
+
+[node name="basket" parent="UnscaledEnvironment/Office" instance=ExtResource("87_7l5f5")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.10254, 1.58946e-07, 13.0203)
+
+[node name="book" parent="UnscaledEnvironment/Office" instance=ExtResource("88_qtqpk")]
+transform = Transform3D(1, 0, 0, 0, 0.040219, -0.999191, 0, 0.999191, 0.040219, -6.14379, 0.826972, 12.6921)
+
+[node name="chair" parent="UnscaledEnvironment/Office" instance=ExtResource("89_oqthr")]
+transform = Transform3D(-1.79975, 0, -0.0301263, 0, 1.8, 0, 0.0301263, 0, -1.79975, -6.394, 7.54992e-07, 12.9344)
+
+[node name="chair2" parent="UnscaledEnvironment/Office" instance=ExtResource("89_oqthr")]
+transform = Transform3D(-1.44801, 0, -1.06924, 0, 1.8, 0, 1.06924, 0, -1.44801, -3.9268, 9.93411e-07, 15.5239)
+
+[node name="file" parent="UnscaledEnvironment/Office" instance=ExtResource("90_ftbns")]
+transform = Transform3D(0.265791, -0.597837, -0.756271, 0.950934, 0.291462, 0.103803, 0.158367, -0.746753, 0.645971, -5.91517, 0.771829, 13.0616)
+
+[node name="open book" parent="UnscaledEnvironment/Office" instance=ExtResource("91_nle2w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4757, 0.35721, 12.9927)
+
+[node name="pencil" parent="UnscaledEnvironment/Office" instance=ExtResource("92_lyurk")]
+transform = Transform3D(0.664513, 0, -0.747276, 0, 1, 0, 0.747276, 0, 0.664513, -5.99011, 0.365016, 13.1758)
+
+[node name="wireless tel" parent="UnscaledEnvironment/Office" instance=ExtResource("93_x1e0j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.91376, 0.701764, 12.7287)
+
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25154)
 curve = SubResource("Curve3D_vcsdd")
@@ -2961,13 +3064,13 @@ autoplay = true
 [connection signal="interacted" from="Environment/THe game machine/ArcadeInteractable" to="." method="_on_arcade_interactable_interacted"]
 [connection signal="body_entered" from="UnscaledEnvironment/Triggers/ExitBreakerTrigger" to="." method="_on_exit_breaker_trigger_body_entered"]
 [connection signal="interacted" from="UnscaledEnvironment/ElectricalBox" to="." method="_on_electrical_box_interacted"]
-[connection signal="interacted" from="UnscaledEnvironment/Key" to="." method="_on_key_interacted"]
-[connection signal="interacted" from="UnscaledEnvironment/Key" to="UnscaledEnvironment/Key/scream_keys" method="_on_key_interacted"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/FallingArcade" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/FallingArcade3" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D2/FallingArcade2" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D3/FallingArcade4" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D5/FallingArcade5" method="_on_falling_arcade_trigger_body_entered"]
+[connection signal="interacted" from="UnscaledEnvironment/Office/table/Key" to="." method="_on_key_interacted"]
+[connection signal="interacted" from="UnscaledEnvironment/Office/table/Key" to="UnscaledEnvironment/Office/table/Key/scream_keys" method="_on_key_interacted"]
 [connection signal="capture" from="Path3D/PathFollow3D/RotationFix/Gumkid" to="." method="_on_gumkid_capture"]
 [connection signal="pressed" from="Control/Buttons/Try Again Button" to="." method="_on_try_again_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/Quit Button" to="." method="_on_quit_button_pressed"]
