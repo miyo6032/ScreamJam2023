@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var do_instant_events: bool
-@export var lightsToDisable: Array[Light3D]
+@export var lights_to_disable: Node3D
 @export var exit_breaker_trigger: Area3D
 @export var arcade_game: ArcadeGameLit
 @export var gumkid: Gumkid
@@ -14,6 +14,7 @@ extends Node3D
 @export var music_audio_player: AudioStreamPlayer
 @export var sfx_player: AudioStreamPlayer
 @export var pointer: ColorRect
+@export var emission_objects: Array[MeshInstance3D]
 
 @export var arcade_music: AudioStream
 @export var thunder: AudioStream
@@ -58,8 +59,11 @@ func _on_arcade_game_game_crash():
 
     screen_flash.play("thunder")
 
-    for light in lightsToDisable:
-        light.visible = false
+    lights_to_disable.visible = false
+
+    for obj in emission_objects:
+        var material: Material = obj.material_override
+        material.emission_enabled = false
         
     await pause(1.5)
     player.enabled = true

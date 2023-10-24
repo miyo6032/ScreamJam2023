@@ -429,10 +429,10 @@ _data = {
 "thunder": SubResource("Animation_ifjd7")
 }
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("lightsToDisable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "arcade_static_audio", "music_audio_player", "sfx_player", "pointer")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("lights_to_disable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "arcade_static_audio", "music_audio_player", "sfx_player", "pointer", "emission_objects")]
 script = ExtResource("1_aogbd")
 do_instant_events = true
-lightsToDisable = [NodePath("Environment/Lights/AirHockeyLight"), NodePath("Environment/Lights/AirHockeyLight2"), NodePath("Environment/Lights/AirHockeyLight3"), NodePath("Environment/Lights/AirHockeyLight4"), NodePath("Environment/Lights/AirHockeyLight5"), NodePath("Environment/Lights/AirHockeyLight6"), NodePath("Environment/Lights/BacketballLight"), NodePath("Environment/Lights/OtherLight"), NodePath("Environment/Lights/DanceLight"), NodePath("Environment/Lights/OtherLight2"), NodePath("Environment/Lights/OtherLight3"), NodePath("Environment/Lights/DanceLight2")]
+lights_to_disable = NodePath("Environment/Lights")
 exit_breaker_trigger = NodePath("UnscaledEnvironment/Triggers/ExitBreakerTrigger")
 arcade_game = NodePath("Environment/THe game machine")
 gumkid = NodePath("Path3D/PathFollow3D/RotationFix/Gumkid")
@@ -445,6 +445,7 @@ arcade_static_audio = NodePath("Environment/THe game machine/StaticAudioPlayer")
 music_audio_player = NodePath("MusicPlayer")
 sfx_player = NodePath("SFXPlayer")
 pointer = NodePath("Control/Pointer")
+emission_objects = [NodePath("Environment/arcade machines/Wacca8"), NodePath("Environment/arcade machines/Air"), NodePath("Environment/arcade machines/Basket"), NodePath("Environment/arcade machines/Ddr"), NodePath("Environment/arcade machines/Skeeball")]
 arcade_music = ExtResource("2_qbgec")
 thunder = ExtResource("3_28y8p")
 background = ExtResource("4_s4p02")
