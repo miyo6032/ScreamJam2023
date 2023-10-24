@@ -473,7 +473,7 @@ _data = {
 "thunder": SubResource("Animation_ifjd7")
 }
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("lights_to_disable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "arcade_static_audio", "music_audio_player", "sfx_player", "pointer", "emission_objects")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("lights_to_disable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "arcade_static_audio", "music_audio_player", "sfx_player", "pointer", "emission_objects", "falling_arcade_trigger")]
 script = ExtResource("1_aogbd")
 do_instant_events = true
 lights_to_disable = NodePath("Environment/Lights")
@@ -490,6 +490,7 @@ music_audio_player = NodePath("MusicPlayer")
 sfx_player = NodePath("SFXPlayer")
 pointer = NodePath("Control/Pointer")
 emission_objects = [NodePath("Environment/arcade machines/Wacca8"), NodePath("Environment/arcade machines/Air"), NodePath("Environment/arcade machines/Basket"), NodePath("Environment/arcade machines/Ddr"), NodePath("Environment/arcade machines/Skeeball")]
+falling_arcade_trigger = NodePath("UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger")
 arcade_music = ExtResource("2_qbgec")
 thunder = ExtResource("3_28y8p")
 background = ExtResource("4_s4p02")
@@ -2641,13 +2642,13 @@ skeleton = NodePath("../../..")
 [node name="FallingTriggers" type="Node3D" parent="UnscaledEnvironment"]
 
 [node name="FallingArcadeTrigger" type="Area3D" parent="UnscaledEnvironment/FallingTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.69783, 0.521037, -4.57273)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.69783, 0.521037, -11.4431)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger"]
 shape = SubResource("BoxShape3D_36v73")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, -6.8692)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.453601, 0)
 mesh = SubResource("QuadMesh_iou2v")
 
 [node name="Colliders" type="Node3D" parent="UnscaledEnvironment"]

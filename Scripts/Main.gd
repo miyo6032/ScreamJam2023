@@ -15,6 +15,7 @@ extends Node3D
 @export var sfx_player: AudioStreamPlayer
 @export var pointer: ColorRect
 @export var emission_objects: Array[MeshInstance3D]
+@export var falling_arcade_trigger: Area3D
 
 @export var arcade_music: AudioStream
 @export var thunder: AudioStream
@@ -40,6 +41,7 @@ func _ready():
     gumkid.set_inactive()
     scare_light.visible = false
     pointer.visible = false
+    falling_arcade_trigger.monitoring = false
 
     Console.add_command("spawn", _on_arcade_interactable_interacted)
     Console.add_command("crash", _on_arcade_game_game_crash)
@@ -129,6 +131,7 @@ func _on_arcade_interactable_interacted():
     gumkid.visible = true
 
     player.enabled = true
+    falling_arcade_trigger.monitoring = true
 
     await pause(5.0)
     gumkid.set_active()
