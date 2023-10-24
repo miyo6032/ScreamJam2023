@@ -12,7 +12,7 @@ func _ready():
 
 func set_speed(speed):
     anim_tree.set("parameters/conditions/idle", speed == 0)
-    anim_tree.set("parameters/conditions/run", speed != 0)
+    anim_tree.set("parameters/conditions/sprint", speed != 0)
 
 func scream():
     anim_tree.set("parameters/conditions/scream", true)

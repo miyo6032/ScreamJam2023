@@ -134,7 +134,7 @@ func _on_arcade_interactable_interacted():
     gumkid.set_active()
     movement_tween = get_tree().create_tween()
     gumkid.set_speed(1)
-    movement_tween.tween_property(path_follow, "progress_ratio", 1, 25)
+    movement_tween.tween_property(path_follow, "progress_ratio", 1, 35)
 
 func _on_gumkid_capture():
     gumkid.set_speed(0.0)
