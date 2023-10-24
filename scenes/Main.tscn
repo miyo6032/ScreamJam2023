@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=3 uid="uid://bebvtnpi0k700"]
+[gd_scene load_steps=158 format=3 uid="uid://bebvtnpi0k700"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_aogbd"]
 [ext_resource type="Texture2D" uid="uid://dyujeqgctunvv" path="res://textures/arcade game V1.2.png" id="1_gqc8o"]
@@ -206,6 +206,9 @@ heightmap_texture = ExtResource("46_hnboj")
 [sub_resource type="BoxShape3D" id="BoxShape3D_ll3b4"]
 size = Vector3(1.66278, 6.18737, 1.60718)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_k4465"]
+size = Vector3(1.33957, 4.12567, 2.30614)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_auhx5"]
 albedo_texture = ExtResource("51_shw5l")
 metallic = 1.0
@@ -346,6 +349,57 @@ albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_iou2v"]
 material = SubResource("StandardMaterial3D_lpmoa")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pxjjv"]
+size = Vector3(0.743479, 3.71817, 36.1161)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_goj6v"]
+size = Vector3(0.617337, 3.71817, 9.58431)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m8dv2"]
+size = Vector3(1.42291, 3.71817, 6.49851)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mbmna"]
+size = Vector3(1.42291, 3.71817, 2.67675)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_44x4l"]
+size = Vector3(1.393, 3.71817, 15.6842)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2s1ns"]
+size = Vector3(2.38864, 3.71817, 0.961352)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_apqu1"]
+size = Vector3(6.1247, 3.71817, 1.25842)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_adogr"]
+size = Vector3(10.2269, 3.71817, 1.25842)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pyln0"]
+size = Vector3(10.2269, 3.71817, 0.935855)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lx75x"]
+size = Vector3(4.56436, 3.71817, 1.25842)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ppe6l"]
+size = Vector3(1.11652, 3.71817, 3.4636)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e661s"]
+size = Vector3(0.636425, 3.71817, 6.15064)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_psy7y"]
+size = Vector3(3.27805, 3.71817, 6.51757)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wejpn"]
+size = Vector3(7.32026, 3.71817, 0.614284)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mawss"]
+size = Vector3(1.393, 3.71817, 18.8727)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bjqem"]
+size = Vector3(1.29019, 3.71817, 2.75749)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b8t6x"]
+size = Vector3(1.06481, 3.71817, 2.28743)
 
 [sub_resource type="Curve3D" id="Curve3D_vcsdd"]
 _data = {
@@ -1186,12 +1240,6 @@ material_override = SubResource("StandardMaterial3D_p1ypl")
 mesh = ExtResource("5_mo3uo")
 skeleton = NodePath("../../..")
 
-[node name="ArcadeGameV62" type="MeshInstance3D" parent="Environment/arcade machines"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1901, 0, -16.4315)
-material_override = SubResource("StandardMaterial3D_3ssu6")
-mesh = ExtResource("5_mo3uo")
-skeleton = NodePath("../../..")
-
 [node name="ArcadeGameV63" type="MeshInstance3D" parent="Environment/arcade machines"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.1901, 0, -7.03849)
 material_override = SubResource("StandardMaterial3D_3nk5v")
@@ -1910,6 +1958,24 @@ skeleton = NodePath("../../../../..")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.517359, 0.729031, 0)
 shape = SubResource("BoxShape3D_ll3b4")
 
+[node name="Node3D5" type="Node3D" parent="Environment/arcade machines"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.3597, 0, -17.6365)
+
+[node name="FallingArcade5" type="Node3D" parent="Environment/arcade machines/Node3D5"]
+script = ExtResource("59_f8mfx")
+
+[node name="F" type="MeshInstance3D" parent="Environment/arcade machines/Node3D5/FallingArcade5"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1.2026, 0, 0)
+material_override = SubResource("StandardMaterial3D_3ssu6")
+mesh = ExtResource("5_mo3uo")
+skeleton = NodePath("../../../../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/arcade machines/Node3D5/FallingArcade5/F"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/arcade machines/Node3D5/FallingArcade5/F/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0991096, 1.63961, 0)
+shape = SubResource("BoxShape3D_k4465")
+
 [node name="couch" type="Node3D" parent="Environment"]
 
 [node name="CouchB" type="MeshInstance3D" parent="Environment/couch"]
@@ -2581,8 +2647,199 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.69783, 0.521037, -4.57273)
 shape = SubResource("BoxShape3D_36v73")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.5, -6.8692)
 mesh = SubResource("QuadMesh_iou2v")
+
+[node name="Colliders" type="Node3D" parent="UnscaledEnvironment"]
+
+[node name="Collider 1" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.11967, 0, -2.18116)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.407194)
+shape = SubResource("BoxShape3D_pxjjv")
+
+[node name="Collider 14" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.26069, 0, -3.00119)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 14"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.407194)
+shape = SubResource("BoxShape3D_pxjjv")
+
+[node name="Collider 2" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.53631, 0, -15.7613)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0832, 0, 0.407194)
+shape = SubResource("BoxShape3D_goj6v")
+
+[node name="Collider 3" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.53631, 0, -4.16757)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499197, 0, -1.30433)
+shape = SubResource("BoxShape3D_m8dv2")
+
+[node name="Collider 8" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.53631, 0, -4.16757)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499197, 0, 5.03297)
+shape = SubResource("BoxShape3D_mbmna")
+
+[node name="Collider 4" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.16019, 0, -2.16831)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499197, 0, 1.18676)
+shape = SubResource("BoxShape3D_44x4l")
+
+[node name="Collider 6" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.36225, 0, 6.21019)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0505919, 0, 0.103349)
+shape = SubResource("BoxShape3D_2s1ns")
+
+[node name="Collider 7" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.94694, 0, 2.57188)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0505919, 0, 0.103349)
+shape = SubResource("BoxShape3D_2s1ns")
+
+[node name="Collider 9" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.98502, 0, 8.7583)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 9"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.62529, 0, 0.139006)
+shape = SubResource("BoxShape3D_apqu1")
+
+[node name="Collider 10" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.30676, 0, 11.5686)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 10"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.270319, 0, 0.0558052)
+shape = SubResource("BoxShape3D_adogr")
+
+[node name="Collider 12" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.28568, 0, 14.3399)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 12"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.270319, 0, 0.0558052)
+shape = SubResource("BoxShape3D_adogr")
+
+[node name="Collider 13" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9876, 0, 14.1782)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 13"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.270319, 0, -0.186749)
+shape = SubResource("BoxShape3D_pyln0")
+
+[node name="Collider 11" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.01481, 0, 8.78735)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133793, 0, 0.0439196)
+shape = SubResource("BoxShape3D_lx75x")
+
+[node name="Collider 15" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.39076, 0, 19.1272)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 15"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.133793, 0, 0.0439196)
+shape = SubResource("BoxShape3D_lx75x")
+
+[node name="Collider 16" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.23873, 0, 17.2572)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 16"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.419786, 0, -0.176075)
+shape = SubResource("BoxShape3D_ppe6l")
+
+[node name="Collider 17" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.65413, 0, -17.5776)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 17"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.080287, 0, 0.295452)
+shape = SubResource("BoxShape3D_e661s")
+
+[node name="Collider 18" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.40238, 0, -9.85566)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 18"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.08398, 0, 0.538007)
+shape = SubResource("BoxShape3D_psy7y")
+
+[node name="Collider 19" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.04137, 0, -22.1213)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 19"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.31643, 0, 2.53951)
+shape = SubResource("BoxShape3D_wejpn")
+
+[node name="Collider 5" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0582685, 0, -2.16831)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.499197, 0, 2.20474)
+shape = SubResource("BoxShape3D_mawss")
+
+[node name="Collider 20" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.744676, 0, -13.7237)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 20"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0948968, 0, 0.0277262)
+shape = SubResource("BoxShape3D_bjqem")
+
+[node name="Collider 21" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.41447, 0, -13.8052)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 21"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0948968, 0, 0.0277262)
+shape = SubResource("BoxShape3D_bjqem")
+
+[node name="Collider 22" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(0.00293213, 0, 0.999996, 0, 1, 0, -0.999996, 0, 0.00293213, -3.26002, 0, -12.5009)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 22"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0948968, 0, 0.0277262)
+shape = SubResource("BoxShape3D_bjqem")
+
+[node name="Collider 23" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(0.00293213, 0, 0.999996, 0, 1, 0, -0.999996, 0, 0.00293213, -3.27021, 0, -15.1096)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 23"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0948968, 0, 0.0277262)
+shape = SubResource("BoxShape3D_bjqem")
+
+[node name="Collider 26" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(0.00293213, 0, 0.999996, 0, 1, 0, -0.999996, 0, 0.00293213, 4.88978, 0, -5.23033)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 26"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.257877, 0, 0.0485845)
+shape = SubResource("BoxShape3D_b8t6x")
+
+[node name="Collider 27" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(0.00293213, 0, 0.999996, 0, 1, 0, -0.999996, 0, 0.00293213, 4.93829, 0, -2.352)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 27"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.257877, 0, 0.0485845)
+shape = SubResource("BoxShape3D_b8t6x")
+
+[node name="Collider 24" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(0.746232, 0, 0.665686, 0, 1, 0, -0.665686, 0, 0.746232, 5.69417, 0, 1.29578)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 24"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0948968, 0, 0.0277262)
+shape = SubResource("BoxShape3D_bjqem")
+
+[node name="Collider 25" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
+transform = Transform3D(0.746232, 0, 0.665686, 0, 1, 0, -0.665686, 0, 0.746232, 4.51579, 0, 4.68673)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 25"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0948968, 0, 0.0277262)
+shape = SubResource("BoxShape3D_bjqem")
 
 [node name="Path3D" type="Path3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25154)
@@ -2707,9 +2964,10 @@ autoplay = true
 [connection signal="interacted" from="UnscaledEnvironment/ElectricalBox" to="." method="_on_electrical_box_interacted"]
 [connection signal="interacted" from="UnscaledEnvironment/Key" to="." method="_on_key_interacted"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/FallingArcade" method="_on_falling_arcade_trigger_body_entered"]
-[connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D2/FallingArcade2" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/FallingArcade3" method="_on_falling_arcade_trigger_body_entered"]
+[connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D2/FallingArcade2" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D3/FallingArcade4" method="_on_falling_arcade_trigger_body_entered"]
+[connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D5/FallingArcade5" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="capture" from="Path3D/PathFollow3D/RotationFix/Gumkid" to="." method="_on_gumkid_capture"]
 [connection signal="pressed" from="Control/Buttons/Try Again Button" to="." method="_on_try_again_button_pressed"]
 [connection signal="pressed" from="Control/Buttons/Quit Button" to="." method="_on_quit_button_pressed"]
