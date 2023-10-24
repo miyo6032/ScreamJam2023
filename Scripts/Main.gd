@@ -18,6 +18,7 @@ extends Node3D
 @export var falling_arcade_triggers: Node3D
 
 @export var arcade_music: AudioStream
+@export var main_music: AudioStream
 @export var thunder: AudioStream
 @export var background: AudioStream
 @export var key_pickup: AudioStream
@@ -90,7 +91,7 @@ func _on_arcade_game_game_crash():
     pointer.visible = true
     pause(1)
 
-    music_audio_player.stream = background
+    music_audio_player.stream = main_music
     music_audio_player.play()
 
     dialog.show_dialog("I was so close to beating Gumkid!", dialog_time)
@@ -128,6 +129,9 @@ func _on_electrical_box_interacted():
         dialog.show_dialog("Hmm, the power didn't turn back on", dialog_time)
 
         arcade_static_audio.play()
+
+        music_audio_player.stream = background
+        music_audio_player.play()
     else:
         sfx_player.stream = breaker_fail
         sfx_player.play()
