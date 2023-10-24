@@ -16,6 +16,7 @@ extends Node3D
 @export var music_audio_player: AudioStreamPlayer
 @export var sfx_player: AudioStreamPlayer
 @export var pointer: ColorRect
+@export var exit_area: Area3D
 
 @export var arcade_music: AudioStream
 @export var thunder: AudioStream
@@ -42,6 +43,7 @@ func _ready():
     scare_light.visible = false
     flicker_screen_trigger.monitoring = false
     pointer.visible = false
+    exit_area.monitoring = false
 
     Console.add_command("spawn", _on_arcade_interactable_interacted)
     Console.add_command("crash", _on_arcade_game_game_crash)
@@ -134,6 +136,7 @@ func _on_arcade_interactable_interacted():
     gumkid.visible = true
 
     player.enabled = true
+    exit_area.monitoring = true
 
     await pause(5.0)
     gumkid.set_active()

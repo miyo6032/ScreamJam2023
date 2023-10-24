@@ -15,7 +15,7 @@ extends Node3D
 @export var sfx_player: AudioStreamPlayer
 @export var pointer: ColorRect
 @export var emission_objects: Array[MeshInstance3D]
-@export var falling_arcade_trigger: Area3D
+@export var falling_arcade_triggers: Node3D
 
 @export var arcade_music: AudioStream
 @export var thunder: AudioStream
@@ -41,7 +41,8 @@ func _ready():
     gumkid.set_inactive()
     scare_light.visible = false
     pointer.visible = false
-    falling_arcade_trigger.monitoring = false
+    for trigger in falling_arcade_triggers.get_children():
+        trigger.monitoring = false
 
     Console.add_command("spawn", _on_arcade_interactable_interacted)
     Console.add_command("crash", _on_arcade_game_game_crash)
@@ -131,13 +132,14 @@ func _on_arcade_interactable_interacted():
     gumkid.visible = true
 
     player.enabled = true
-    falling_arcade_trigger.monitoring = true
+    for trigger in falling_arcade_triggers.get_children():
+        trigger.monitoring = true
 
     await pause(5.0)
     gumkid.set_active()
     movement_tween = get_tree().create_tween()
     gumkid.set_speed(1)
-    movement_tween.tween_property(path_follow, "progress_ratio", 1, 35)
+    movement_tween.tween_property(path_follow, "progress_ratio", 1, 45)
 
 func _on_gumkid_capture():
     gumkid.set_speed(0.0)
@@ -160,7 +162,6 @@ func _on_try_again_button_pressed():
 func _on_quit_button_pressed():
     get_tree().quit()
 
-
 func _on_key_interacted():
     has_key = true
 
@@ -169,3 +170,13 @@ func _on_key_interacted():
 
     dialog.show_dialog("I got the key to the breaker box!", dialog_time)
 
+func _on_exit_area_body_entered(body):
+    player.enabled = false
+    
+    screen_flash.play("game_win")
+    
+    await pause(1)
+    dialog.show_dialog("You escaped from the arcade, never looking back", dialog_time)
+    
+    await pause(1)
+    Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

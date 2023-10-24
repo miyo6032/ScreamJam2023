@@ -1,4 +1,4 @@
-[gd_scene load_steps=169 format=3 uid="uid://bebvtnpi0k700"]
+[gd_scene load_steps=172 format=3 uid="uid://bebvtnpi0k700"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_aogbd"]
 [ext_resource type="Texture2D" uid="uid://dyujeqgctunvv" path="res://textures/arcade game V1.2.png" id="1_gqc8o"]
@@ -216,7 +216,7 @@ normal_texture = ExtResource("48_uytx2")
 heightmap_texture = ExtResource("46_hnboj")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ll3b4"]
-size = Vector3(1.66278, 6.18737, 1.60718)
+size = Vector3(1.20719, 6.18737, 1.60718)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k4465"]
 size = Vector3(1.33957, 4.12567, 2.30614)
@@ -342,6 +342,9 @@ loop = true
 [sub_resource type="QuadMesh" id="QuadMesh_5jmel"]
 size = Vector2(1, 2)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cju6h"]
+radius = 0.647516
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_gs3rr"]
 size = Vector3(2, 1, 2)
 
@@ -363,6 +366,9 @@ albedo_color = Color(1, 0, 0, 1)
 [sub_resource type="QuadMesh" id="QuadMesh_iou2v"]
 material = SubResource("StandardMaterial3D_lpmoa")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nsv16"]
+size = Vector3(2, 1, 2)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_pxjjv"]
 size = Vector3(0.743479, 3.71817, 36.1161)
 
@@ -373,13 +379,13 @@ size = Vector3(0.617337, 3.71817, 9.58431)
 size = Vector3(1.42291, 3.71817, 6.49851)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mbmna"]
-size = Vector3(1.42291, 3.71817, 2.67675)
+size = Vector3(1.42291, 3.71817, 2.24874)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_44x4l"]
 size = Vector3(1.393, 3.71817, 15.6842)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2s1ns"]
-size = Vector3(2.38864, 3.71817, 0.961352)
+size = Vector3(1.93711, 3.71817, 0.961352)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_apqu1"]
 size = Vector3(6.1247, 3.71817, 1.25842)
@@ -482,14 +488,55 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0.254902), Color(1, 1, 1, 0), Color(1, 1, 1, 0.137255), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_1p6w6"]
+resource_name = "black"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0.00784314, 0.105882, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Buttons:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5.1, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Buttons/Try Again Button:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ax1ru"]
 _data = {
 "flash": SubResource("Animation_xu41q"),
 "game_over": SubResource("Animation_fe0vd"),
+"game_win": SubResource("Animation_1p6w6"),
 "thunder": SubResource("Animation_ifjd7")
 }
 
-[node name="Main" type="Node3D" node_paths=PackedStringArray("lights_to_disable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "arcade_static_audio", "music_audio_player", "sfx_player", "pointer", "emission_objects", "falling_arcade_trigger")]
+[node name="Main" type="Node3D" node_paths=PackedStringArray("lights_to_disable", "exit_breaker_trigger", "arcade_game", "gumkid", "screen_flash", "path_follow", "scare_camera", "scare_light", "dialog", "arcade_static_audio", "music_audio_player", "sfx_player", "pointer", "emission_objects", "falling_arcade_triggers")]
 script = ExtResource("1_aogbd")
 do_instant_events = true
 lights_to_disable = NodePath("Environment/Lights")
@@ -506,7 +553,7 @@ music_audio_player = NodePath("MusicPlayer")
 sfx_player = NodePath("SFXPlayer")
 pointer = NodePath("Control/Pointer")
 emission_objects = [NodePath("Environment/arcade machines/Wacca8"), NodePath("Environment/arcade machines/Air"), NodePath("Environment/arcade machines/Basket"), NodePath("Environment/arcade machines/Ddr"), NodePath("Environment/arcade machines/Skeeball")]
-falling_arcade_trigger = NodePath("UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger")
+falling_arcade_triggers = NodePath("UnscaledEnvironment/FallingTriggers")
 arcade_music = ExtResource("2_qbgec")
 thunder = ExtResource("3_28y8p")
 background = ExtResource("4_s4p02")
@@ -518,7 +565,7 @@ breaker_fail = ExtResource("7_gj5r0")
 environment = SubResource("Environment_qdvrx")
 
 [node name="Player" parent="." instance=ExtResource("69_a0ojv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.58569, 0.999998, 17.6266)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.89153, 0.999998, -18.3007)
 
 [node name="Environment" type="Node3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
@@ -1972,7 +2019,7 @@ skeleton = NodePath("../../../../..")
 [node name="StaticBody3D" type="StaticBody3D" parent="Environment/arcade machines/Node3D3/FallingArcade4/ArcadeGameV88"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/arcade machines/Node3D3/FallingArcade4/ArcadeGameV88/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.517359, 0.729031, 0)
+transform = Transform3D(1, 0, -4.65661e-10, 0, 1, 0, 4.65661e-10, 0, 1, -0.617033, 0.729031, 0.000403881)
 shape = SubResource("BoxShape3D_ll3b4")
 
 [node name="Node3D5" type="Node3D" parent="Environment/arcade machines"]
@@ -2435,7 +2482,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5209, 6.61071, -37.7655)
 material = SubResource("StandardMaterial3D_330ow")
 
 [node name="light above electrical box2" type="CSGSphere3D" parent="Environment/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035265, 6.61071, 39.8595)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6502, 6.61071, 39.6972)
 material = SubResource("StandardMaterial3D_wi8an")
 
 [node name="light above electrical box3" type="CSGSphere3D" parent="Environment/CSGCombiner3D"]
@@ -2592,8 +2639,12 @@ light_color = Color(0.458824, 1, 1, 1)
 light_energy = 0.5
 
 [node name="DoorLight" type="OmniLight3D" parent="Environment/Lights"]
-transform = Transform3D(1.66667, 0, 0, 0, 1.66667, 0, 0, 0, 1.66667, 0.793696, 3.03646, 37.4429)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -5.46028, 3.03646, 38.6181)
 light_color = Color(0, 0.501961, 1, 1)
+
+[node name="ScreenLight" type="SpotLight3D" parent="Environment/Lights"]
+transform = Transform3D(-1.99999, 0.000830704, 0.0054876, -1.77636e-15, 1.97747, -0.299346, -0.00555012, -0.299345, -1.97746, -15.8221, 2.68195, -40.1444)
+light_color = Color(1, 0.831373, 0.831373, 1)
 
 [node name="THe game machine" type="MeshInstance3D" parent="Environment"]
 transform = Transform3D(-0.00277501, 0, -0.999995, 0, 1, 0, 0.999995, 0, -0.00277501, -15.8255, 0.410419, -38.8942)
@@ -2629,10 +2680,6 @@ render_target_update_mode = 3
 
 [node name="ScreenFlickerEffect" parent="Environment/THe game machine/FlickeringScreen/SubViewport" instance=ExtResource("72_b3ovc")]
 
-[node name="ScreenLight" type="SpotLight3D" parent="Environment/THe game machine"]
-transform = Transform3D(-7.94752e-08, -0.272133, -1.7977, -1.61487e-15, 1.7977, -0.272133, 1.81818, -1.18953e-08, -7.858e-08, -1.25018, 2.27153, 0)
-light_color = Color(1, 0.831373, 0.831373, 1)
-
 [node name="ArcadeInteractable" type="StaticBody3D" parent="Environment/THe game machine"]
 transform = Transform3D(-7.94753e-08, 0, -1.81818, 0, 1.81818, 0, 1.81818, 0, -7.94753e-08, 0, 2, 0)
 collision_layer = 3
@@ -2656,9 +2703,15 @@ volume_db = -30.0
 [node name="UnscaledEnvironment" type="Node3D" parent="."]
 
 [node name="Door" type="MeshInstance3D" parent="UnscaledEnvironment"]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 1, 19.8234)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -2.68823, 1, 19.8234)
 mesh = SubResource("QuadMesh_5jmel")
 skeleton = NodePath("../../Environment")
+
+[node name="ExitArea" type="Area3D" parent="UnscaledEnvironment/Door"]
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Door/ExitArea"]
+shape = SubResource("CylinderShape3D_cju6h")
 
 [node name="Triggers" type="Node3D" parent="UnscaledEnvironment"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
@@ -2673,6 +2726,7 @@ shape = SubResource("BoxShape3D_gs3rr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="UnscaledEnvironment/Triggers/ExitBreakerTrigger"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+visible = false
 mesh = SubResource("QuadMesh_vrjpv")
 
 [node name="FallingMachineTriggers" type="Node3D" parent="UnscaledEnvironment/Triggers"]
@@ -2693,13 +2747,47 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 [node name="FallingTriggers" type="Node3D" parent="UnscaledEnvironment"]
 
 [node name="FallingArcadeTrigger" type="Area3D" parent="UnscaledEnvironment/FallingTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.69783, 0.521037, -11.4431)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.69783, 0.521037, -12.3157)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger"]
 shape = SubResource("BoxShape3D_36v73")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.453601, 0)
+visible = false
+mesh = SubResource("QuadMesh_iou2v")
+
+[node name="FallingArcadeTrigger2" type="Area3D" parent="UnscaledEnvironment/FallingTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.69783, 0.521037, -5.57928)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger2"]
+shape = SubResource("BoxShape3D_36v73")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger2"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.453601, 0)
+visible = false
+mesh = SubResource("QuadMesh_iou2v")
+
+[node name="FallingArcadeTrigger3" type="Area3D" parent="UnscaledEnvironment/FallingTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.69646, 0.521037, 4.97551)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger3"]
+shape = SubResource("BoxShape3D_nsv16")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.453601, 0)
+visible = false
+mesh = SubResource("QuadMesh_iou2v")
+
+[node name="FallingArcadeTrigger4" type="Area3D" parent="UnscaledEnvironment/FallingTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.49128, 0.521037, 10.1364)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger4"]
+shape = SubResource("BoxShape3D_36v73")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.453601, 0)
+visible = false
 mesh = SubResource("QuadMesh_iou2v")
 
 [node name="Colliders" type="Node3D" parent="UnscaledEnvironment"]
@@ -2757,7 +2845,7 @@ shape = SubResource("BoxShape3D_2s1ns")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.94694, 0, 2.57188)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="UnscaledEnvironment/Colliders/Collider 7"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0505919, 0, 0.103349)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.193372, 0, 0.103349)
 shape = SubResource("BoxShape3D_2s1ns")
 
 [node name="Collider 9" type="StaticBody3D" parent="UnscaledEnvironment/Colliders"]
@@ -2992,6 +3080,21 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(1, 1, 1, 0.117647)
 
+[node name="ScreenFlash" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0, 0, 0)
+
+[node name="ScreenFlashAnimation" type="AnimationPlayer" parent="Control/ScreenFlash"]
+libraries = {
+"": SubResource("AnimationLibrary_ax1ru")
+}
+
 [node name="Dialog" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 7
@@ -3009,21 +3112,6 @@ theme_override_font_sizes/font_size = 30
 text = "Bruh the power is out?"
 script = ExtResource("76_qbhcc")
 
-[node name="ScreenFlash" type="ColorRect" parent="Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(1, 1, 1, 0)
-
-[node name="ScreenFlashAnimation" type="AnimationPlayer" parent="Control/ScreenFlash"]
-libraries = {
-"": SubResource("AnimationLibrary_ax1ru")
-}
-
 [node name="Buttons" type="Control" parent="Control"]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
@@ -3035,6 +3123,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Try Again Button" type="Button" parent="Control/Buttons"]
+visible = false
 layout_mode = 2
 offset_left = 279.0
 offset_top = 414.0
@@ -3062,13 +3151,14 @@ autoplay = true
 [connection signal="game_crash" from="Environment/THe game machine/ArcadeGameScreen/SubViewport/ArcadeGame" to="." method="_on_arcade_game_game_crash"]
 [connection signal="game_start" from="Environment/THe game machine/ArcadeGameScreen/SubViewport/ArcadeGame" to="." method="_on_arcade_game_game_start"]
 [connection signal="interacted" from="Environment/THe game machine/ArcadeInteractable" to="." method="_on_arcade_interactable_interacted"]
+[connection signal="body_entered" from="UnscaledEnvironment/Door/ExitArea" to="." method="_on_exit_area_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/Triggers/ExitBreakerTrigger" to="." method="_on_exit_breaker_trigger_body_entered"]
 [connection signal="interacted" from="UnscaledEnvironment/ElectricalBox" to="." method="_on_electrical_box_interacted"]
-[connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/FallingArcade" method="_on_falling_arcade_trigger_body_entered"]
-[connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/FallingArcade3" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D2/FallingArcade2" method="_on_falling_arcade_trigger_body_entered"]
-[connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D3/FallingArcade4" method="_on_falling_arcade_trigger_body_entered"]
 [connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger" to="Environment/arcade machines/Node3D5/FallingArcade5" method="_on_falling_arcade_trigger_body_entered"]
+[connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger2" to="Environment/arcade machines/FallingArcade" method="_on_falling_arcade_trigger_2_body_entered"]
+[connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger3" to="Environment/arcade machines/FallingArcade3" method="_on_falling_arcade_trigger_3_body_entered"]
+[connection signal="body_entered" from="UnscaledEnvironment/FallingTriggers/FallingArcadeTrigger4" to="Environment/arcade machines/Node3D3/FallingArcade4" method="_on_falling_arcade_trigger_4_body_entered"]
 [connection signal="interacted" from="UnscaledEnvironment/Office/table/Key" to="." method="_on_key_interacted"]
 [connection signal="interacted" from="UnscaledEnvironment/Office/table/Key" to="UnscaledEnvironment/Office/table/Key/scream_keys" method="_on_key_interacted"]
 [connection signal="capture" from="Path3D/PathFollow3D/RotationFix/Gumkid" to="." method="_on_gumkid_capture"]
