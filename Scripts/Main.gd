@@ -24,6 +24,8 @@ extends Node3D
 @export var switch_breaker: AudioStream
 @export var breaker_fail: AudioStream
 
+@export var start_at_mid: bool
+
 @onready var player: Player = $Player
 
 var dialog_time = 0.0
@@ -50,6 +52,18 @@ func _ready():
     if !do_instant_events:
         dialog_time = 2.0
         dialog_pause_time = 2.0
+        
+    if start_at_mid:
+        disable_lights()
+        player.enabled = true
+        has_key = true
+        arcade_game.set_flickering()
+        arcade_game.set_interactable()
+        arcade_static_audio.play()
+        player.enable_flashlight()
+        pointer.visible = true
+        music_audio_player.stream = background
+        music_audio_player.play()
 
 func _on_arcade_game_game_start():
     music_audio_player.stream = arcade_music
@@ -62,11 +76,7 @@ func _on_arcade_game_game_crash():
 
     screen_flash.play("thunder")
 
-    lights_to_disable.visible = false
-
-    for obj in emission_objects:
-        var material: Material = obj.material_override
-        material.emission_enabled = false
+    disable_lights()
         
     await pause(1.5)
     player.enabled = true
@@ -94,6 +104,13 @@ func _on_arcade_game_game_crash():
 
     dialog.show_dialog("I might be able to restore the power", dialog_time)
     await pause(dialog_time + dialog_pause_time)
+    
+func disable_lights():
+    for obj in emission_objects:
+        var material: Material = obj.material_override
+        material.emission_enabled = false
+        
+    lights_to_disable.visible = false    
 
 func pause(time):
     return get_tree().create_timer(time).timeout
@@ -128,6 +145,8 @@ func _on_exit_breaker_trigger_body_entered(body):
 func _on_arcade_interactable_interacted():
     player.enabled = false
     screen_flash.play("flash")
+    sfx_player.stream = thunder
+    sfx_player.play()
     gumkid.set_scream()
     gumkid.visible = true
 
@@ -157,7 +176,7 @@ func show_gameover_screen():
     Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_try_again_button_pressed():
-    get_tree().reload_current_scene()
+    get_tree().change_scene_to_file("res://scenes/Main_Checkpoint.tscn")
 
 func _on_quit_button_pressed():
     get_tree().quit()

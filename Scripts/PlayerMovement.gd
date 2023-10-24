@@ -10,7 +10,7 @@ const STOP_SPEED = 8.0
 const WALK_SPEED = 3.0
 const SPRINT_SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const SENSITIVITY = 0.005
+const SENSITIVITY = 0.003
 const BOB_FREQ = 3.0
 const BOB_AMP = 0.05
 var bob_progress = 0.0
@@ -29,9 +29,9 @@ func _ready():
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event):
-    if event is InputEventMouseButton:
+    if event is InputEventMouseButton and enabled:
         Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-    elif event.is_action_pressed("ui_cancel"):
+    elif event.is_action_pressed("ui_cancel") and enabled:
         Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
     if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion and enabled:

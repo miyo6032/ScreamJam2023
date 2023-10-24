@@ -1,4 +1,4 @@
-[gd_scene load_steps=172 format=3 uid="uid://bebvtnpi0k700"]
+[gd_scene load_steps=173 format=3 uid="uid://bebvtnpi0k700"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_aogbd"]
 [ext_resource type="Texture2D" uid="uid://dyujeqgctunvv" path="res://textures/arcade game V1.2.png" id="1_gqc8o"]
@@ -95,7 +95,8 @@
 [ext_resource type="PackedScene" uid="uid://n1cpr2ert0ct" path="res://3D models/Office/file.fbx" id="90_ftbns"]
 [ext_resource type="PackedScene" uid="uid://bhtu2mrpj5ae0" path="res://3D models/Office/open book.fbx" id="91_nle2w"]
 [ext_resource type="PackedScene" uid="uid://c2l27mgjp4dp5" path="res://3D models/Office/pencil.fbx" id="92_lyurk"]
-[ext_resource type="PackedScene" path="res://3D models/Office/wireless tel.fbx" id="93_x1e0j"]
+[ext_resource type="PackedScene" uid="uid://f2y2k25d5ol4" path="res://3D models/Office/wireless tel.fbx" id="93_x1e0j"]
+[ext_resource type="Script" path="res://scenes/ScreenFlash.gd" id="95_hm2rd"]
 
 [sub_resource type="Environment" id="Environment_qdvrx"]
 background_mode = 1
@@ -472,20 +473,17 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_ifjd7"]
-resource_name = "thunder"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
-"transitions": PackedFloat32Array(568.099, 9089.6, 1, 12.996),
-"update": 0,
-"values": [Color(1, 1, 1, 0.254902), Color(1, 1, 1, 0), Color(1, 1, 1, 0.137255), Color(1, 1, 1, 0)]
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Buttons/Try Again Button:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_1p6w6"]
@@ -526,6 +524,21 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ifjd7"]
+resource_name = "thunder"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5, 0.8),
+"transitions": PackedFloat32Array(568.099, 9089.6, 1, 12.996),
+"update": 0,
+"values": [Color(1, 1, 1, 0.254902), Color(1, 1, 1, 0), Color(1, 1, 1, 0.137255), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ax1ru"]
@@ -3036,7 +3049,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.25154)
 curve = SubResource("Curve3D_vcsdd")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(-0.999886, 1.63246e-05, -0.0147047, 0, 0.999999, 0.00111015, 0.0147047, 0.00111004, -0.999886, -7.93465, 0.0171204, -17.597)
+transform = Transform3D(-0.999886, 1.63247e-05, -0.0147047, 9.0949e-13, 0.999999, 0.00111016, 0.0147047, 0.00111004, -0.999886, -7.93465, 0.0171204, -17.597)
 
 [node name="RotationFix" type="Node3D" parent="Path3D/PathFollow3D"]
 transform = Transform3D(-1.2, 0, -1.81195e-07, 0, 1.2, 0, 1.81195e-07, 0, -1.2, 0, 0, 0)
@@ -3088,7 +3101,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(1, 0, 0, 0)
+color = Color(1, 0, 0, 1)
+script = ExtResource("95_hm2rd")
 
 [node name="ScreenFlashAnimation" type="AnimationPlayer" parent="Control/ScreenFlash"]
 libraries = {
@@ -3123,7 +3137,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Try Again Button" type="Button" parent="Control/Buttons"]
-visible = false
 layout_mode = 2
 offset_left = 279.0
 offset_top = 414.0

@@ -1,6 +1,6 @@
 extends Node3D
 
-const RAY_LENGTH = 1000.0
+const RAY_LENGTH = 2.0
 
 @export var collider: CollisionObject3D
 @export var camera: Camera3D
