@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c56hkknnm3cfe"]
+[gd_scene load_steps=14 format=3 uid="uid://c56hkknnm3cfe"]
 
 [ext_resource type="Script" path="res://Scripts/ArcadePlayerMovement.gd" id="1_fbmnh"]
 [ext_resource type="Script" path="res://Prototype/Scenes/ArcadeGame.gd" id="1_vlq7h"]
@@ -106,6 +106,8 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 193, 376, 0, 0, 0, 0, 344, 373, 0, 0, 0, 0, 345, 344, 0, 0, 0, 0, 373, 344, 0, 0, 0, 0, 374, 357, 0, 0, 0, 0, 407, 362, 0, 0, 0, 0, 409, 391, 0, 0, 0, 0, 437, 391, 0, 0, 0, 0, 439, 346, 0, 0, 0, 0, 470, 346, 0, 0, 0, 0, 472, 391, 0, 0, 0, 0, 535, 393, 0, 0, 0, 0, 536, 376, 0, 0, 0, 0, 552, 375, 0, 0, 0, 0, 552, 359, 0, 0, 0, 0, 565, 361, 0, 0, 0, 0, 568, 344, 0, 0, 0, 0, 615, 344, 0, 0, 0, 0, 616, 376, 0, 0, 0, 0, 648, 377, 0, 0, 0, 0, 648, 328, 0, 0, 0, 0, 680, 330, 0, 0, 0, 0, 681, 359, 0, 0, 0, 0, 696, 360, 0, 0, 0, 0, 697, 393, 0, 0, 0, 0, 741, 393, 0, 0, 0, 0, 741, 393)
 }
 point_count = 27
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18lj1"]
 
 [node name="ArcadeGame" type="Node2D" node_paths=PackedStringArray("camera_target")]
 script = ExtResource("1_vlq7h")
@@ -238,5 +240,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(646, 376)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_18lj1")
+
 [connection signal="game_crash" from="." to="." method="_on_game_crash"]
 [connection signal="body_entered" from="Path2D/PathFollow2D/Enemy" to="." method="_on_enemy_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

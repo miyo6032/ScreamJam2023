@@ -16,6 +16,7 @@ extends Node3D
 @export var pointer: ColorRect
 @export var emission_objects: Array[MeshInstance3D]
 @export var falling_arcade_triggers: Node3D
+@export var exit_area: Area3D
 
 @export var arcade_music: AudioStream
 @export var main_music: AudioStream
@@ -46,6 +47,7 @@ func _ready():
     pointer.visible = false
     for trigger in falling_arcade_triggers.get_children():
         trigger.monitoring = false
+    exit_area.monitoring = false
 
     Console.add_command("spawn", _on_arcade_interactable_interacted)
     Console.add_command("crash", _on_arcade_game_game_crash)
@@ -87,6 +89,8 @@ func _on_arcade_game_game_crash():
     dialog.show_dialog("Time to get out my flashlight", dialog_time)
 
     await pause(dialog_time + dialog_pause_time)
+    sfx_player.stream = switch_breaker
+    sfx_player.play()
     player.enable_flashlight()
     pointer.visible = true
     pause(1)
@@ -104,6 +108,9 @@ func _on_arcade_game_game_crash():
     await pause(dialog_time + dialog_pause_time)
 
     dialog.show_dialog("I might be able to restore the power", dialog_time)
+    await pause(dialog_time + dialog_pause_time)
+
+    dialog.show_dialog("There should be a red breaker light somewhere", dialog_time)
     await pause(dialog_time + dialog_pause_time)
     
 func disable_lights():
@@ -157,6 +164,7 @@ func _on_arcade_interactable_interacted():
     player.enabled = true
     for trigger in falling_arcade_triggers.get_children():
         trigger.monitoring = true
+    exit_area.monitoring = true
 
     await pause(5.0)
     gumkid.set_active()
@@ -178,6 +186,7 @@ func show_gameover_screen():
 
     await pause(3)
     Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+    player.stop_capture = true
 
 func _on_try_again_button_pressed():
     get_tree().change_scene_to_file("res://scenes/Main_Checkpoint.tscn")
@@ -203,3 +212,4 @@ func _on_exit_area_body_entered(body):
     
     await pause(1)
     Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+    player.stop_capture = true   

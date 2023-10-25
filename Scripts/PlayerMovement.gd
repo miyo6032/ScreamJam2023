@@ -6,6 +6,8 @@ class_name Player
 @export var audio_player: AudioStreamPlayer
 @export var step_sounds: Array[AudioStream]
 
+var stop_capture = false
+
 const STOP_SPEED = 8.0
 const WALK_SPEED = 3.0
 const SPRINT_SPEED = 5.0
@@ -29,9 +31,9 @@ func _ready():
     Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event):
-    if event is InputEventMouseButton and enabled:
+    if event is InputEventMouseButton and !stop_capture:
         Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-    elif event.is_action_pressed("ui_cancel") and enabled:
+    elif event.is_action_pressed("ui_cancel") and !stop_capture:
         Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
     if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and event is InputEventMouseMotion and enabled:

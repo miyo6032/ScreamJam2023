@@ -25,8 +25,6 @@ func _physics_process(delta):
             player.enabled = true
             var tween = get_tree().create_tween()
             tween.tween_property(path_follow, "progress_ratio", 1, 13.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
-            var tween2 = get_tree().create_tween()
-            tween2.tween_callback(_crash_after_delay).set_delay(9)
 
 func _crash_after_delay():
     if enabled:
@@ -47,3 +45,6 @@ func _on_enemy_body_entered(body):
     $Camera2D/UserInterface/StartingScreen/PressEnter.text = "Press Enter to try again"
     player.enabled = false
     player_died = true
+
+func _on_area_2d_body_entered(body):
+    _crash_after_delay()
