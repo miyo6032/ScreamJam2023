@@ -23,7 +23,7 @@ func _physics_process(delta):
             game_start.emit()
             starting_screen.hide()
             player.enabled = true
-            var tween = get_tree().create_tween()
+            var tween = create_tween()
             tween.tween_property(path_follow, "progress_ratio", 1, 13.0).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 
 func _crash_after_delay():
